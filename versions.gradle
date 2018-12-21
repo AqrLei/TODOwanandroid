@@ -1,0 +1,97 @@
+def static addRepos(RepositoryHandler handler) {
+    handler.google()
+    handler.jcenter()
+    handler.mavenCentral()
+}
+
+def static packageTime() {
+    return new Date().format("yyyy-MM-dd", TimeZone.getTimeZone("UTC"))
+}
+
+ext.packageTime = this.&packageTime
+
+ext.addRepos = this.&addRepos
+
+ext.deps = [:]
+
+def build_versions = [:]
+build_versions.min_sdk = 16
+build_versions.compile_sdk = 28
+build_versions.target_sdk = 28
+
+ext.build_versions = build_versions
+
+def versions = [:]
+versions.kotlin = "1.3.11"
+versions.kotlin_coroutines = "1.0.0"
+
+versions.zxing_core = "3.3.0"
+
+versions.android_gradle_plugin = '3.2.1'
+versions.appcompat = "1.0.0"
+versions.constraint = "2.0.0-alpha2"
+versions.material = "1.0.0"
+versions.fragment ="1.0.0"
+
+versions.junit = "4.12"
+versions.test_runner = "1.1.0-beta02"
+versions.test_espresso = "3.1.0-beta02"
+
+versions.maven_plugin = "2.1"
+versions.bintray_plugin = "1.7.3"
+versions.dokka_plugin = "0.9.17"
+
+versions.lifecycle = "1.1.1"
+versions.retrofit2 = "2.5.0"
+versions.okhttp = "3.11.0"
+
+versions.livedataadapter = "1.1.2"
+
+
+def deps = [:]
+deps.android_gradle_plugin = "com.android.tools.build:gradle:$versions.android_gradle_plugin"
+deps.maven_plugin = "com.github.dcendents:android-maven-gradle-plugin:$versions.maven_plugin"
+deps.bintray_plugin = "com.jfrog.bintray.gradle:gradle-bintray-plugin:$versions.bintray_plugin"
+deps.dokka_plugin = "org.jetbrains.dokka:dokka-android-gradle-plugin:$versions.dokka_plugin"
+deps.material = "com.google.android.material:material:$versions.material"
+deps.livedataAdapter = "com.github.leonardoxh:retrofit2-livedata-adapter:$versions.livedataadapter"
+def test = [:]
+test.junit = "junit:junit:$versions.junit"
+test.runner = "androidx.test:runner:$versions.test_runner"
+test.espresso = "androidx.test.espresso:espresso-core:$versions.test_espresso"
+deps.test = test
+
+
+def androidx = [:]
+androidx.appcompat = "androidx.appcompat:appcompat:$versions.appcompat"
+androidx.constraint = "androidx.constraintlayout:constraintlayout:$versions.constraint"
+androidx.fragment = "androidx.fragment:fragment:$versions.fragment"
+deps.androidx  = androidx
+
+def lifecycle = [:]
+lifecycle.extensions = "android.arch.lifecycle:extensions:$versions.lifecycle"
+deps.lifecycle = lifecycle
+
+
+def kotlin = [:]
+kotlin.stdlib = "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$versions.kotlin"
+kotlin.plugin = "org.jetbrains.kotlin:kotlin-gradle-plugin:$versions.kotlin"
+kotlin.coroutines = "org.jetbrains.kotlinx:kotlinx-coroutines-android:$versions.kotlin_coroutines"
+kotlin.test = "org.jetbrains.kotlin:kotlin-test-junit:$versions.kotlin"
+kotlin.anko = "org.jetbrains.anko:anko:$versions.anko"
+kotlin.ktx = " androidx.core:core-ktx:$versions.ktx"
+deps.kotlin = kotlin
+
+def zxing = [:]
+zxing.core = "com.google.zxing:core:$versions.zxing_core"
+deps.zxing = zxing
+
+def retrofit2 = [:]
+retrofit2.retrofit = "com.squareup.retrofit2:retrofit:$versions.retrofit2"
+retrofit2.gsonConverter = "com.squareup.retrofit2:converter-gson:$versions.retrofit2"
+deps.retrofit2 = retrofit2
+
+def okhttp = [:]
+okhttp.logging = "com.squareup.okhttp3:logging-interceptor:$versions.okhttp"
+deps.okhttp = okhttp
+ext.deps = deps
