@@ -49,6 +49,11 @@ dependencies {
     implementation deps.retrofit2.retrofit
     implementation deps.retrofit2.gsonConverter
     implementation deps.okhttp.logging
+
+    //implementation deps.aqrlei.livedatacalladapter
+    implementation deps.aqrlei.customviews
+    implementation deps.aqrlei.utils
+
     testImplementation deps.test.junit
     androidTestImplementation deps.test.runner
     androidTestImplementation deps.test.espresso

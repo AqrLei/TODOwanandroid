@@ -45,7 +45,9 @@ versions.lifecycle = "1.1.1"
 versions.retrofit2 = "2.5.0"
 versions.okhttp = "3.11.0"
 
-versions.livedataadapter = "1.1.2"
+versions.aqrlei_livedatacalladapter = "0.0.1"
+versions.aqrlei_customviews = "0.2.6"
+versions.aqrlei_utils = "0.2.6"
 
 
 def deps = [:]
@@ -61,6 +63,11 @@ test.runner = "androidx.test:runner:$versions.test_runner"
 test.espresso = "androidx.test.espresso:espresso-core:$versions.test_espresso"
 deps.test = test
 
+def aqrlei = [:]
+aqrlei.livedatacalladapter = "com.aqrlei.opensource:retrofitlivedatacalladapter:$versions.aqrlei_livedatacalladapter"
+aqrlei.customviews = "com.aqrlei.opensource:customviews:$versions.aqrlei_customviews"
+aqrlei.utils = "com.aqrlei.opensource:utils:$versions.aqrlei_utils"
+deps.aqrlei = aqrlei
 
 def androidx = [:]
 androidx.appcompat = "androidx.appcompat:appcompat:$versions.appcompat"

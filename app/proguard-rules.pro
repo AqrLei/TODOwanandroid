@@ -97,6 +97,9 @@
     native <methods>;
 }
 
+
+-keep class android.arch.** { *; }
+
 #retrofit2
 -dontwarn retrofit2.**
 -keep class retrofit2.** { *; }
