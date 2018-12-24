@@ -19,12 +19,14 @@ android {
             minifyEnabled true
             zipAlignEnabled true
             shrinkResources true
+            buildConfigField "boolean", "IS_LOG_SHOW", "false"
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
         debug {
             minifyEnabled false
             zipAlignEnabled false
             shrinkResources false
+            buildConfigField "boolean", "IS_LOG_SHOW", "true"
         }
     }
     compileOptions {
@@ -50,7 +52,7 @@ dependencies {
     implementation deps.retrofit2.gsonConverter
     implementation deps.okhttp.logging
 
-    //implementation deps.aqrlei.livedatacalladapter
+    implementation deps.aqrlei.livedatacalladapter
     implementation deps.aqrlei.customviews
     implementation deps.aqrlei.utils
 
