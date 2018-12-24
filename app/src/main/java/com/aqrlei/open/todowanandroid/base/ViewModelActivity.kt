@@ -1,9 +1,13 @@
 package com.aqrlei.open.todowanandroid.base
 
 import android.os.Bundle
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
 import androidx.annotation.CallSuper
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
+import com.aqrlei.open.todowanandroid.R
 import com.aqrlei.open.utils.ToastHelper
 
 /**
@@ -12,10 +16,12 @@ import com.aqrlei.open.utils.ToastHelper
 abstract class ViewModelActivity<VM : BaseViewModel> : AppCompatActivity(), BaseView {
     protected abstract val viewModel: VM
 
+    private val loadingView by lazy { LayoutInflater.from(this).inflate(R.layout.progress_bar_loading, null) }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(bindLayout())
+        window.decorView.findViewById<ViewGroup>(android.R.id.content).addView(loadingView)
         observerData()
     }
 
@@ -24,7 +30,7 @@ abstract class ViewModelActivity<VM : BaseViewModel> : AppCompatActivity(), Base
 
     @CallSuper
     protected fun observerData() {
-        viewModel.apply {
+        viewModel.run {
             toast.observe(this@ViewModelActivity, Observer(::showToast))
             isLoading.observe(this@ViewModelActivity, Observer(::changeLoadingState))
         }
@@ -34,18 +40,20 @@ abstract class ViewModelActivity<VM : BaseViewModel> : AppCompatActivity(), Base
         ToastHelper.getHelper().show(msg)
     }
 
-    override fun changeLoadingState(isNeedLoadingShow: Boolean) {
-        if (isNeedLoadingShow) {
-            showLoading()
+    private fun changeLoadingState(isNeedLoadingShow: Boolean) {
+        loadingView.visibility = if (isNeedLoadingShow) {
+            loadingView.setOnClickListener(null)
+            View.VISIBLE
         } else {
-            dismissLoading()
+            View.GONE
         }
     }
 
     override fun dismissLoading() {
+        viewModel.isLoading.value = false
     }
 
     override fun showLoading() {
-
+        viewModel.isLoading.value = true
     }
 }

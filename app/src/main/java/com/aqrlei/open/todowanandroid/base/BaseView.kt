@@ -7,5 +7,4 @@ interface BaseView {
     fun showToast(msg: String)
     fun showLoading()
     fun dismissLoading()
-    fun changeLoadingState(isNeedLoadingShow: Boolean)
 }
