@@ -4,6 +4,7 @@ import android.app.Activity
 import android.app.Application
 import android.os.Bundle
 import android.util.Log
+import com.aqrlei.open.utils.AppCache
 import com.aqrlei.open.utils.ToastHelper
 
 /**
@@ -20,6 +21,7 @@ class BaseApplication : Application.ActivityLifecycleCallbacks, Application() {
     override fun onCreate() {
         super.onCreate()
         ToastHelper.init(this)
+        AppCache.init(this, "TODO_WanAndroid")
     }
 
     override fun onActivityCreated(activity: Activity?, savedInstanceState: Bundle?) {

@@ -29,12 +29,13 @@ abstract class ViewModelActivity<VM : BaseViewModel> : AppCompatActivity(), Base
     abstract fun bindLayout(): Int
 
     @CallSuper
-    protected fun observerData() {
+    protected open fun observerData() {
         viewModel.run {
             toast.observe(this@ViewModelActivity, Observer(::showToast))
             isLoading.observe(this@ViewModelActivity, Observer(::changeLoadingState))
         }
     }
+
 
     override fun showToast(msg: String) {
         ToastHelper.getHelper().show(msg)
