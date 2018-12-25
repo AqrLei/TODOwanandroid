@@ -52,8 +52,4 @@ class LoginActivity : ViewModelActivity<LoginViewModel>() {
             }
         }
     }
-    override fun observerData() {
-        super.observerData()
-
-    }
 }

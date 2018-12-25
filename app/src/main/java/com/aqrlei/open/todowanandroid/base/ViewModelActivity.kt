@@ -4,10 +4,12 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.annotation.CallSuper
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
+import com.aqrlei.open.retrofit.livedatacalladapter.LiveObservable
+import com.aqrlei.open.retrofit.livedatacalladapter.LiveResponse
 import com.aqrlei.open.todowanandroid.R
+import com.aqrlei.open.todowanandroid.net.resp.BaseRespBean
 import com.aqrlei.open.utils.ToastHelper
 
 /**
@@ -30,14 +32,16 @@ abstract class ViewModelActivity<VM : BaseViewModel> : AppCompatActivity(), Base
     abstract fun bindLayout(): Int
 
     abstract fun initComponents()
-    @CallSuper
-    protected open fun observerData() {
+
+    private fun observerData() {
         viewModel.run {
             toast.observe(this@ViewModelActivity, Observer(::showToast))
             isLoading.observe(this@ViewModelActivity, Observer(::changeLoadingState))
         }
     }
 
+
+    abstract fun <T> observerRespData()
 
     override fun showToast(msg: String) {
         ToastHelper.getHelper().show(msg)
