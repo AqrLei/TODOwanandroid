@@ -37,9 +37,9 @@ class NetHelper private constructor() {
 
     private fun getCompatOkHttpClient(): OkHttpClient {
         val builder = OkHttpClient.Builder()
-            .addInterceptor(HttpHeaderInterceptor())
+            .addInterceptor(HttpResponseInterceptor())
+            .addInterceptor(HttpRequestInterceptor())
             .addInterceptor(HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY))
-            .cookieJar(CookieHandler())
             .readTimeout(3000L, TimeUnit.MILLISECONDS)
             .connectTimeout(3000L, TimeUnit.MILLISECONDS)
 

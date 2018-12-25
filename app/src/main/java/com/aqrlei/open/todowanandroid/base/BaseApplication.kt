@@ -21,7 +21,7 @@ class BaseApplication : Application.ActivityLifecycleCallbacks, Application() {
     override fun onCreate() {
         super.onCreate()
         ToastHelper.init(this)
-        AppCache.init(this, "TODO_WanAndroid")
+        AppCache.init(this, "todoWanAndroid")
     }
 
     override fun onActivityCreated(activity: Activity?, savedInstanceState: Bundle?) {

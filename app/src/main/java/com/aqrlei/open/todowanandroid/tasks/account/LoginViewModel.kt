@@ -12,4 +12,5 @@ class LoginViewModel(application: Application) : BaseViewModel(application) {
     private val accountRepo = AccountRepository()
     fun login(userName: String = "", password: String = "") =
         accountRepo.login(userName, password)
+
 }

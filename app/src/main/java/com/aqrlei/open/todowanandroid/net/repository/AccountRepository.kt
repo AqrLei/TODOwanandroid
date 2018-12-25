@@ -2,7 +2,6 @@ package com.aqrlei.open.todowanandroid.net.repository
 
 import com.aqrlei.open.retrofit.livedatacalladapter.LiveObservable
 import com.aqrlei.open.retrofit.livedatacalladapter.LiveResponse
-import com.aqrlei.open.todowanandroid.net.NetConfigure
 import com.aqrlei.open.todowanandroid.net.NetHelper
 import com.aqrlei.open.todowanandroid.net.resp.BaseRespBean
 import com.aqrlei.open.todowanandroid.net.resp.account.AccountRespBean
@@ -20,21 +19,21 @@ class AccountRepository {
 
     interface AccountService {
         @FormUrlEncoded
-        @POST(NetConfigure.ACCOUNT_LOGIN)
+        @POST("user/login")
         fun login(
             @Field("username") userName: String,
             @Field("password") password: String
         ): LiveObservable<LiveResponse<BaseRespBean<AccountRespBean>>>
 
         @FormUrlEncoded
-        @POST(NetConfigure.ACCOUNT_REGISTER)
+        @POST("user/register")
         fun register(
             @Field("username") userName: String,
             @Field("password") password: String,
             @Field("repassword") rePassword: String
         ): LiveObservable<LiveResponse<BaseRespBean<AccountRespBean>>>
 
-        @GET(NetConfigure.ACCOUNT_LOGOUT)
+        @GET("user/logout/json")
         fun logout(): LiveObservable<LiveResponse<BaseRespBean<Any>>>
     }
 }

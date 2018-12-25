@@ -22,12 +22,14 @@ abstract class ViewModelActivity<VM : BaseViewModel> : AppCompatActivity(), Base
         super.onCreate(savedInstanceState)
         setContentView(bindLayout())
         window.decorView.findViewById<ViewGroup>(android.R.id.content).addView(loadingView)
+        initComponents()
         observerData()
     }
 
 
     abstract fun bindLayout(): Int
 
+    abstract fun initComponents()
     @CallSuper
     protected open fun observerData() {
         viewModel.run {

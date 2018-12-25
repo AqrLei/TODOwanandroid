@@ -3,9 +3,12 @@ package com.aqrlei.open.todowanandroid.tasks.account
 
 import android.content.Context
 import android.content.Intent
+import android.util.Log
 import androidx.lifecycle.ViewModelProviders
 import com.aqrlei.open.todowanandroid.R
 import com.aqrlei.open.todowanandroid.base.ViewModelActivity
+import com.aqrlei.open.todowanandroid.net.CookieStore
+import com.aqrlei.open.todowanandroid.net.repository.TodoRepository
 import com.aqrlei.open.utils.IntentUtil
 import kotlinx.android.synthetic.main.act_login.*
 
@@ -28,12 +31,19 @@ class LoginActivity : ViewModelActivity<LoginViewModel>() {
 
     override fun bindLayout(): Int = R.layout.act_login
 
-    override fun observerData() {
-        super.observerData()
+    override fun initComponents() {
+        login()
+        contentTv.setOnClickListener {
+            TodoRepository().fetchTypeList("0")
+        }
+    }
+
+    private fun login(){
         viewModel.login().observable(this) {
             if (it.isSuccess) {
                 it.response?.run {
                     if (errorCode == "0") {
+                        Log.d("TodoTest", CookieStore.getCookieStr())
                         contentTv.text = data?.userName.orEmpty()
                     } else {
                         showToast(errorMsg)
@@ -41,5 +51,9 @@ class LoginActivity : ViewModelActivity<LoginViewModel>() {
                 }
             }
         }
+    }
+    override fun observerData() {
+        super.observerData()
+
     }
 }
