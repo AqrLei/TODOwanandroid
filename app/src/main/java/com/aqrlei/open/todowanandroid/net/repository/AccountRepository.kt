@@ -5,9 +5,10 @@ import com.aqrlei.open.retrofit.livedatacalladapter.LiveResponse
 import com.aqrlei.open.todowanandroid.net.NetConfigure
 import com.aqrlei.open.todowanandroid.net.NetHelper
 import com.aqrlei.open.todowanandroid.net.resp.BaseRespBean
-import com.aqrlei.open.todowanandroid.net.resp.account.LoginRespBean
+import com.aqrlei.open.todowanandroid.net.resp.account.AccountRespBean
 import retrofit2.http.Field
 import retrofit2.http.FormUrlEncoded
+import retrofit2.http.GET
 import retrofit2.http.POST
 
 /**
@@ -23,6 +24,17 @@ class AccountRepository {
         fun login(
             @Field("username") userName: String,
             @Field("password") password: String
-        ): LiveObservable<LiveResponse<BaseRespBean<LoginRespBean>>>
+        ): LiveObservable<LiveResponse<BaseRespBean<AccountRespBean>>>
+
+        @FormUrlEncoded
+        @POST(NetConfigure.ACCOUNT_REGISTER)
+        fun register(
+            @Field("username") userName: String,
+            @Field("password") password: String,
+            @Field("repassword") rePassword: String
+        ): LiveObservable<LiveResponse<BaseRespBean<AccountRespBean>>>
+
+        @GET(NetConfigure.ACCOUNT_LOGOUT)
+        fun logout(): LiveObservable<LiveResponse<BaseRespBean<Any>>>
     }
 }
