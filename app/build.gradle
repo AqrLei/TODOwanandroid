@@ -55,6 +55,9 @@ dependencies {
     implementation deps.retrofit2.gsonConverter
     implementation deps.okhttp.logging
 
+    implementation deps.paging.runtime
+    testImplementation deps.paging.common
+
     implementation deps.aqrlei.livedatacalladapter
     implementation deps.aqrlei.customviews
     implementation deps.aqrlei.utils
