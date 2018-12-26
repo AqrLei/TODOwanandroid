@@ -7,15 +7,15 @@ import android.util.Log
 import androidx.lifecycle.ViewModelProviders
 import com.aqrlei.open.todowanandroid.R
 import com.aqrlei.open.todowanandroid.base.ViewModelActivity
+import com.aqrlei.open.todowanandroid.databinding.ActLoginBinding
 import com.aqrlei.open.todowanandroid.net.CookieStore
-import com.aqrlei.open.todowanandroid.net.repository.TodoRepository
 import com.aqrlei.open.utils.IntentUtil
 import kotlinx.android.synthetic.main.act_login.*
 
 /**
  * @author aqrlei on 2018/12/25
  */
-class LoginActivity : ViewModelActivity<LoginViewModel>() {
+class LoginActivity : ViewModelActivity<LoginViewModel, ActLoginBinding>() {
 
     companion object {
         fun start(context: Context) {
@@ -31,14 +31,11 @@ class LoginActivity : ViewModelActivity<LoginViewModel>() {
 
     override fun bindLayout(): Int = R.layout.act_login
 
-    override fun initComponents() {
-        login()
-        contentTv.setOnClickListener {
-            TodoRepository().fetchTypeList("0")
-        }
+    override fun initComponents(binding: ActLoginBinding) {
+        binding.viewModel = viewModel
     }
 
-    private fun login(){
+    private fun login() {
         viewModel.login().observable(this) {
             if (it.isSuccess) {
                 it.response?.run {

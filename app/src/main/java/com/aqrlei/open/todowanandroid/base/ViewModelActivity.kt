@@ -5,33 +5,37 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.app.AppCompatActivity
+import androidx.databinding.DataBindingUtil
+import androidx.databinding.ViewDataBinding
 import androidx.lifecycle.Observer
-import com.aqrlei.open.retrofit.livedatacalladapter.LiveObservable
-import com.aqrlei.open.retrofit.livedatacalladapter.LiveResponse
 import com.aqrlei.open.todowanandroid.R
-import com.aqrlei.open.todowanandroid.net.resp.BaseRespBean
 import com.aqrlei.open.utils.ToastHelper
 
 /**
  * @author aqrlei on 2018/12/24
  */
-abstract class ViewModelActivity<VM : BaseViewModel> : AppCompatActivity(), BaseView {
+abstract class ViewModelActivity<VM : BaseViewModel, VB : ViewDataBinding> : AppCompatActivity(), BaseView {
     protected abstract val viewModel: VM
+
+    private lateinit var binding: VB
+
+    private var showCount: Int = 0
 
     private val loadingView by lazy { LayoutInflater.from(this).inflate(R.layout.progress_bar_loading, null) }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(bindLayout())
+        binding = DataBindingUtil.setContentView(this, bindLayout())
+        binding.setLifecycleOwner(this)
         window.decorView.findViewById<ViewGroup>(android.R.id.content).addView(loadingView)
-        initComponents()
         observerData()
+        initComponents(binding)
     }
-
 
     abstract fun bindLayout(): Int
 
-    abstract fun initComponents()
+    abstract fun initComponents(binding: VB)
 
     private fun observerData() {
         viewModel.run {
@@ -39,9 +43,6 @@ abstract class ViewModelActivity<VM : BaseViewModel> : AppCompatActivity(), Base
             isLoading.observe(this@ViewModelActivity, Observer(::changeLoadingState))
         }
     }
-
-
-    abstract fun <T> observerRespData()
 
     override fun showToast(msg: String) {
         ToastHelper.getHelper().show(msg)
@@ -57,10 +58,16 @@ abstract class ViewModelActivity<VM : BaseViewModel> : AppCompatActivity(), Base
     }
 
     override fun dismissLoading() {
-        viewModel.isLoading.value = false
+        showCount--
+        if (showCount == 0) {
+            viewModel.isLoading.value = false
+        }
     }
 
     override fun showLoading() {
-        viewModel.isLoading.value = true
+        showCount++
+        if (viewModel.isLoading.value != true) {
+            viewModel.isLoading.value = true
+        }
     }
 }
