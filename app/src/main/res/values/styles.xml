@@ -6,6 +6,7 @@
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
+        <item name="android:windowAnimationStyle">@style/activityAnimStyle</item>
     </style>
     <style name="launcherTheme" parent="Theme.AppCompat.Light.NoActionBar">
         <item name="windowNoTitle">true</item>
@@ -13,4 +14,11 @@
         <item name="android:windowBackground">@drawable/layer_launcher_full_background</item>
     </style>
 
+    <style name="activityAnimStyle" parent="@android:style/Animation.Activity">
+        <item name="android:activityOpenEnterAnimation">@anim/act_next_in</item>
+        <item name="android:activityOpenExitAnimation">@anim/act_next_current_out</item>
+        <item name="android:activityCloseEnterAnimation">@anim/act_last_in</item>
+        <item name="android:activityCloseExitAnimation">@anim/act_last_current_out</item>
+
+    </style>
 </resources>
