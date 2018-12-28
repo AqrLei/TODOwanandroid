@@ -25,32 +25,30 @@
                 android:layout_height="wrap_content"/>
 
         <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/input_user_name"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
 
             <AutoCompleteTextView
-                    android:id="@+id/tv_user_name"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="@string/login_user_name_hint"
                     android:imeOptions="actionNext"
+                    android:text="@={viewModel.userNameLiveData}"
                     android:maxLength="20"
                     android:maxLines="1"
                     android:singleLine="true"/>
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/input_password"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 app:passwordToggleEnabled="true">
 
             <EditText
-                    android:id="@+id/tv_password"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="@string/login_password_hint"
+                    android:text="@={viewModel.passwordLiveData}"
                     android:imeOptions="actionDone"
                     android:inputType="textPassword"
                     android:maxLength="20"
@@ -59,7 +57,7 @@
         </com.google.android.material.textfield.TextInputLayout>
 
         <Button
-                android:id="@+id/btn_login"
+                android:onClick="@{() ->viewModel.login()}"
                 style="?android:textAppearanceMedium"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
