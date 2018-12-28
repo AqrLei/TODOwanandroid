@@ -9,5 +9,6 @@ class LaunchActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         LoginActivity.start(this)
+        this.finish()
     }
 }

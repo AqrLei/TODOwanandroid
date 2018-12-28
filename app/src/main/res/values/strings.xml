@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">TODOwanandroid</string>
+    <string name="login_user_name_hint">username</string>
+    <string name="login_password_hint">password</string>
+    <string name="action_sign_in">Login</string>
+    <string name="forgot_password">Forgot password?</string>
+    <string name="register">Register</string>
 </resources>
