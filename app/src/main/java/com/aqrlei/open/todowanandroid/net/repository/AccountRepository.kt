@@ -17,6 +17,11 @@ class AccountRepository {
     private val accountService = NetHelper.get().createService(AccountService::class.java)
     fun login(userName: String, password: String) = accountService.login(userName, password)
 
+    fun register(userName: String, password: String, rePassword: String) =
+        accountService.register(userName, password, rePassword)
+
+    fun logout() = accountService.logout()
+
     interface AccountService {
         @FormUrlEncoded
         @POST("user/login")

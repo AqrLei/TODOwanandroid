@@ -9,6 +9,7 @@ import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
 import androidx.lifecycle.Observer
 import com.aqrlei.open.todowanandroid.R
+import com.aqrlei.open.utils.ActivityCollector
 import com.aqrlei.open.utils.ToastHelper
 
 /**
@@ -29,6 +30,7 @@ abstract class ViewModelActivity<VM : BaseViewModel, VB : ViewDataBinding> : App
         binding = DataBindingUtil.setContentView(this, bindLayout())
         binding.setLifecycleOwner(this)
         window.decorView.findViewById<ViewGroup>(android.R.id.content).addView(loadingView)
+        ActivityCollector.add(this)
         observerData()
         initComponents(binding)
     }
@@ -69,5 +71,11 @@ abstract class ViewModelActivity<VM : BaseViewModel, VB : ViewDataBinding> : App
         if (viewModel.isLoading.value != true) {
             viewModel.isLoading.value = true
         }
+    }
+
+
+    override fun onDestroy() {
+        super.onDestroy()
+        ActivityCollector.remove(this)
     }
 }
