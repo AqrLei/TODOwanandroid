@@ -35,6 +35,7 @@
                         android:layout_marginBottom="@dimen/view_vertical_margin_large"
                         android:layout_height="wrap_content"/>
 
+                <include layout="@layout/top_text_input"/>
                 <com.google.android.material.textfield.TextInputLayout
                         android:layout_width="match_parent"
                         android:errorMsg="@{viewModel.userNameErrorLiveData}"

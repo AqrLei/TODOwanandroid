@@ -19,6 +19,7 @@
                 android:layout_width="match_parent"
                 android:minHeight="?android:attr/actionBarSize"
                 android:layout_height="wrap_content"/>
+
         <ScrollView
                 android:fillViewport="false"
                 android:overScrollMode="never"
@@ -33,6 +34,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
 
+                <include layout="@layout/top_text_input"/>
                 <com.google.android.material.textfield.TextInputLayout
                         android:layout_width="match_parent"
                         android:errorMsg="@{viewModel.userNameErrorLiveData}"
