@@ -6,7 +6,6 @@ import androidx.lifecycle.MutableLiveData
 import com.aqrlei.open.todowanandroid.base.BaseViewModel
 import com.aqrlei.open.todowanandroid.net.repository.AccountRepository
 import com.aqrlei.open.utils.ActivityCollector
-import com.aqrlei.open.utils.DialogUtil
 
 /**
  * @author aqrlei on 2018/12/25
