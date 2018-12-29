@@ -6,6 +6,7 @@ import androidx.lifecycle.MutableLiveData
 import com.aqrlei.open.todowanandroid.base.BaseViewModel
 import com.aqrlei.open.todowanandroid.net.repository.AccountRepository
 import com.aqrlei.open.utils.ActivityCollector
+import com.aqrlei.open.utils.DialogUtil
 
 /**
  * @author aqrlei on 2018/12/25
@@ -33,19 +34,12 @@ class AccountViewModel(application: Application) :
     fun login() {
         userNameErrorLiveData.value = ""
         passwordErrorLiveData.value = ""
-        if (userName.isEmpty()) {
-            userNameErrorLiveData.value = "用户名不能为空"
-            return
+        if (verifyAccount(false)) {
+            observerRespData(accountRepo.login(userName, password), true, {
+                // TODO handle login success result
+                Log.d("ViewModelTest", it.userName.orEmpty())
+            })
         }
-        if (password.isEmpty() or (password.length < 6)) {
-            passwordErrorLiveData.value = "密码不正确"
-            return
-        }
-
-        observerRespData(accountRepo.login(userName, password), true, {
-            // TODO handle login success result
-            Log.d("ViewModelTest", it.userName.orEmpty())
-        })
     }
 
     fun toRegister() {
@@ -53,9 +47,29 @@ class AccountViewModel(application: Application) :
     }
 
     fun register() {
-        observerRespData(accountRepo.register(userName, password, rePassword), true, {
-            //TODO handle register
-        })
+        if (verifyAccount(true)) {
+            observerRespData(accountRepo.register(userName, password, rePassword), true, {
+
+            })
+        }
+    }
+
+    private fun verifyAccount(register: Boolean): Boolean {
+        return when {
+            userName.length < 6 -> {
+                userNameErrorLiveData.value = "用户名不正确"
+                false
+            }
+            password.length < 6 -> {
+                passwordErrorLiveData.value = "密码不正确"
+                false
+            }
+            register and (password != rePassword) -> {
+                rePasswordErrorLiveData.value = "两次输入密码不匹配"
+                false
+            }
+            else -> true
+        }
     }
 
     fun logout() {
