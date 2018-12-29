@@ -18,6 +18,11 @@ class AccountViewModel(application: Application) : BaseViewModel(application) {
     val rePasswordLiveData = MutableLiveData<String>()
 
 
+    val userNameErrorLiveData = MutableLiveData<String>()
+    val passwordErrorLiveData = MutableLiveData<String>()
+    val rePasswordErrorLiveData = MutableLiveData<String>()
+
+
     private val userName: String
         get() = userNameLiveData.value.orEmpty()
     private val password: String
@@ -26,6 +31,17 @@ class AccountViewModel(application: Application) : BaseViewModel(application) {
         get() = rePasswordLiveData.value.orEmpty()
 
     fun login() {
+        userNameErrorLiveData.value = ""
+        passwordErrorLiveData.value = ""
+        if (userName.isEmpty()) {
+            userNameErrorLiveData.value = "用户名不能为空"
+            return
+        }
+        if (password.isEmpty()) {
+            passwordErrorLiveData.value = "密码不能为空"
+            return
+        }
+
         observerRespData(accountRepo.login(userName, password), true, {
             // TODO handle login success result
             Log.d("ViewModelTest", it.userName.orEmpty())
