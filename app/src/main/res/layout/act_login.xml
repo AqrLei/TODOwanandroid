@@ -16,86 +16,101 @@
             android:paddingTop="@dimen/activity_vertical_margin"
             tools:context=".tasks.account.LoginActivity">
 
-        <ImageView
-                android:layout_gravity="center_horizontal"
-                android:src="@mipmap/ic_launcher_round"
-                android:layout_width="wrap_content"
-                android:scaleType="centerInside"
-                android:layout_marginBottom="@dimen/view_vertical_margin_large"
-                android:layout_height="wrap_content"/>
-
-        <com.google.android.material.textfield.TextInputLayout
+        <ScrollView
+                android:fillViewport="false"
+                android:overScrollMode="never"
+                android:scrollbars="none"
                 android:layout_width="match_parent"
-                android:errorMsg="@{viewModel.userNameErrorLiveData}"
-                android:layout_height="wrap_content">
+                android:layout_height="match_parent">
 
-            <com.google.android.material.textfield.TextInputEditText
+            <LinearLayout
+                    android:orientation="vertical"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:hint="@string/login_user_name_hint"
-                    android:imeOptions="actionNext"
-                    android:text="@={viewModel.userNameLiveData}"
-                    android:maxLength="20"
-                    android:maxLines="1"
-                    android:singleLine="true"/>
-        </com.google.android.material.textfield.TextInputLayout>
+                    android:layout_height="match_parent">
+                <ImageView
+                        android:layout_gravity="center_horizontal"
+                        android:src="@mipmap/ic_launcher_round"
+                        android:layout_width="wrap_content"
+                        android:scaleType="centerInside"
+                        android:layout_marginBottom="@dimen/view_vertical_margin_large"
+                        android:layout_height="wrap_content"/>
 
-        <com.google.android.material.textfield.TextInputLayout
-                android:layout_width="match_parent"
-                android:errorMsg="@{viewModel.passwordErrorLiveData}"
-                android:layout_height="wrap_content"
-                app:passwordToggleEnabled="true">
+                <com.google.android.material.textfield.TextInputLayout
+                        android:layout_width="match_parent"
+                        android:errorMsg="@{viewModel.userNameErrorLiveData}"
+                        android:layout_height="wrap_content">
 
-            <com.google.android.material.textfield.TextInputEditText
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:hint="@string/login_password_hint"
-                    android:text="@={viewModel.passwordLiveData}"
-                    android:imeOptions="actionDone"
-                    android:inputType="textPassword"
-                    android:maxLength="20"
-                    android:maxLines="1"
-                    android:singleLine="true"/>
-        </com.google.android.material.textfield.TextInputLayout>
+                    <com.google.android.material.textfield.TextInputEditText
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:hint="@string/login_user_name_hint"
+                            android:imeOptions="actionNext"
+                            android:text="@={viewModel.userNameLiveData}"
+                            android:maxLength="20"
+                            android:maxLines="1"
+                            android:singleLine="true"/>
+                </com.google.android.material.textfield.TextInputLayout>
 
-        <Button
-                android:onClick="@{() ->viewModel.login()}"
-                style="?android:textAppearanceMedium"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                android:textAllCaps="false"
-                android:backgroundTint="@color/colorAccent"
-                android:padding="16dp"
-                android:text="@string/action_sign_in"
-                android:textColor="@color/white"
-                android:textStyle="bold"/>
+                <com.google.android.material.textfield.TextInputLayout
+                        android:layout_width="match_parent"
+                        android:errorMsg="@{viewModel.passwordErrorLiveData}"
+                        android:layout_height="wrap_content"
+                        app:passwordToggleEnabled="true">
 
-        <androidx.constraintlayout.widget.ConstraintLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="16dp">
+                    <com.google.android.material.textfield.TextInputEditText
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:hint="@string/login_password_hint"
+                            android:text="@={viewModel.passwordLiveData}"
+                            android:imeOptions="actionDone"
+                            android:inputType="textPassword"
+                            android:maxLength="20"
+                            android:maxLines="1"
+                            android:singleLine="true"/>
+                </com.google.android.material.textfield.TextInputLayout>
 
-            <Button
-                    android:id="@+id/btn_forgot_password"
-                    style="@style/Widget.AppCompat.Button.Borderless"
-                    android:layout_width="wrap_content"
-                    app:layout_constraintRight_toRightOf="parent"
-                    android:textAllCaps="false"
-                    android:layout_height="wrap_content"
-                    android:text="@string/forgot_password"
-                    android:textColor="@color/colorAccent"/>
+                <Button
+                        android:onClick="@{() ->viewModel.login()}"
+                        style="?android:textAppearanceMedium"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="16dp"
+                        android:textAllCaps="false"
+                        android:backgroundTint="@color/colorAccent"
+                        android:padding="16dp"
+                        android:text="@string/action_sign_in"
+                        android:textColor="@color/white"
+                        android:textStyle="bold"/>
 
-            <Button
-                    android:id="@+id/btn_forgot_register"
-                    android:textAllCaps="false"
-                    style="@style/Widget.AppCompat.Button.Borderless"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    app:layout_constraintLeft_toLeftOf="parent"
-                    android:text="@string/register"
-                    android:textColor="@color/colorAccent"/>
-        </androidx.constraintlayout.widget.ConstraintLayout>
+                <androidx.constraintlayout.widget.ConstraintLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="16dp">
+
+                    <Button
+                            android:id="@+id/btn_forgot_password"
+                            style="@style/Widget.AppCompat.Button.Borderless"
+                            android:layout_width="wrap_content"
+                            app:layout_constraintRight_toRightOf="parent"
+                            android:textAllCaps="false"
+                            android:layout_height="wrap_content"
+                            android:text="@string/forgot_password"
+                            android:textColor="@color/colorAccent"/>
+
+                    <Button
+                            android:id="@+id/btn_forgot_register"
+                            android:textAllCaps="false"
+                            style="@style/Widget.AppCompat.Button.Borderless"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            app:layout_constraintLeft_toLeftOf="parent"
+                            android:text="@string/register"
+                            android:textColor="@color/colorAccent"/>
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+            </LinearLayout>
+        </ScrollView>
+
 
     </LinearLayout>
 </layout>
