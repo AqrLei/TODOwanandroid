@@ -5,6 +5,7 @@ import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import com.aqrlei.open.todowanandroid.base.BaseViewModel
 import com.aqrlei.open.todowanandroid.net.repository.AccountRepository
+import com.aqrlei.open.todowanandroid.net.repository.TodoRepository
 import com.aqrlei.open.utils.ActivityCollector
 
 /**
@@ -36,6 +37,7 @@ class AccountViewModel(application: Application) :
         if (verifyAccount(false)) {
             observerRespData(accountRepo.login(userName, password), true, {
                 // TODO handle login success result
+                TodoRepository().fetchNotDoList("0","1")
                 Log.d("ViewModelTest", it.userName.orEmpty())
             })
         }

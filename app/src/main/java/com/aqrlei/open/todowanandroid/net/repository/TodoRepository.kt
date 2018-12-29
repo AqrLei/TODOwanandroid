@@ -5,6 +5,8 @@ import com.aqrlei.open.retrofit.livedatacalladapter.LiveResponse
 import com.aqrlei.open.todowanandroid.net.NetHelper
 import com.aqrlei.open.todowanandroid.net.req.TodoReqBean
 import com.aqrlei.open.todowanandroid.net.resp.BaseRespBean
+import com.aqrlei.open.todowanandroid.net.resp.PaginationRespBean
+import com.aqrlei.open.todowanandroid.net.resp.todo.TodoRespBean
 import com.aqrlei.open.todowanandroid.net.resp.todo.TodoTypeRespBean
 import retrofit2.http.*
 
@@ -37,13 +39,13 @@ class TodoRepository {
         fun fetchDoneList(
             @Path("type") type: String,
             @Path("page") pageNum: String
-        ): LiveObservable<LiveResponse<BaseRespBean<TodoTypeRespBean>>>
+        ): LiveObservable<LiveResponse<BaseRespBean<PaginationRespBean<TodoRespBean>>>>
 
         @POST("lg/todo/listnotdo/{type}/json/{page}")
         fun fetchNotDoList(
             @Path("type") type: String,
             @Path("page") pageNum: String
-        ): LiveObservable<LiveResponse<BaseRespBean<TodoTypeRespBean>>>
+        ): LiveObservable<LiveResponse<BaseRespBean<PaginationRespBean<TodoRespBean>>>>
 
         @FormUrlEncoded
         @POST("lg/todo/done/{id}/json")
