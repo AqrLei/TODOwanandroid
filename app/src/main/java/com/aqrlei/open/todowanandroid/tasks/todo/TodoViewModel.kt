@@ -15,6 +15,7 @@ class TodoViewModel(application: Application) : BaseViewModel(application) {
     private val todoRepo = TodoRepository()
 
 
+
     fun fetchTypeList(type: String) {
         observerRespData(todoRepo.fetchTypeList(type), true, {
 

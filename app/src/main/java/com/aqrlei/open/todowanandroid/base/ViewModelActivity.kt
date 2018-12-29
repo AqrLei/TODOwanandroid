@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.widget.Toolbar
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
 import androidx.lifecycle.Observer
@@ -15,7 +16,8 @@ import com.aqrlei.open.utils.ToastHelper
 /**
  * @author aqrlei on 2018/12/24
  */
-abstract class ViewModelActivity<VM : BaseViewModel, VB : ViewDataBinding> : AppCompatActivity(), BaseView {
+abstract class ViewModelActivity<VM : BaseViewModel, VB : ViewDataBinding> : AppCompatActivity(),
+    BaseView {
     protected abstract val viewModel: VM
 
     private lateinit var binding: VB
@@ -43,7 +45,17 @@ abstract class ViewModelActivity<VM : BaseViewModel, VB : ViewDataBinding> : App
         viewModel.run {
             toast.observe(this@ViewModelActivity, Observer(::showToast))
             isLoading.observe(this@ViewModelActivity, Observer(::changeLoadingState))
+            navigator = CommonNavigator()
         }
+    }
+
+    protected fun bindTitleToolbar(toolbar: Toolbar) {
+        setSupportActionBar(toolbar)
+        supportActionBar?.run {
+            setDisplayHomeAsUpEnabled(true)
+            setHomeButtonEnabled(true)
+        }
+        toolbar.setNavigationOnClickListener { viewModel.back() }
     }
 
     override fun showToast(msg: String) {
@@ -73,9 +85,14 @@ abstract class ViewModelActivity<VM : BaseViewModel, VB : ViewDataBinding> : App
         }
     }
 
-
     override fun onDestroy() {
         super.onDestroy()
         ActivityCollector.remove(this)
+    }
+
+    open inner class CommonNavigator : BaseViewModel.CommonNavigator {
+        override fun back() {
+            this@ViewModelActivity.finish()
+        }
     }
 }

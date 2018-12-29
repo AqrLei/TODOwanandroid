@@ -10,13 +10,13 @@ import com.aqrlei.open.utils.ActivityCollector
 /**
  * @author aqrlei on 2018/12/25
  */
-class AccountViewModel(application: Application) : BaseViewModel(application) {
+class AccountViewModel(application: Application) :
+    BaseViewModel(application) {
 
     private val accountRepo = AccountRepository()
     val userNameLiveData = MutableLiveData<String>()
     val passwordLiveData = MutableLiveData<String>()
     val rePasswordLiveData = MutableLiveData<String>()
-
 
     val userNameErrorLiveData = MutableLiveData<String>()
     val passwordErrorLiveData = MutableLiveData<String>()
@@ -48,6 +48,10 @@ class AccountViewModel(application: Application) : BaseViewModel(application) {
         })
     }
 
+    fun toRegister() {
+        (navigator as? AccountNavigator)?.toRegister()
+    }
+
     fun register() {
         observerRespData(accountRepo.register(userName, password, rePassword), true, {
             //TODO handle register
@@ -61,5 +65,8 @@ class AccountViewModel(application: Application) : BaseViewModel(application) {
         })
     }
 
+    interface AccountNavigator : BaseViewModel.CommonNavigator {
+        fun toRegister()
+    }
 
 }
