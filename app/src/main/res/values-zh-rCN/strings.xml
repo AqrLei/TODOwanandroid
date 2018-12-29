@@ -2,6 +2,7 @@
     <string name="app_name">待办清单</string>
     <string name="login_user_name_hint">用户名</string>
     <string name="login_password_hint">密码</string>
+    <string name="login_repeat_password_hint">再次输入密码</string>
     <string name="forgot_password">忘记密码？</string>
     <string name="register">注册</string>
     <string name="action_sign_in">登录</string>

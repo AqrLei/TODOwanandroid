@@ -13,9 +13,12 @@
             android:paddingBottom="@dimen/activity_vertical_margin"
             android:paddingLeft="@dimen/activity_horizontal_margin"
             android:paddingRight="@dimen/activity_horizontal_margin"
-            android:paddingTop="@dimen/activity_vertical_margin"
             tools:context=".tasks.account.LoginActivity">
-
+        <androidx.appcompat.widget.Toolbar
+                android:id="@+id/titleToolBar"
+                android:paddingBottom="@dimen/view_vertical_margin"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/tool_bar_vertical"/>
         <ScrollView
                 android:fillViewport="false"
                 android:overScrollMode="never"
@@ -26,14 +29,7 @@
             <LinearLayout
                     android:orientation="vertical"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
-                <ImageView
-                        android:layout_gravity="center_horizontal"
-                        android:src="@mipmap/ic_launcher_round"
-                        android:layout_width="wrap_content"
-                        android:scaleType="centerInside"
-                        android:layout_marginBottom="@dimen/view_vertical_margin_large"
-                        android:layout_height="wrap_content"/>
+                    android:layout_height="match_parent">
 
                 <com.google.android.material.textfield.TextInputLayout
                         android:layout_width="match_parent"
@@ -69,8 +65,26 @@
                             android:singleLine="true"/>
                 </com.google.android.material.textfield.TextInputLayout>
 
+                <com.google.android.material.textfield.TextInputLayout
+                        android:layout_width="match_parent"
+                        android:errorMsg="@{viewModel.rePasswordErrorLiveData}"
+                        android:layout_height="wrap_content"
+                        app:passwordToggleEnabled="true">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:hint="@string/login_repeat_password_hint"
+                            android:text="@={viewModel.rePasswordLiveData}"
+                            android:imeOptions="actionDone"
+                            android:inputType="textPassword"
+                            android:maxLength="20"
+                            android:maxLines="1"
+                            android:singleLine="true"/>
+                </com.google.android.material.textfield.TextInputLayout>
+
                 <Button
-                        android:onClick="@{() ->viewModel.login()}"
+                        android:onClick="@{() ->viewModel.register()}"
                         style="?android:textAppearanceMedium"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -81,33 +95,6 @@
                         android:text="@string/action_sign_in"
                         android:textColor="@color/white"
                         android:textStyle="bold"/>
-
-                <androidx.constraintlayout.widget.ConstraintLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="16dp">
-
-                    <Button
-                            android:id="@+id/btn_forgot_password"
-                            style="@style/Widget.AppCompat.Button.Borderless"
-                            android:layout_width="wrap_content"
-                            app:layout_constraintRight_toRightOf="parent"
-                            android:textAllCaps="false"
-                            android:layout_height="wrap_content"
-                            android:text="@string/forgot_password"
-                            android:textColor="@color/colorAccent"/>
-
-                    <Button
-                            android:id="@+id/btn_forgot_register"
-                            android:textAllCaps="false"
-                            style="@style/Widget.AppCompat.Button.Borderless"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            app:layout_constraintLeft_toLeftOf="parent"
-                            android:text="@string/register"
-                            android:textColor="@color/colorAccent"/>
-                </androidx.constraintlayout.widget.ConstraintLayout>
-
             </LinearLayout>
         </ScrollView>
 

@@ -14,8 +14,7 @@
             android:usesCleartextTraffic="true"
             tools:ignore="GoogleAppIndexingWarning">
         <activity android:name=".LaunchActivity"
-                  android:theme="@style/launcherTheme"
-        >
+                  android:theme="@style/launcherTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
 
