@@ -37,8 +37,8 @@ class AccountViewModel(application: Application) : BaseViewModel(application) {
             userNameErrorLiveData.value = "用户名不能为空"
             return
         }
-        if (password.isEmpty()) {
-            passwordErrorLiveData.value = "密码不能为空"
+        if (password.isEmpty() or (password.length < 6)) {
+            passwordErrorLiveData.value = "密码不正确"
             return
         }
 
