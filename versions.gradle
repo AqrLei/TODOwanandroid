@@ -57,7 +57,6 @@ deps.maven_plugin = "com.github.dcendents:android-maven-gradle-plugin:$versions.
 deps.bintray_plugin = "com.jfrog.bintray.gradle:gradle-bintray-plugin:$versions.bintray_plugin"
 deps.dokka_plugin = "org.jetbrains.dokka:dokka-android-gradle-plugin:$versions.dokka_plugin"
 deps.material = "com.google.android.material:material:$versions.material"
-deps.livedataAdapter = "com.github.leonardoxh:retrofit2-livedata-adapter:$versions.livedataadapter"
 def test = [:]
 test.junit = "junit:junit:$versions.junit"
 test.runner = "androidx.test:runner:$versions.test_runner"
