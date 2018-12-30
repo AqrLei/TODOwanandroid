@@ -26,7 +26,7 @@ abstract class BaseViewModel(application: Application) : AndroidViewModel(applic
         if (isShowLoading) {
             isLoading.value = true
         }
-        liveObservable.observable { data ->
+        liveObservable.observe { data ->
             if (data?.isSuccess == true) {
                 if (data.response?.errorCode == "0") {
                     data.response?.data?.run(processDataAction)
