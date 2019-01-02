@@ -6,4 +6,6 @@
     <string name="action_sign_in">Login</string>
     <string name="forgot_password">Forgot password?</string>
     <string name="register">Register</string>
+    <string name="me">Me</string>
+    <string name="todo">Todo</string>
 </resources>

@@ -12,8 +12,12 @@ import com.aqrlei.open.todowanandroid.net.req.TodoReqBean
 class TodoViewModel(application: Application) : BaseViewModel(application) {
 
 
+    val tabTitles = listOf(
+        "只用这一个",
+        "工作",
+        "学习",
+        "生活")
     private val todoRepo = TodoRepository()
-
 
 
     fun fetchTypeList(type: String) {

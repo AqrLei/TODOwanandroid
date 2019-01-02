@@ -1,0 +1,32 @@
+package com.aqrlei.open.todowanandroid.tasks.todo
+
+import android.content.Context
+import android.content.Intent
+import androidx.lifecycle.ViewModelProviders
+import com.aqrlei.open.todowanandroid.R
+import com.aqrlei.open.todowanandroid.base.ViewModelActivity
+import com.aqrlei.open.todowanandroid.databinding.ActTodoBinding
+import com.aqrlei.open.utils.IntentUtil
+
+/**
+ * @author aqrlei on 2019/1/2
+ */
+class TodoActivity : ViewModelActivity<TodoViewModel, ActTodoBinding>() {
+    companion object {
+        fun start(context: Context) {
+            val intent = Intent(context, TodoActivity::class.java)
+            if (IntentUtil.queryActivities(context, intent)) {
+                context.startActivity(intent)
+            }
+        }
+    }
+
+    override val viewModel: TodoViewModel
+        get() = ViewModelProviders.of(this).get(TodoViewModel::class.java)
+
+    override fun bindLayout(): Int = R.layout.act_todo
+
+    override fun initComponents(binding: ActTodoBinding) {
+        binding.viewModel = viewModel
+    }
+}

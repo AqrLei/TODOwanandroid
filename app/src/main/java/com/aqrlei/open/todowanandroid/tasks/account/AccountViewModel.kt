@@ -31,20 +31,21 @@ class AccountViewModel(application: Application) :
     private val rePassword: String
         get() = rePasswordLiveData.value.orEmpty()
 
+    private val accountNavigator: AccountNavigator?
+        get() = navigator as? AccountNavigator
+
     fun login() {
         userNameErrorLiveData.value = ""
         passwordErrorLiveData.value = ""
         if (verifyAccount(false)) {
             observerRespData(accountRepo.login(userName, password), true, {
-                // TODO handle login success result
-                TodoRepository().fetchNotDoList("0","1")
-                Log.d("ViewModelTest", it.userName.orEmpty())
+                accountNavigator?.loginSuccess()
             })
         }
     }
 
     fun toRegister() {
-        (navigator as? AccountNavigator)?.toRegister()
+        accountNavigator?.toRegister()
     }
 
     fun register() {
@@ -82,6 +83,8 @@ class AccountViewModel(application: Application) :
 
     interface AccountNavigator : BaseViewModel.CommonNavigator {
         fun toRegister()
+
+        fun loginSuccess()
     }
 
 }

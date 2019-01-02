@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+                name="viewModel"
+                type="com.aqrlei.open.todowanandroid.tasks.todo.TodoViewModel"/>
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+        <androidx.appcompat.widget.Toolbar
+                android:id="@+id/titleToolBar"
+                android:background="@color/colorPrimary"
+                android:layout_marginBottom="@dimen/view_vertical_margin"
+                android:layout_width="match_parent"
+                app:title="@string/todo"
+                android:minHeight="?android:attr/actionBarSize"
+                android:layout_height="wrap_content"/>
+
+        <FrameLayout
+                app:layout_constraintTop_toBottomOf="@+id/titleToolBar"
+                app:layout_constraintBottom_toTopOf="@+id/horizontalLine"
+                app:layout_constraintVertical_weight="1"
+                android:id="@+id/containerFl"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"/>
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+                app:layout_constraintBottom_toTopOf="@+id/horizontalLine"
+                app:layout_constraintRight_toRightOf="parent"
+                android:layout_marginBottom="@dimen/view_vertical_margin"
+                android:layout_marginRight="@dimen/view_horizontal_margin"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+
+        <View
+                style="@style/HorizontalDividerStyle"
+                android:id="@+id/horizontalLine"
+                app:layout_constraintTop_toBottomOf="@+id/containerFl"
+                app:layout_constraintBottom_toTopOf="@+id/buttonRg"
+                />
+
+        <RadioGroup
+                app:layout_constraintTop_toBottomOf="@+id/horizontalLine"
+                app:layout_constraintBottom_toBottomOf="parent"
+                android:id="@+id/buttonRg"
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/tool_bar_vertical">
+
+            <RadioButton
+                    android:id="@+id/todoRb"
+                    style="@style/RadioButtonStyle"
+                    android:text="@string/todo"
+                    android:checked="true"
+                    android:drawableTop="@drawable/selector_checked_todo_background"/>
+
+            <RadioButton
+                    android:id="@+id/meRb"
+                    android:drawableTop="@drawable/selector_checked_me_background"
+                    style="@style/RadioButtonStyle"
+                    android:text="@string/me"/>
+
+        </RadioGroup>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

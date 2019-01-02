@@ -5,9 +5,9 @@ import android.content.Context
 import android.content.Intent
 import androidx.lifecycle.ViewModelProviders
 import com.aqrlei.open.todowanandroid.R
-import com.aqrlei.open.todowanandroid.base.BaseViewModel
 import com.aqrlei.open.todowanandroid.base.ViewModelActivity
 import com.aqrlei.open.todowanandroid.databinding.ActLoginBinding
+import com.aqrlei.open.todowanandroid.tasks.todo.TodoActivity
 import com.aqrlei.open.utils.IntentUtil
 
 /**
@@ -34,9 +34,13 @@ class LoginActivity : ViewModelActivity<AccountViewModel, ActLoginBinding>() {
         binding.viewModel = viewModel
     }
 
-    inner class Navigator : CommonNavigator(),AccountViewModel.AccountNavigator {
+    inner class Navigator : CommonNavigator(), AccountViewModel.AccountNavigator {
         override fun toRegister() {
             RegisterActivity.start(this@LoginActivity)
+        }
+
+        override fun loginSuccess() {
+            TodoActivity.start(this@LoginActivity)
         }
     }
 }

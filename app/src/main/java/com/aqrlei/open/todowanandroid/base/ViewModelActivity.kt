@@ -49,11 +49,11 @@ abstract class ViewModelActivity<VM : BaseViewModel, VB : ViewDataBinding> : App
         }
     }
 
-    protected fun bindTitleToolbar(toolbar: Toolbar) {
+    protected fun bindTitleToolbar(toolbar: Toolbar,showBack:Boolean = true) {
         setSupportActionBar(toolbar)
         supportActionBar?.run {
-            setDisplayHomeAsUpEnabled(true)
-            setHomeButtonEnabled(true)
+            setDisplayHomeAsUpEnabled(showBack)
+            setHomeButtonEnabled(showBack)
         }
         toolbar.setNavigationOnClickListener { viewModel.back() }
     }

@@ -6,4 +6,6 @@
     <string name="forgot_password">忘记密码？</string>
     <string name="register">注册</string>
     <string name="action_sign_in">登录</string>
+    <string name="me">我</string>
+    <string name="todo">待办</string>
 </resources>
