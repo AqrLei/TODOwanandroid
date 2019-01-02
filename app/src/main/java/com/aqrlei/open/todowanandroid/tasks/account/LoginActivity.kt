@@ -39,8 +39,9 @@ class LoginActivity : ViewModelActivity<AccountViewModel, ActLoginBinding>() {
             RegisterActivity.start(this@LoginActivity)
         }
 
-        override fun loginSuccess() {
-            TodoActivity.start(this@LoginActivity)
+        override fun loginSuccess(userName: String) {
+            TodoActivity.start(this@LoginActivity, userName)
+            this@LoginActivity.finish()
         }
     }
 }

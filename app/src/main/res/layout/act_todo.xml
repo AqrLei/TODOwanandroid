@@ -34,7 +34,7 @@
         <com.google.android.material.floatingactionbutton.FloatingActionButton
                 app:layout_constraintBottom_toTopOf="@+id/bottomNavigation"
                 app:layout_constraintRight_toRightOf="parent"
-                android:background="@mipmap/ic_add_white"
+                android:src="@mipmap/ic_add_white"
                 android:layout_marginBottom="@dimen/view_vertical_margin"
                 android:layout_marginRight="@dimen/view_horizontal_margin"
                 android:layout_width="wrap_content"
