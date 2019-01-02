@@ -16,6 +16,11 @@
     <dimen name="view_vertical_margin_large">40dp</dimen>
     <dimen name="view_horizontal_margin_large">40dp</dimen>
 
+    <dimen name="view_horizontal_size">48dp</dimen>
+    <dimen name="view_vertical_size">48dp</dimen>
+
+    <dimen name="fab_vertical_margin">70dp</dimen>
+
 
     <dimen name="tool_bar_vertical">50dp</dimen>
 
