@@ -31,16 +31,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="0dp"/>
 
-        <com.google.android.material.floatingactionbutton.FloatingActionButton
-                app:layout_constraintBottom_toTopOf="@+id/bottomNavigation"
-                app:layout_constraintRight_toRightOf="parent"
-                android:src="@mipmap/ic_add_white"
-                android:layout_marginBottom="@dimen/view_vertical_margin"
-                android:layout_marginRight="@dimen/view_horizontal_margin"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"/>
-
-
         <com.google.android.material.bottomnavigation.BottomNavigationView
                 android:id="@+id/bottomNavigation"
                 android:layout_width="match_parent"
