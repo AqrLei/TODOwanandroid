@@ -18,4 +18,9 @@
 
 
     <dimen name="tool_bar_vertical">50dp</dimen>
+
+    <dimen name="zero_horizontal_margin">0dp</dimen>
+    <dimen name="zero_horizontal_margin_big_activity">0dp</dimen>
+
+    <dimen name="fab_margin">16dp</dimen>
 </resources>
