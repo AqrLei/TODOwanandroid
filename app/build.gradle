@@ -62,6 +62,9 @@ dependencies {
     implementation deps.retrofit2.gsonConverter
     implementation deps.okhttp.logging
 
+    implementation deps.glide.glide
+    annotationProcessor deps.glide.compiler
+
     implementation deps.paging.runtime
     testImplementation deps.paging.common
 
