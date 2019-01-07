@@ -12,10 +12,10 @@ import com.aqrlei.open.utils.IntentUtil
 /**
  * @author aqrlei on 2019/1/2
  */
-class TodoActivity : ViewModelActivity<TodoViewModel, ActTodoBinding>() {
+class MainActivity : ViewModelActivity<TodoViewModel, ActTodoBinding>() {
     companion object {
         fun start(context: Context, userName: String) {
-            val intent = Intent(context, TodoActivity::class.java)
+            val intent = Intent(context, MainActivity::class.java)
                 .putExtra(CacheConst.USER_NAME_KEY, userName)
             if (IntentUtil.queryActivities(context, intent)) {
                 context.startActivity(intent)
@@ -26,7 +26,7 @@ class TodoActivity : ViewModelActivity<TodoViewModel, ActTodoBinding>() {
     override val viewModel: TodoViewModel
         get() = ViewModelProviders.of(this).get(TodoViewModel::class.java)
 
-    override fun bindLayout(): Int = R.layout.act_todo
+    override fun bindLayout(): Int = R.layout.act_main
 
     override fun initComponents(binding: ActTodoBinding) {
         binding.viewModel = viewModel

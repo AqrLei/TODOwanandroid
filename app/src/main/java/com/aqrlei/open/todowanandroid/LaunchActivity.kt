@@ -4,7 +4,7 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.aqrlei.open.todowanandroid.net.CookieStore
 import com.aqrlei.open.todowanandroid.tasks.account.LoginActivity
-import com.aqrlei.open.todowanandroid.tasks.todo.TodoActivity
+import com.aqrlei.open.todowanandroid.tasks.todo.MainActivity
 import com.aqrlei.open.utils.AppCache
 
 class LaunchActivity : AppCompatActivity() {
@@ -12,7 +12,7 @@ class LaunchActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         if (CookieStore.getCookieStr().isNotEmpty()) {
-            TodoActivity.start(this, AppCache.get().getString(CacheConst.USER_NAME_KEY, ""))
+            MainActivity.start(this, AppCache.get().getString(CacheConst.USER_NAME_KEY, ""))
         } else {
             LoginActivity.start(this)
         }
