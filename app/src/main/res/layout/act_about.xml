@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        >
+
+    <ImageView
+            android:id="@+id/logoIv"
+            android:src="@mipmap/ic_launcher_round"
+            android:layout_width="wrap_content"
+            app:layout_constraintTop_toTopOf="parent"
+            android:layout_marginTop="@dimen/view_vertical_margin_large"
+            android:layout_height="wrap_content"
+            app:layout_constraintVertical_chainStyle="packed"
+            app:layout_constraintBottom_toTopOf="@+id/appNameTv"
+            app:layout_constraintVertical_bias="0.0"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"/>
+
+    <TextView
+            android:id="@+id/appNameTv"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/logoIv"
+            app:layout_constraintBottom_toTopOf="@+id/versionTv"
+            android:text="@string/app_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+    <TextView
+            android:id="@+id/versionTv"
+            app:layout_constraintTop_toBottomOf="@+id/appNameTv"
+            app:layout_constraintBottom_toTopOf="@+id/licenseCv"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            android:layout_width="wrap_content"
+            tools:text="v1.0.0"
+            android:layout_height="wrap_content"/>
+
+    <androidx.cardview.widget.CardView
+            android:id="@+id/licenseCv"
+            android:paddingBottom="@dimen/view_vertical_margin_small"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:cardCornerRadius="@dimen/card_corner_radius"
+            app:layout_constraintTop_toBottomOf="@id/versionTv"
+            app:cardElevation="@dimen/card_elevation"
+            android:layout_width="match_parent"
+            android:layout_margin="@dimen/view_vertical_margin_small"
+            app:layout_constraintVertical_weight="1"
+            android:layout_height="0dp">
+
+        <WebView
+                android:id="@+id/licenseWv"
+                android:layout_width="match_parent"
+                android:padding="@dimen/text_padding"
+                android:layout_height="wrap_content"/>
+
+    </androidx.cardview.widget.CardView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

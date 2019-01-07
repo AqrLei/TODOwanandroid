@@ -31,4 +31,15 @@
 
     <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 
+    <style name="NavigationTextStyle">
+        <item name="android:background">?android:selectableItemBackground</item>
+        <item name="android:textSize">@dimen/text_size</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:paddingTop">@dimen/view_vertical_margin_small</item>
+        <item name="android:paddingBottom">@dimen/view_vertical_margin_small</item>
+        <item name="android:paddingLeft">@dimen/view_vertical_margin_small</item>
+        <item name="android:drawablePadding">@dimen/text_padding</item>
+    </style>
+
 </resources>

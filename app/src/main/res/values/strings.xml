@@ -8,4 +8,11 @@
     <string name="register">Register</string>
     <string name="me">Me</string>
     <string name="todo">Todo</string>
+    <string name="me_version">Version</string>
+    <string name="me_rate">Rate</string>
+    <string name="me_git_hub">Source code on GitHub</string>
+    <string name="me_email">Feedback by E-mail</string>
+    <string name="me_about">About</string>
+    <string name="me_logout">Logout</string>
+    <string name="apache_license">file:///android_asset/apache_license.html</string>
 </resources>
