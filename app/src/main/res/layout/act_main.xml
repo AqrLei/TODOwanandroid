@@ -6,7 +6,7 @@
 
         <variable
                 name="viewModel"
-                type="com.aqrlei.open.todowanandroid.tasks.todo.TodoViewModel"/>
+                type="com.aqrlei.open.todowanandroid.tasks.todo.MainViewModel"/>
 
     </data>
 
@@ -14,17 +14,8 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
-        <androidx.appcompat.widget.Toolbar
-                android:id="@+id/titleToolBar"
-                android:background="@color/colorPrimary"
-                android:layout_marginBottom="@dimen/view_vertical_margin"
-                android:layout_width="match_parent"
-                app:title="@string/todo"
-                android:minHeight="?android:attr/actionBarSize"
-                android:layout_height="wrap_content"/>
-
         <FrameLayout
-                app:layout_constraintTop_toBottomOf="@+id/titleToolBar"
+                app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintBottom_toTopOf="@+id/bottomNavigation"
                 app:layout_constraintVertical_weight="1"
                 android:id="@+id/containerFl"
@@ -33,6 +24,7 @@
 
         <com.google.android.material.bottomnavigation.BottomNavigationView
                 android:id="@+id/bottomNavigation"
+                android:nav_item_selected="@{viewModel.bottomNavigatorAction}"
                 android:layout_width="match_parent"
                 android:background="?android:attr/windowBackground"
                 app:menu="@menu/menu_bottom_navigation"

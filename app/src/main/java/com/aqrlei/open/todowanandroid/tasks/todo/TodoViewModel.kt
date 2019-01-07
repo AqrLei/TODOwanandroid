@@ -1,6 +1,7 @@
 package com.aqrlei.open.todowanandroid.tasks.todo
 
 import android.app.Application
+import androidx.databinding.ObservableArrayList
 import com.aqrlei.open.todowanandroid.base.BaseViewModel
 import com.aqrlei.open.todowanandroid.net.repository.TodoRepository
 import com.aqrlei.open.todowanandroid.net.req.TodoReqBean
@@ -12,13 +13,20 @@ import com.aqrlei.open.todowanandroid.net.req.TodoReqBean
 class TodoViewModel(application: Application) : BaseViewModel(application) {
 
 
-    val tabTitles = listOf(
-        "只用这一个",
-        "工作",
-        "学习",
-        "生活")
+    val tabTitles = ObservableArrayList<String>()
+
+
     private val todoRepo = TodoRepository()
 
+
+    fun initTab() {
+        tabTitles.addAll(
+            listOf(
+                "只用这一个",
+                "工作",
+                "学习",
+                "生活"))
+    }
 
     fun fetchTypeList(type: String) {
         observerRespData(todoRepo.fetchTypeList(type), true, {

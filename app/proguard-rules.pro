@@ -97,6 +97,9 @@
     native <methods>;
 }
 
+#androidx
+-dontwarn androidx.**
+-keep class androidx.** { *; }
 
 -keep class android.arch.** { *; }
 
