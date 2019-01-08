@@ -20,6 +20,7 @@ class TodoViewModel(application: Application) : BaseViewModel(application) {
 
 
     fun initTab() {
+        tabTitles.clear()
         tabTitles.addAll(
             listOf(
                 "只用这一个",

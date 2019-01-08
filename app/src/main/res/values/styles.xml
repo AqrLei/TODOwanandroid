@@ -27,9 +27,10 @@
         <item name="android:layout_height">1px</item>
         <item name="android:background">@color/line</item>
     </style>
-    <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
 
-    <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+    <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar"/>
+
+    <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light"/>
 
     <style name="NavigationTextStyle">
         <item name="android:background">?android:selectableItemBackground</item>
@@ -40,6 +41,12 @@
         <item name="android:paddingBottom">@dimen/view_vertical_margin_small</item>
         <item name="android:paddingLeft">@dimen/view_vertical_margin_small</item>
         <item name="android:drawablePadding">@dimen/text_padding</item>
+    </style>
+
+    <style name="TabLayoutStyle" parent="Widget.Design.TabLayout">
+        <item name="tabGravity">fill</item>
+        <item name="tabMaxWidth">0dp</item>
+        <item name="tabMode">fixed</item>
     </style>
 
 </resources>

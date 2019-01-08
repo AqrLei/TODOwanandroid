@@ -29,7 +29,7 @@
                 app:menu="@menu/menu_bottom_navigation"
                 app:labelVisibilityMode="labeled"
                 android:layout_gravity="bottom"
-                android:layout_height="wrap_content">
+                android:layout_height="?android:actionBarSize">
 
         </com.google.android.material.bottomnavigation.BottomNavigationView>
     </LinearLayout>

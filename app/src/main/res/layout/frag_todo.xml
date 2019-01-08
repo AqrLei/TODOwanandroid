@@ -9,7 +9,6 @@
                 type="com.aqrlei.open.todowanandroid.tasks.todo.TodoViewModel"/>
 
     </data>
-
     <androidx.coordinatorlayout.widget.CoordinatorLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -21,6 +20,7 @@
                 android:theme="@style/AppTheme.AppBarOverlay">
 
             <com.google.android.material.tabs.TabLayout
+                    style="@style/TabLayoutStyle"
                     android:id="@+id/typeTab"
                     android:titles="@{viewModel.tabTitles}"
                     android:layout_width="match_parent"
@@ -32,16 +32,6 @@
         </com.google.android.material.appbar.AppBarLayout>
 
         <include layout="@layout/content_recycler_view"/>
-
-        <LinearLayout
-                android:orientation="vertical"
-                android:layout_gravity="bottom|end"
-                android:layout_width="@dimen/view_horizontal_size"
-                android:layout_marginBottom="@dimen/fab_vertical_margin"
-                android:layout_marginRight="@dimen/fab_margin"
-                android:layout_height="100dp">
-
-        </LinearLayout>
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton
                 android:id="@+id/fab_recycler_view"

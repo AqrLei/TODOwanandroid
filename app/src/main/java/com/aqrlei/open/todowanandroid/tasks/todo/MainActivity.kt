@@ -42,7 +42,10 @@ class MainActivity : ViewModelActivity<MainViewModel, ActMainBinding>() {
                 MeFragment.newInstance()
         todoFragment = supportFragmentManager.findFragmentByTag(FRAGMENT_TODO_TAG) as? TodoFragment ?:
                 TodoFragment.newInstance()
-        viewModel.mainNavigator?.gotoTodoPage()
+        binding.bottomNavigation.apply {
+            selectedItemId = menu.getItem(0).itemId
+            viewModel.mainNavigator?.gotoTodoPage()
+        }
     }
 
     inner class Navigator : CommonNavigator(), MainViewModel.MainNavigator {
@@ -51,7 +54,7 @@ class MainActivity : ViewModelActivity<MainViewModel, ActMainBinding>() {
             this@MainActivity.supportFragmentManager.beginTransaction().run {
                 showFragment?.also {
                     if (!it.isAdded) {
-                        this.add(it, tag)
+                        this.add(R.id.containerFl, it, tag)
                     }
                     this.show(it)
                 }
