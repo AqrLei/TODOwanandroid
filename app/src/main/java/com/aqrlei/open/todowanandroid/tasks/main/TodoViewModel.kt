@@ -15,9 +15,15 @@ class TodoViewModel(application: Application) : BaseViewModel(application) {
 
     val tabTitles = ObservableArrayList<String>()
 
+    private val todoNavigator: TodoNavigator?
+        get() = navigator as? TodoNavigator
 
     private val todoRepo = TodoRepository()
 
+
+    fun showMenu() {
+        todoNavigator?.showTodoMenu()
+    }
 
     fun initTab() {
         tabTitles.clear()
@@ -59,5 +65,12 @@ class TodoViewModel(application: Application) : BaseViewModel(application) {
 
     fun addNew(data: TodoReqBean) {
         observerRespData(todoRepo.addNew(data), true, {})
+    }
+
+    interface TodoNavigator : CommonNavigator {
+        fun showTodoMenu()
+        override fun back() {
+
+        }
     }
 }

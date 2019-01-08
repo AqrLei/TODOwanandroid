@@ -9,6 +9,7 @@
                 type="com.aqrlei.open.todowanandroid.tasks.main.TodoViewModel"/>
 
     </data>
+
     <androidx.coordinatorlayout.widget.CoordinatorLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -31,10 +32,17 @@
 
         </com.google.android.material.appbar.AppBarLayout>
 
-        <include layout="@layout/content_recycler_view"/>
+        <ViewFlipper
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+            <include layout="@layout/content_recycler_view"/>
+        </ViewFlipper>
+
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton
-                android:id="@+id/fab_recycler_view"
+                android:id="@+id/fab"
+                android:onClick="@{() ->viewModel.showMenu()}"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="bottom|end"
