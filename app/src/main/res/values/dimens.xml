@@ -37,4 +37,6 @@
 
     <dimen name="card_corner_radius">5dp</dimen>
     <dimen name="card_elevation">2dp</dimen>
+
+    <dimen name="text_margin_very_small">4dp</dimen>
 </resources>

@@ -1,7 +1,9 @@
 package com.aqrlei.open.todowanandroid.view
 
+import android.app.Dialog
 import android.content.Context
 import android.view.View
+import com.aqrlei.open.todowanandroid.R
 import com.google.android.material.bottomsheet.BottomSheetDialog
 
 /**
@@ -13,4 +15,8 @@ object DialogUtil {
         BottomSheetDialog(context).apply {
             setContentView(bindClickAction.invoke())
         }
+    fun generateFullScreenDialog(context:Context,bindClickAction: (Dialog) -> View) =
+            Dialog(context, R.style.FullScreenDialogStyle).apply {
+                setContentView(bindClickAction(this))
+            }
 }

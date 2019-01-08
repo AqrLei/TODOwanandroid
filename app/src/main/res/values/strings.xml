@@ -1,5 +1,6 @@
 <resources>
     <string name="app_name">TODOwanandroid</string>
+    <string name="version_name">Version:1.0.0</string>
     <string name="login_user_name_hint">username</string>
     <string name="login_password_hint">password</string>
     <string name="login_repeat_password_hint">repeat password</string>
@@ -20,4 +21,6 @@
     <string name="sign_out">Sign Out</string>
     <string name="kill_app">Kill App</string>
     <string name="cancel">Cancel</string>
+    <string name="dialog_close">Close</string>
+
 </resources>

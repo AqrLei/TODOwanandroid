@@ -2,16 +2,25 @@
 <androidx.constraintlayout.widget.ConstraintLayout
         xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
-        xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         >
+
+    <androidx.appcompat.widget.Toolbar
+            android:id="@+id/titleToolBar"
+            app:layout_constraintTop_toTopOf="parent"
+            app:title="@string/me_about"
+            android:background="@color/colorPrimary"
+            android:layout_marginBottom="@dimen/view_vertical_margin"
+            android:layout_width="match_parent"
+            android:minHeight="?android:attr/actionBarSize"
+            android:layout_height="wrap_content"/>
 
     <ImageView
             android:id="@+id/logoIv"
             android:src="@mipmap/ic_launcher_round"
             android:layout_width="wrap_content"
-            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/titleToolBar"
             android:layout_marginTop="@dimen/view_vertical_margin_large"
             android:layout_height="wrap_content"
             app:layout_constraintVertical_chainStyle="packed"
@@ -37,13 +46,13 @@
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintLeft_toLeftOf="parent"
             android:layout_width="wrap_content"
-            tools:text="v1.0.0"
+            android:text="@string/version_name"
             android:layout_height="wrap_content"/>
 
     <androidx.cardview.widget.CardView
             android:id="@+id/licenseCv"
             android:paddingBottom="@dimen/view_vertical_margin_small"
-            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintBottom_toTopOf="@+id/aboutClose"
             app:cardCornerRadius="@dimen/card_corner_radius"
             app:layout_constraintTop_toBottomOf="@id/versionTv"
             app:cardElevation="@dimen/card_elevation"
@@ -59,5 +68,19 @@
                 android:layout_height="wrap_content"/>
 
     </androidx.cardview.widget.CardView>
+
+    <Button
+            android:id="@+id/aboutClose"
+            style="@style/Widget.AppCompat.Button.Borderless"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="end"
+            android:textAllCaps="false"
+            android:layout_marginBottom="@dimen/text_margin_very_small"
+            android:layout_marginRight="@dimen/text_margin_very_small"
+            android:text="@string/dialog_close"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            android:textColor="@color/colorAccent"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

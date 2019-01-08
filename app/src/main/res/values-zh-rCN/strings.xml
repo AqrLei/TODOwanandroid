@@ -1,5 +1,6 @@
 <resources>
     <string name="app_name">待办清单</string>
+    <string name="version_name">版本:1.0.0</string>
     <string name="login_user_name_hint">用户名</string>
     <string name="login_password_hint">密码</string>
     <string name="login_repeat_password_hint">再次输入密码</string>
@@ -20,4 +21,5 @@
     <string name="sign_out">退出登录</string>
     <string name="kill_app">结束应用</string>
     <string name="cancel">取消</string>
+    <string name="dialog_close">关闭</string>
 </resources>

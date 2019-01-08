@@ -48,5 +48,9 @@
         <item name="tabMaxWidth">0dp</item>
         <item name="tabMode">fixed</item>
     </style>
+    <style name="FullScreenDialogStyle" parent="Base.Theme.MaterialComponents.Light.DialogWhenLarge">
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowAnimationStyle">@android:style/Animation.Dialog</item>
+    </style>
 
 </resources>

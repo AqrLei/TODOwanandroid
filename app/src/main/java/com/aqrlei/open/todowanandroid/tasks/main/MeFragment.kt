@@ -5,6 +5,7 @@ import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
 import android.view.View
+import android.webkit.WebView
 import androidx.lifecycle.ViewModelProviders
 import com.aqrlei.open.todowanandroid.CacheConstant
 import com.aqrlei.open.todowanandroid.R
@@ -69,6 +70,16 @@ class MeFragment : ViewModelFragment<MeViewModel, FragMeBinding>() {
         }
 
         override fun gotoAbout() {
+            this@MeFragment.context?.run {
+                DialogUtil.generateFullScreenDialog(this) { dialog ->
+                    View.inflate(this, R.layout.act_about, null).apply {
+                        this.findViewById<WebView>(R.id.licenseWv).loadUrl(this@run.getString(R.string.apache_license))
+                        this.findViewById<View>(R.id.aboutClose).setOnClickListener {
+                            dialog.dismiss()
+                        }
+                    }
+                }.show()
+            }
         }
 
         override fun logout() {
