@@ -1,10 +1,11 @@
-package com.aqrlei.open.todowanandroid.tasks.todo
+package com.aqrlei.open.todowanandroid.tasks.main
 
+import android.os.Bundle
 import androidx.lifecycle.ViewModelProviders
+import com.aqrlei.open.todowanandroid.CacheConst
 import com.aqrlei.open.todowanandroid.R
 import com.aqrlei.open.todowanandroid.base.ViewModelFragment
 import com.aqrlei.open.todowanandroid.databinding.FragMeBinding
-import com.aqrlei.open.todowanandroid.databinding.FragTodoBinding
 
 /**
  * @author aqrlei on 2019/1/7
@@ -12,7 +13,11 @@ import com.aqrlei.open.todowanandroid.databinding.FragTodoBinding
 class MeFragment : ViewModelFragment<MeViewModel, FragMeBinding>() {
 
     companion object {
-        fun newInstance() = MeFragment()
+        fun newInstance(userName:String):MeFragment{
+           return MeFragment().apply {
+                arguments = Bundle().also { it.putString(CacheConst.USER_NAME_KEY,userName) }
+            }
+        }
     }
 
     override val viewModel: MeViewModel

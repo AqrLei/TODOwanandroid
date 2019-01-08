@@ -7,7 +7,7 @@ import androidx.lifecycle.ViewModelProviders
 import com.aqrlei.open.todowanandroid.R
 import com.aqrlei.open.todowanandroid.base.ViewModelActivity
 import com.aqrlei.open.todowanandroid.databinding.ActLoginBinding
-import com.aqrlei.open.todowanandroid.tasks.todo.MainActivity
+import com.aqrlei.open.todowanandroid.tasks.main.MainActivity
 import com.aqrlei.open.utils.IntentUtil
 
 /**

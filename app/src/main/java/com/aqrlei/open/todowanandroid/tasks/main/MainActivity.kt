@@ -1,4 +1,4 @@
-package com.aqrlei.open.todowanandroid.tasks.todo
+package com.aqrlei.open.todowanandroid.tasks.main
 
 import android.content.Context
 import android.content.Intent
@@ -39,7 +39,7 @@ class MainActivity : ViewModelActivity<MainViewModel, ActMainBinding>() {
         viewModel.navigator = Navigator()
         binding.viewModel = viewModel
         meFragment = supportFragmentManager.findFragmentByTag(FRAGMENT_ME_TAG) as? MeFragment ?:
-                MeFragment.newInstance()
+                MeFragment.newInstance(intent.getStringExtra(CacheConst.USER_NAME_KEY))
         todoFragment = supportFragmentManager.findFragmentByTag(FRAGMENT_TODO_TAG) as? TodoFragment ?:
                 TodoFragment.newInstance()
         viewModel.setSelected(0)

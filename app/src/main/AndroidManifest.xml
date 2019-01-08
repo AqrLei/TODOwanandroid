@@ -27,7 +27,7 @@
         <activity
                 android:name=".tasks.account.RegisterActivity"
                 android:label="@string/register"/>
-        <activity android:name=".tasks.todo.MainActivity"/>
+        <activity android:name=".tasks.main.MainActivity"/>
     </application>
 
 </manifest>

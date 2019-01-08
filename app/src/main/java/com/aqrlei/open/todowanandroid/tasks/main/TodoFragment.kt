@@ -1,4 +1,4 @@
-package com.aqrlei.open.todowanandroid.tasks.todo
+package com.aqrlei.open.todowanandroid.tasks.main
 
 import androidx.lifecycle.ViewModelProviders
 import com.aqrlei.open.todowanandroid.R
