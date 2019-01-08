@@ -10,15 +10,24 @@ import com.aqrlei.open.todowanandroid.base.BaseViewModel
  */
 class MainViewModel(application: Application) : BaseViewModel(application) {
 
-     val mainNavigator: MainNavigator?
+    private val mainNavigator: MainNavigator?
         get() = navigator as? MainNavigator
     val bottomNavigatorAction = { item: MenuItem ->
-        if (item.itemId == R.id.bottom_navigate_todo) {
-            mainNavigator?.gotoTodoPage()
-        } else {
-            mainNavigator?.gotoMePage()
+        setSelected(item.itemId)
+    }
+
+    fun setSelected(id: Int): Boolean {
+        return when (id) {
+            R.id.bottom_navigate_todo -> {
+                mainNavigator?.gotoTodoPage()
+                true
+            }
+            R.id.bottom_navigate_me -> {
+                mainNavigator?.gotoMePage()
+                true
+            }
+            else -> false
         }
-        true
     }
 
     interface MainNavigator : CommonNavigator {
