@@ -10,14 +10,13 @@
 
     </data>
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <LinearLayout
+            android:orientation="vertical"
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
         <FrameLayout
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintBottom_toTopOf="@+id/bottomNavigation"
-                app:layout_constraintVertical_weight="1"
+                android:layout_weight="1"
                 android:id="@+id/containerFl"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"/>
@@ -28,9 +27,10 @@
                 android:layout_width="match_parent"
                 android:background="?android:attr/windowBackground"
                 app:menu="@menu/menu_bottom_navigation"
-                app:layout_constraintBottom_toBottomOf="parent"
+                app:labelVisibilityMode="labeled"
+                android:layout_gravity="bottom"
                 android:layout_height="wrap_content">
 
         </com.google.android.material.bottomnavigation.BottomNavigationView>
-    </androidx.constraintlayout.widget.ConstraintLayout>
+    </LinearLayout>
 </layout>

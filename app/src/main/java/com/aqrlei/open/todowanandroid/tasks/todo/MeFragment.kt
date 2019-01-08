@@ -18,7 +18,7 @@ class MeFragment : ViewModelFragment<MeViewModel, FragMeBinding>() {
     override val viewModel: MeViewModel
         get() = ViewModelProviders.of(this).get(MeViewModel::class.java)
 
-    override fun bindLayout(): Int = R.layout.frag_todo
+    override fun bindLayout(): Int = R.layout.frag_me
 
     override fun initComponents(binding: FragMeBinding) {
         binding.viewModel = viewModel
