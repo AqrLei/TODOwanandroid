@@ -4,7 +4,6 @@ import androidx.lifecycle.ViewModelProviders
 import com.aqrlei.open.todowanandroid.R
 import com.aqrlei.open.todowanandroid.base.ViewModelFragment
 import com.aqrlei.open.todowanandroid.databinding.FragTodoBinding
-import com.aqrlei.open.utils.DialogUtil
 
 /**
  * @author aqrlei on 2019/1/7
@@ -27,15 +26,8 @@ class TodoFragment : ViewModelFragment<TodoViewModel, FragTodoBinding>() {
     }
 
     inner class Navigator : TodoViewModel.TodoNavigator {
-        override fun showTodoMenu() {
-            this@TodoFragment.context?.run {
-                DialogUtil.singleChoiceDialogBuilder(
-                    this, arrayOf("不限", "已完成", "未完成"), 0
-                ) {
-                    //TODO
-                }.show()
-            }
-
+        override fun addNew() {
+            //TODO
         }
     }
 }

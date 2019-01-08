@@ -21,8 +21,8 @@ class TodoViewModel(application: Application) : BaseViewModel(application) {
     private val todoRepo = TodoRepository()
 
 
-    fun showMenu() {
-        todoNavigator?.showTodoMenu()
+    fun addNew() {
+        todoNavigator?.addNew()
     }
 
     fun initTab() {
@@ -68,7 +68,7 @@ class TodoViewModel(application: Application) : BaseViewModel(application) {
     }
 
     interface TodoNavigator : CommonNavigator {
-        fun showTodoMenu()
+        fun addNew()
         override fun back() {
 
         }

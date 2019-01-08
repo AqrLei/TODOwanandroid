@@ -42,7 +42,7 @@
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton
                 android:id="@+id/fab"
-                android:onClick="@{() ->viewModel.showMenu()}"
+                android:onClick="@{() ->viewModel.addNew()}"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="bottom|end"
