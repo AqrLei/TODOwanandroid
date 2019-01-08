@@ -20,7 +20,6 @@
                 android:id="@+id/containerFl"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"/>
-
         <com.google.android.material.bottomnavigation.BottomNavigationView
                 android:id="@+id/bottomNavigation"
                 android:nav_item_selected="@{viewModel.bottomNavigatorAction}"
