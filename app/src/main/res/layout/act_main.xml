@@ -20,16 +20,48 @@
                 android:id="@+id/containerFl"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"/>
-        <com.google.android.material.bottomnavigation.BottomNavigationView
-                android:id="@+id/bottomNavigation"
-                android:nav_item_selected="@{viewModel.bottomNavigatorAction}"
-                android:layout_width="match_parent"
-                android:background="?android:attr/windowBackground"
-                app:menu="@menu/menu_bottom_navigation"
-                app:labelVisibilityMode="labeled"
-                android:layout_gravity="bottom"
-                android:layout_height="?android:actionBarSize">
 
-        </com.google.android.material.bottomnavigation.BottomNavigationView>
+        <RadioGroup
+                android:id="@+id/navMenuRg"
+                android:nav_item_checked="@{viewModel.bottomNavigatorAction}"
+                android:layout_width="match_parent"
+                android:layout_height="?android:actionBarSize"
+                android:background="#ffffff"
+                android:orientation="horizontal"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent">
+
+            <RadioButton
+                    android:id="@+id/navTodoRb"
+                    android:layout_width="0dp"
+                    android:layout_height="50dp"
+                    android:layout_weight="1"
+                    android:background="@null"
+                    android:button="@null"
+                    android:checked="true"
+                    android:drawablePadding="4dp"
+                    android:drawableTop="@drawable/selector_todo_check"
+                    android:gravity="center_horizontal"
+                    android:paddingTop="5dp"
+                    android:text="@string/todo"
+                    android:textColor="@color/selector_text_color_nav"
+                    android:textSize="12dp"/>
+
+            <RadioButton
+                    android:id="@+id/navMeRb"
+                    android:layout_width="0dp"
+                    android:layout_height="50dp"
+                    android:layout_weight="1"
+                    android:background="@null"
+                    android:button="@null"
+                    android:drawablePadding="4dp"
+                    android:drawableTop="@drawable/selector_account_check"
+                    android:gravity="center_horizontal"
+                    android:paddingTop="5dp"
+                    android:text="@string/me"
+                    android:textColor="@color/selector_text_color_nav"
+                    android:textSize="12dp"/>
+        </RadioGroup>
     </LinearLayout>
 </layout>

@@ -1,8 +1,6 @@
 package com.aqrlei.open.todowanandroid.tasks.todo
 
 import android.app.Application
-import android.view.MenuItem
-import com.aqrlei.open.todowanandroid.R
 import com.aqrlei.open.todowanandroid.base.BaseViewModel
 
 /**
@@ -12,21 +10,15 @@ class MainViewModel(application: Application) : BaseViewModel(application) {
 
     private val mainNavigator: MainNavigator?
         get() = navigator as? MainNavigator
-    val bottomNavigatorAction = { item: MenuItem ->
-        setSelected(item.itemId)
+    val bottomNavigatorAction = { position: Int ->
+        setSelected(position)
     }
 
-    fun setSelected(id: Int): Boolean {
-        return when (id) {
-            R.id.bottom_navigate_todo -> {
-                mainNavigator?.gotoTodoPage()
-                true
-            }
-            R.id.bottom_navigate_me -> {
-                mainNavigator?.gotoMePage()
-                true
-            }
-            else -> false
+    fun setSelected(position: Int) {
+        if (position == 1) {
+            mainNavigator?.gotoMePage()
+        } else {
+            mainNavigator?.gotoTodoPage()
         }
     }
 

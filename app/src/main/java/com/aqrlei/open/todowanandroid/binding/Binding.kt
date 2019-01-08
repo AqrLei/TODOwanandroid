@@ -1,9 +1,8 @@
 package com.aqrlei.open.todowanandroid.binding
 
-import android.view.MenuItem
+import android.widget.RadioGroup
 import androidx.databinding.BindingAdapter
 import androidx.viewpager.widget.ViewPager
-import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.tabs.TabLayout
 import com.google.android.material.textfield.TextInputLayout
 
@@ -32,7 +31,13 @@ fun TabLayout.setViewPager(viewPager: ViewPager) {
     addOnTabSelectedListener(TabLayout.ViewPagerOnTabSelectedListener(viewPager))
 }
 
-@BindingAdapter("android:nav_item_selected")
-fun BottomNavigationView.setOnNavItemSelected(action: (MenuItem) -> Boolean) {
-    this.setOnNavigationItemSelectedListener(BottomNavigationView.OnNavigationItemSelectedListener(action))
+@BindingAdapter("android:nav_item_checked")
+fun RadioGroup.setOnNavItemChecked(action: (Int) -> Unit) {
+    this.setOnCheckedChangeListener { group, checkedId ->
+        for (i in 0 until group.childCount) {
+            if (group.getChildAt(i).id == checkedId) {
+                action(i)
+            }
+        }
+    }
 }

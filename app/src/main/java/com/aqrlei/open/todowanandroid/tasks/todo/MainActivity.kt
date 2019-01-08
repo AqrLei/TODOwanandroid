@@ -42,7 +42,7 @@ class MainActivity : ViewModelActivity<MainViewModel, ActMainBinding>() {
                 MeFragment.newInstance()
         todoFragment = supportFragmentManager.findFragmentByTag(FRAGMENT_TODO_TAG) as? TodoFragment ?:
                 TodoFragment.newInstance()
-        viewModel.setSelected(binding.bottomNavigation.selectedItemId)
+        viewModel.setSelected(0)
     }
 
     inner class Navigator : CommonNavigator(), MainViewModel.MainNavigator {

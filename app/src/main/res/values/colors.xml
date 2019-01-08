@@ -9,4 +9,7 @@
     <color name="line">#FFe5e5e5</color>
 
     <color name="activity_background">#EEEEEE</color>
+
+    <color name="nav_uncheck">#616161</color>
+    <color name="nav_checked">@color/colorPrimary</color>
 </resources>
