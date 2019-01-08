@@ -4,7 +4,7 @@ import android.content.Context
 import android.content.Intent
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProviders
-import com.aqrlei.open.todowanandroid.CacheConst
+import com.aqrlei.open.todowanandroid.CacheConstant
 import com.aqrlei.open.todowanandroid.R
 import com.aqrlei.open.todowanandroid.base.ViewModelActivity
 import com.aqrlei.open.todowanandroid.databinding.ActMainBinding
@@ -19,7 +19,7 @@ class MainActivity : ViewModelActivity<MainViewModel, ActMainBinding>() {
         const val FRAGMENT_TODO_TAG = "todo"
         fun start(context: Context, userName: String) {
             val intent = Intent(context, MainActivity::class.java)
-                .putExtra(CacheConst.USER_NAME_KEY, userName)
+                .putExtra(CacheConstant.USER_NAME_KEY, userName)
             if (IntentUtil.queryActivities(context, intent)) {
                 context.startActivity(intent)
             }
@@ -39,7 +39,7 @@ class MainActivity : ViewModelActivity<MainViewModel, ActMainBinding>() {
         viewModel.navigator = Navigator()
         binding.viewModel = viewModel
         meFragment = supportFragmentManager.findFragmentByTag(FRAGMENT_ME_TAG) as? MeFragment ?:
-                MeFragment.newInstance(intent.getStringExtra(CacheConst.USER_NAME_KEY))
+                MeFragment.newInstance(intent.getStringExtra(CacheConstant.USER_NAME_KEY))
         todoFragment = supportFragmentManager.findFragmentByTag(FRAGMENT_TODO_TAG) as? TodoFragment ?:
                 TodoFragment.newInstance()
         viewModel.setSelected(0)

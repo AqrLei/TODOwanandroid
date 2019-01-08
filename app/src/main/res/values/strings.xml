@@ -15,4 +15,9 @@
     <string name="me_about">About</string>
     <string name="me_logout">Logout</string>
     <string name="apache_license">file:///android_asset/apache_license.html</string>
+    <string name="subject">About:</string>
+
+    <string name="sign_out">Sign Out</string>
+    <string name="kill_app">Kill App</string>
+    <string name="cancel">Cancel</string>
 </resources>

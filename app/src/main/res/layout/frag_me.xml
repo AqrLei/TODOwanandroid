@@ -47,6 +47,7 @@
                             android:gravity="center_vertical"
                             android:layout_marginLeft="@dimen/view_horizontal_margin_small"
                             android:ellipsize="end"
+                            android:text="@{viewModel.userName}"
                             android:textSize="@dimen/text_size_large"
                             tools:text="昵称"
                             android:layout_height="match_parent"/>
@@ -68,21 +69,25 @@
                     <TextView
                             style="@style/NavigationTextStyle"
                             android:drawableLeft="@mipmap/ic_shop"
+                            android:onClick="@{()->viewModel.rate()}"
                             android:text="@string/me_rate"/>
 
 
                     <TextView
                             style="@style/NavigationTextStyle"
                             android:drawableLeft="@mipmap/ic_github"
+                            android:onClick="@{()->viewModel.gotoGitHub()}"
                             android:text="@string/me_git_hub"/>
 
                     <TextView
                             style="@style/NavigationTextStyle"
                             android:drawableLeft="@mipmap/ic_email"
+                            android:onClick="@{()->viewModel.feedbackByEmail()}"
                             android:text="@string/me_email"/>
 
                     <TextView
                             style="@style/NavigationTextStyle"
+                            android:onClick="@{()->viewModel.gotoAbout()}"
                             android:drawableLeft="@mipmap/ic_info"
                             android:text="@string/me_about"/>
 
@@ -95,6 +100,7 @@
                     android:layout_margin="@dimen/view_horizontal_margin_large"
                     android:layout_width="match_parent"
                     cardView:cardCornerRadius="@dimen/card_corner_radius"
+                    android:onClick="@{()->viewModel.logout()}"
                     cardView:cardElevation="@dimen/card_elevation"
                     android:layout_height="wrap_content">
 

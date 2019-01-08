@@ -2,7 +2,7 @@ package com.aqrlei.open.todowanandroid.tasks.account
 
 import android.app.Application
 import androidx.lifecycle.MutableLiveData
-import com.aqrlei.open.todowanandroid.CacheConst
+import com.aqrlei.open.todowanandroid.CacheConstant
 import com.aqrlei.open.todowanandroid.base.BaseViewModel
 import com.aqrlei.open.todowanandroid.net.repository.AccountRepository
 import com.aqrlei.open.utils.ActivityCollector
@@ -39,7 +39,7 @@ class AccountViewModel(application: Application) :
         passwordErrorLiveData.value = ""
         if (verifyAccount(false)) {
             observerRespData(accountRepo.login(userName, password), true, {
-                AppCache.get().putString(CacheConst.USER_NAME_KEY, it.userName.orEmpty()).commit()
+                AppCache.get().putString(CacheConstant.USER_NAME_KEY, it.userName.orEmpty()).commit()
                 accountNavigator?.loginSuccess(it.userName.orEmpty())
             })
         }

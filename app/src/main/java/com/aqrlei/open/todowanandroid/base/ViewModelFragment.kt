@@ -44,4 +44,6 @@ abstract class ViewModelFragment<VM : BaseViewModel, VB : ViewDataBinding> : Fra
     override fun showLoading() {
         baseView?.showLoading()
     }
+
+
 }

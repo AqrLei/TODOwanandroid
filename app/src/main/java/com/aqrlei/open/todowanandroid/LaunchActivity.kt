@@ -12,7 +12,7 @@ class LaunchActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         if (CookieStore.getCookieStr().isNotEmpty()) {
-            MainActivity.start(this, AppCache.get().getString(CacheConst.USER_NAME_KEY, ""))
+            MainActivity.start(this, AppCache.get().getString(CacheConstant.USER_NAME_KEY, ""))
         } else {
             LoginActivity.start(this)
         }
