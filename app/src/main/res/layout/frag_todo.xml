@@ -37,22 +37,22 @@
                         android:id="@+id/navTypeZeroRb"
                         style="@style/NavTodoRadioButtonStyle"
                         android:checked="true"
-                        android:text="@string/todo"/>
+                        android:text="@string/TodoTypeZero"/>
 
                 <RadioButton
                         android:id="@+id/navTypeOneRb"
                         style="@style/NavTodoRadioButtonStyle"
-                        android:text="@string/me"/>
+                        android:text="@string/TodoTypeOne"/>
 
                 <RadioButton
                         android:id="@+id/navTypeTwoRb"
                         style="@style/NavTodoRadioButtonStyle"
-                        android:text="@string/me"/>
+                        android:text="@string/TodoTypeTwo"/>
 
                 <RadioButton
                         android:id="@+id/navTypeThreeRb"
                         style="@style/NavTodoRadioButtonStyle"
-                        android:text="@string/me"/>
+                        android:text="@string/TodoTypeThree"/>
             </RadioGroup>
         </ScrollView>
 

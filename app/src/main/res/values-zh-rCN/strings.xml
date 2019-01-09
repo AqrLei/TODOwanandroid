@@ -22,4 +22,9 @@
     <string name="kill_app">结束应用</string>
     <string name="cancel">取消</string>
     <string name="dialog_close">关闭</string>
+
+    <string name="TodoTypeZero">只用这一个</string>
+    <string name="TodoTypeOne">工作</string>
+    <string name="TodoTypeTwo">学习</string>
+    <string name="TodoTypeThree">生活</string>
 </resources>

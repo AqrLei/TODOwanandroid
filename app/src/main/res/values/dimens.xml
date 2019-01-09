@@ -42,4 +42,6 @@
     <dimen name="text_margin_very_small">4dp</dimen>
 
     <dimen name="layer_left_offset">5dp</dimen>
+
+    <dimen name="auto_text_size_step">1dp</dimen>
 </resources>

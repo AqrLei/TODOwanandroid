@@ -23,4 +23,9 @@
     <string name="cancel">Cancel</string>
     <string name="dialog_close">Close</string>
 
+    <string name="TodoTypeZero">Only</string>
+    <string name="TodoTypeOne">Work</string>
+    <string name="TodoTypeTwo">Learn</string>
+    <string name="TodoTypeThree">Life</string>
+
 </resources>
