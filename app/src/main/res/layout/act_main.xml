@@ -34,34 +34,16 @@
 
             <RadioButton
                     android:id="@+id/navTodoRb"
-                    android:layout_width="0dp"
-                    android:layout_height="50dp"
-                    android:layout_weight="1"
-                    android:background="@null"
-                    android:button="@null"
+                    style="@style/NavMainRadioButtonStyle"
                     android:checked="true"
-                    android:drawablePadding="4dp"
                     android:drawableTop="@drawable/selector_todo_check"
-                    android:gravity="center_horizontal"
-                    android:paddingTop="5dp"
-                    android:text="@string/todo"
-                    android:textColor="@color/selector_text_color_nav"
-                    android:textSize="12dp"/>
+                    android:text="@string/todo"/>
 
             <RadioButton
                     android:id="@+id/navMeRb"
-                    android:layout_width="0dp"
-                    android:layout_height="50dp"
-                    android:layout_weight="1"
-                    android:background="@null"
-                    android:button="@null"
-                    android:drawablePadding="4dp"
+                    style="@style/NavMainRadioButtonStyle"
                     android:drawableTop="@drawable/selector_account_check"
-                    android:gravity="center_horizontal"
-                    android:paddingTop="5dp"
-                    android:text="@string/me"
-                    android:textColor="@color/selector_text_color_nav"
-                    android:textSize="12dp"/>
+                    android:text="@string/me"/>
         </RadioGroup>
     </LinearLayout>
 </layout>

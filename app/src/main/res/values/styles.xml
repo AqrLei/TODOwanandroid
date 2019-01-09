@@ -48,9 +48,32 @@
         <item name="tabMaxWidth">0dp</item>
         <item name="tabMode">fixed</item>
     </style>
+
     <style name="FullScreenDialogStyle" parent="Base.Theme.MaterialComponents.Light.DialogWhenLarge">
         <item name="android:windowNoTitle">true</item>
         <item name="android:windowAnimationStyle">@android:style/Animation.Dialog</item>
+    </style>
+
+    <style name="NavMainRadioButtonStyle">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">50dp</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:background">@null</item>
+        <item name="android:button">@null</item>
+        <item name="android:drawablePadding">@dimen/text_padding</item>
+        <item name="android:paddingTop">@dimen/text_padding</item>
+        <item name="android:gravity">center_horizontal</item>
+        <item name="android:textColor">@color/selector_text_color_nav</item>
+        <item name="android:textSize">@dimen/text_size_small</item>
+    </style>
+
+    <style name="NavTodoRadioButtonStyle" parent="NavMainRadioButtonStyle">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:background">@drawable/selector_nav_todo_item_background</item>
+        <item name="android:textColor">@color/selector_text_color_nav_todo</item>
+        <item name="android:gravity">center</item>
+        <item name="android:textSize">@dimen/text_size_large</item>
+
     </style>
 
 </resources>

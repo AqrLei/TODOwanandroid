@@ -29,10 +29,9 @@ class TodoViewModel(application: Application) : BaseViewModel(application) {
         tabTitles.clear()
         tabTitles.addAll(
             listOf(
-                "只用这一个",
-                "工作",
-                "学习",
-                "生活"))
+                "不限",
+                "已完成",
+                "未完成"))
     }
 
     fun fetchTypeList(type: String) {

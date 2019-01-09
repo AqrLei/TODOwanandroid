@@ -2,14 +2,19 @@
 <resources>
     <color name="colorPrimary">#008577</color>
     <color name="colorPrimaryDark">#00574B</color>
-    <color name="colorAccent">#3b88da</color>
+    <color name="colorAccent">#8dd2ca</color>
     <color name="colorTranslucent">#10000000</color>
     <color name="white">#FFFFFFFF</color>
     <color name="black">#FF000000</color>
+    <color name="black_bond">#FF333333</color>
     <color name="line">#FFe5e5e5</color>
 
     <color name="activity_background">#EEEEEE</color>
+    <color name="colorGrey700">#616161</color>
 
-    <color name="nav_uncheck">#616161</color>
-    <color name="nav_checked">@color/colorPrimary</color>
+    <color name="nav_uncheck">@color/colorGrey700</color>
+    <color name="nav_checked">@color/colorAccent</color>
+
+    <color name="nav_menu_background">@color/colorGrey700</color>
+    <color name="nav_item_text_color">@color/black_bond</color>
 </resources>

@@ -10,45 +10,92 @@
 
     </data>
 
-    <androidx.coordinatorlayout.widget.CoordinatorLayout
+    <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:fitsSystemWindows="false">
+            android:orientation="horizontal"
+            android:layout_height="match_parent">
 
-        <com.google.android.material.appbar.AppBarLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:theme="@style/AppTheme.AppBarOverlay">
+        <ScrollView
+                android:fillViewport="false"
+                android:overScrollMode="never"
+                android:scrollbars="none"
+                android:background="@color/colorPrimary"
+                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:layout_height="match_parent">
 
-            <com.google.android.material.tabs.TabLayout
-                    style="@style/TabLayoutStyle"
-                    android:id="@+id/typeTab"
-                    android:titles="@{viewModel.tabTitles}"
+            <RadioGroup
+                    android:id="@+id/todoMenuRg"
                     android:layout_width="match_parent"
-                    android:layout_height="?attr/actionBarSize"
-                    android:background="?attr/colorPrimary"
-                    app:layout_scrollFlags="scroll|enterAlways"
-                    app:popupTheme="@style/AppTheme.PopupOverlay"/>
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintRight_toRightOf="parent">
 
-        </com.google.android.material.appbar.AppBarLayout>
+                <RadioButton
+                        android:id="@+id/navTypeZeroRb"
+                        style="@style/NavTodoRadioButtonStyle"
+                        android:checked="true"
+                        android:text="@string/todo"/>
 
-        <ViewFlipper
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                <RadioButton
+                        android:id="@+id/navTypeOneRb"
+                        style="@style/NavTodoRadioButtonStyle"
+                        android:text="@string/me"/>
+                <RadioButton
+                        android:id="@+id/navTypeTwoRb"
+                        style="@style/NavTodoRadioButtonStyle"
+                        android:text="@string/me"/>
+                <RadioButton
+                        android:id="@+id/navTypeThreeRb"
+                        style="@style/NavTodoRadioButtonStyle"
+                        android:text="@string/me"/>
+            </RadioGroup>
+        </ScrollView>
 
-            <include layout="@layout/content_recycler_view"/>
-        </ViewFlipper>
+        <androidx.coordinatorlayout.widget.CoordinatorLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="3"
+                android:fitsSystemWindows="false">
+
+            <com.google.android.material.appbar.AppBarLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:theme="@style/AppTheme.AppBarOverlay">
+
+                <com.google.android.material.tabs.TabLayout
+                        style="@style/TabLayoutStyle"
+                        android:id="@+id/typeTab"
+                        android:titles="@{viewModel.tabTitles}"
+                        android:layout_width="match_parent"
+                        android:layout_height="?attr/actionBarSize"
+                        android:background="@color/colorPrimary"
+                        app:layout_scrollFlags="scroll|enterAlways"
+                        app:popupTheme="@style/AppTheme.PopupOverlay"/>
+
+            </com.google.android.material.appbar.AppBarLayout>
+
+            <ViewFlipper
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                <include layout="@layout/content_recycler_view"/>
+            </ViewFlipper>
 
 
-        <com.google.android.material.floatingactionbutton.FloatingActionButton
-                android:id="@+id/fab"
-                android:onClick="@{() ->viewModel.addNew()}"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="bottom|end"
-                android:layout_margin="@dimen/fab_margin"
-                android:src="@mipmap/ic_add_white"
-                app:layout_behavior="com.aqrlei.open.todowanandroid.view.FabBehavior"/>
+            <com.google.android.material.floatingactionbutton.FloatingActionButton
+                    android:id="@+id/fab"
+                    android:onClick="@{() ->viewModel.addNew()}"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="bottom|end"
+                    android:layout_margin="@dimen/fab_margin"
+                    android:src="@mipmap/ic_add_white"
+                    app:layout_behavior="com.aqrlei.open.todowanandroid.view.FabBehavior"/>
 
-    </androidx.coordinatorlayout.widget.CoordinatorLayout>
+        </androidx.coordinatorlayout.widget.CoordinatorLayout>
+    </LinearLayout>
+
 </layout>
