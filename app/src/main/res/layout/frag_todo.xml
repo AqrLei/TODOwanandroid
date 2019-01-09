@@ -43,10 +43,12 @@
                         android:id="@+id/navTypeOneRb"
                         style="@style/NavTodoRadioButtonStyle"
                         android:text="@string/me"/>
+
                 <RadioButton
                         android:id="@+id/navTypeTwoRb"
                         style="@style/NavTodoRadioButtonStyle"
                         android:text="@string/me"/>
+
                 <RadioButton
                         android:id="@+id/navTypeThreeRb"
                         style="@style/NavTodoRadioButtonStyle"
@@ -58,32 +60,28 @@
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="3"
+                android:background="@color/activity_background"
                 android:fitsSystemWindows="false">
 
             <com.google.android.material.appbar.AppBarLayout
-                    android:layout_width="match_parent"
+                    android:layout_width="wrap_content"
+                    android:layout_marginTop="@dimen/view_vertical_margin"
                     android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
                     android:theme="@style/AppTheme.AppBarOverlay">
-
                 <com.google.android.material.tabs.TabLayout
                         style="@style/TabLayoutStyle"
                         android:id="@+id/typeTab"
                         android:titles="@{viewModel.tabTitles}"
                         android:layout_width="match_parent"
-                        android:layout_height="?attr/actionBarSize"
+                        android:layout_height="wrap_content"
                         android:background="@color/colorPrimary"
                         app:layout_scrollFlags="scroll|enterAlways"
                         app:popupTheme="@style/AppTheme.PopupOverlay"/>
 
             </com.google.android.material.appbar.AppBarLayout>
 
-            <ViewFlipper
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
-
-                <include layout="@layout/content_recycler_view"/>
-            </ViewFlipper>
-
+            <include layout="@layout/content_recycler_view"/>
 
             <com.google.android.material.floatingactionbutton.FloatingActionButton
                     android:id="@+id/fab"
