@@ -73,10 +73,6 @@
         <item name="android:textColor">@color/selector_text_color_nav_todo</item>
         <item name="android:gravity">center</item>
         <item name="android:textSize">@dimen/text_size_large</item>
-        <item name="app:autoSizeMinTextSize">@dimen/text_size_small</item>
-        <item name="app:autoSizeMaxTextSize">@dimen/text_size_large</item>
-        <item name="app:autoSizeStepGranularity">@dimen/auto_text_size_step</item>
-        <item name="app:autoSizeTextType">uniform</item>
     </style>
 
 </resources>

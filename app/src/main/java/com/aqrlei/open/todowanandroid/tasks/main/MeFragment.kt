@@ -72,7 +72,7 @@ class MeFragment : ViewModelFragment<MeViewModel, FragMeBinding>() {
         override fun gotoAbout() {
             this@MeFragment.context?.run {
                 DialogUtil.generateFullScreenDialog(this) { dialog ->
-                    View.inflate(this, R.layout.act_about, null).apply {
+                    View.inflate(this, R.layout.dialog_about, null).apply {
                         this.findViewById<WebView>(R.id.licenseWv).loadUrl(this@run.getString(R.string.apache_license))
                         this.findViewById<View>(R.id.aboutClose).setOnClickListener {
                             dialog.dismiss()
