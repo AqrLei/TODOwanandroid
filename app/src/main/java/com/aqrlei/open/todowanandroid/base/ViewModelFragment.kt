@@ -14,7 +14,7 @@ import androidx.fragment.app.Fragment
 abstract class ViewModelFragment<VM : BaseViewModel, VB : ViewDataBinding> : Fragment(), BaseView {
 
     protected abstract val viewModel: VM
-    private lateinit var binding: VB
+    protected lateinit var binding: VB
 
     private val baseView: BaseView?
         get() = this.context as? BaseView

@@ -1,6 +1,7 @@
 package com.aqrlei.open.todowanandroid.tasks.main
 
 import androidx.lifecycle.ViewModelProviders
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.aqrlei.open.todowanandroid.BR
 import com.aqrlei.open.todowanandroid.R
 import com.aqrlei.open.todowanandroid.base.ViewModelFragment
@@ -16,6 +17,10 @@ class TodoFragment : ViewModelFragment<TodoViewModel, FragTodoBinding>() {
         fun newInstance() = TodoFragment()
     }
 
+    val addNewPos: Int
+        get() = (binding.contentRv.layoutManager as? LinearLayoutManager)?.findFirstVisibleItemPosition() ?: 0
+
+
     override val viewModel: TodoViewModel
         get() = ViewModelProviders.of(this).get(TodoViewModel::class.java)
 
@@ -24,13 +29,13 @@ class TodoFragment : ViewModelFragment<TodoViewModel, FragTodoBinding>() {
     override fun initComponents(binding: FragTodoBinding) {
         viewModel.navigator = Navigator()
         binding.viewModel = viewModel
-        binding.itemBinding = ItemBinding.create<String>().set(BR.item,R.layout.list_item_todo)
+        binding.itemBinding = ItemBinding.create<String>().set(BR.item, R.layout.list_item_todo)
         viewModel.initTab()
     }
 
     inner class Navigator : TodoViewModel.TodoNavigator {
         override fun addNew() {
-            viewModel.addContent()
+            viewModel.addContent(addNewPos)
             //TODO
         }
     }

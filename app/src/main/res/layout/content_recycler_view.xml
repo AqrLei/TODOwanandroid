@@ -21,7 +21,7 @@
             tools:showIn="@layout/frag_todo">
 
         <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/recycler_view_recycler_view"
+                android:id="@+id/contentRv"
                 android:itemBinding="@{itemBinding}"
                 android:items="@{viewModel.contentList}"
                 android:layout_width="match_parent"
