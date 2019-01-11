@@ -9,7 +9,6 @@ import com.aqrlei.open.todowanandroid.R
 import com.aqrlei.open.todowanandroid.base.ViewModelActivity
 import com.aqrlei.open.todowanandroid.databinding.ActMainBinding
 import com.aqrlei.open.utils.IntentUtil
-import io.flutter.facade.Flutter
 import io.flutter.facade.FlutterFragment
 
 /**
@@ -29,7 +28,8 @@ class MainActivity : ViewModelActivity<MainViewModel, ActMainBinding>() {
     }
 
     private var meFragment: MeFragment? = null
-    private var todoFragment: FlutterFragment? = null
+   // private var todoFragment: FlutterFragment? = null
+    private var todoFragment: TodoFragment? = null
 
 
     override val viewModel: MainViewModel
@@ -42,10 +42,10 @@ class MainActivity : ViewModelActivity<MainViewModel, ActMainBinding>() {
         binding.viewModel = viewModel
         meFragment = supportFragmentManager.findFragmentByTag(FRAGMENT_ME_TAG) as? MeFragment ?:
                 MeFragment.newInstance(intent.getStringExtra(CacheConstant.USER_NAME_KEY))
-        todoFragment = supportFragmentManager.findFragmentByTag(FRAGMENT_TODO_TAG) as? FlutterFragment ?: Flutter.createFragment("")
+        /*  todoFragment = supportFragmentManager.findFragmentByTag(FRAGMENT_TODO_TAG) as? FlutterFragment ?: Flutter.createFragment("")*/
 
-                /*supportFragmentManager.findFragmentByTag(FRAGMENT_TODO_TAG) as? TodoFragment ?:
-                TodoFragment.newInstance()*/
+        todoFragment = supportFragmentManager.findFragmentByTag(FRAGMENT_TODO_TAG) as? TodoFragment ?:
+                TodoFragment.newInstance()
         viewModel.setSelected(0)
     }
 

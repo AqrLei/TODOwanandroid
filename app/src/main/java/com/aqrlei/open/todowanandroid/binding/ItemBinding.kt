@@ -1,7 +1,10 @@
 package com.aqrlei.open.todowanandroid.binding
 
 import android.util.SparseArray
+import androidx.databinding.BindingAdapter
 import androidx.databinding.ViewDataBinding
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 
 /**
  * @author aqrlei on 2019/1/10
@@ -25,11 +28,12 @@ class ItemBinding<T> private constructor() {
     private lateinit var extraBinding: SparseArray<Any>
 
 
-    val itemBindingList = ArrayList<OnItemBind<T>>()
-    val itemBindingClassList = ArrayList<Class<out T>>()
-    fun set(variableId: Int, layoutRes: Int) {
+    private val itemBindingList = ArrayList<OnItemBind<T>>()
+    private val itemBindingClassList = ArrayList<Class<out T>>()
+    fun set(variableId: Int, layoutRes: Int): ItemBinding<T> {
         this.variableId = variableId
         this.layoutRes = layoutRes
+        return this
     }
 
     fun add(variableId: Int, layoutRes: Int, clazz: Class<out T>): ItemBinding<T> {
@@ -71,5 +75,21 @@ class ItemBinding<T> private constructor() {
             }
             result
         } ?: false
+    }
+}
+
+@BindingAdapter("android:itemBinding", "android:items", "android:layoutManager", requireAll = false)
+fun <T> RecyclerView.setAdapter(
+    itemBinding: ItemBinding<T>,
+    items: List<T>,
+    layoutManager: RecyclerView.LayoutManager?) {
+    val oldAdapter = this.adapter as? DataBindingRecyclerAdapter<T>
+    val adapter = oldAdapter ?: DataBindingRecyclerAdapter()
+    adapter.setItemBind(itemBinding)
+    adapter.setItems(items)
+    this.itemAnimator = null
+    this.layoutManager = layoutManager ?: LinearLayoutManager(this.context)
+    if (adapter != oldAdapter) {
+        this.adapter = adapter
     }
 }

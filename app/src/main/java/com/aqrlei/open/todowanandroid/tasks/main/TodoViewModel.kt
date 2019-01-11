@@ -14,6 +14,7 @@ class TodoViewModel(application: Application) : BaseViewModel(application) {
 
 
     val tabTitles = ObservableArrayList<String>()
+    val contentList = ObservableArrayList<String>()
 
     private val todoNavigator: TodoNavigator?
         get() = navigator as? TodoNavigator
@@ -32,7 +33,19 @@ class TodoViewModel(application: Application) : BaseViewModel(application) {
                 "不限",
                 "已完成",
                 "未完成"))
+        contentList.clear()
+        contentList.addAll(
+            listOf(
+                "不限",
+                "已完成",
+                "未完成")
+        )
     }
+
+    fun addContent() {
+        contentList.add("test")
+    }
+
 
     fun fetchTypeList(type: String) {
         observerRespData(todoRepo.fetchTypeList(type), true, {

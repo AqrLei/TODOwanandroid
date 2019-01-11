@@ -10,19 +10,7 @@ import java.lang.ref.WeakReference
 /**
  * @author aqrlei on 2019/1/10
  */
-
-@BindingMethods(
-    value = [
-        BindingMethod(
-            type = RecyclerView::class,
-            attribute = "android:items",
-            method = "setItems"),
-        BindingMethod(
-            type = RecyclerView::class,
-            attribute = "android:itemBinding",
-            method = "setItemBind"
-        )])
-class DatabindingRecyclerAdapter<T> : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+class DataBindingRecyclerAdapter<T> : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     companion object {
         private val DATA_INVALIDATION = Any()
@@ -122,9 +110,9 @@ class DatabindingRecyclerAdapter<T> : RecyclerView.Adapter<RecyclerView.ViewHold
 
     class CommonViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView)
 
-    private class WeakReferenceOnListChangedCallback<T> internal constructor(adapter: DatabindingRecyclerAdapter<T>) :
+    private class WeakReferenceOnListChangedCallback<T> internal constructor(adapter: DataBindingRecyclerAdapter<T>) :
         ObservableList.OnListChangedCallback<ObservableList<T>>() {
-        internal val adapterRef: WeakReference<DatabindingRecyclerAdapter<T>> = WeakReference(adapter)
+        internal val adapterRef: WeakReference<DataBindingRecyclerAdapter<T>> = WeakReference(adapter)
 
         override fun onChanged(sender: ObservableList<T>?) {
             val adapter = adapterRef.get() ?: return

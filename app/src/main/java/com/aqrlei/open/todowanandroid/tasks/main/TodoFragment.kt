@@ -1,8 +1,10 @@
 package com.aqrlei.open.todowanandroid.tasks.main
 
 import androidx.lifecycle.ViewModelProviders
+import com.aqrlei.open.todowanandroid.BR
 import com.aqrlei.open.todowanandroid.R
 import com.aqrlei.open.todowanandroid.base.ViewModelFragment
+import com.aqrlei.open.todowanandroid.binding.ItemBinding
 import com.aqrlei.open.todowanandroid.databinding.FragTodoBinding
 
 /**
@@ -22,11 +24,13 @@ class TodoFragment : ViewModelFragment<TodoViewModel, FragTodoBinding>() {
     override fun initComponents(binding: FragTodoBinding) {
         viewModel.navigator = Navigator()
         binding.viewModel = viewModel
+        binding.itemBinding = ItemBinding.create<String>().set(BR.item,R.layout.list_item_todo)
         viewModel.initTab()
     }
 
     inner class Navigator : TodoViewModel.TodoNavigator {
         override fun addNew() {
+            viewModel.addContent()
             //TODO
         }
     }
