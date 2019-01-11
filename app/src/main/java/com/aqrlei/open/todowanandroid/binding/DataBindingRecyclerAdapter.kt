@@ -116,25 +116,22 @@ class DataBindingRecyclerAdapter<T> : RecyclerView.Adapter<RecyclerView.ViewHold
 
         override fun onChanged(sender: ObservableList<T>?) {
             val adapter = adapterRef.get() ?: return
-            //  Utils.ensureChangeOnMainThread()
             adapter.notifyDataSetChanged()
         }
 
         override fun onItemRangeChanged(sender: ObservableList<T>?, positionStart: Int, itemCount: Int) {
             val adapter = adapterRef.get() ?: return
-            //  Utils.ensureChangeOnMainThread()
+
             adapter.notifyItemRangeChanged(positionStart, itemCount)
         }
 
         override fun onItemRangeInserted(sender: ObservableList<T>?, positionStart: Int, itemCount: Int) {
             val adapter = adapterRef.get() ?: return
-            //   Utils.ensureChangeOnMainThread()
             adapter.notifyItemRangeInserted(positionStart, itemCount)
         }
 
         override fun onItemRangeMoved(sender: ObservableList<T>?, fromPosition: Int, toPosition: Int, itemCount: Int) {
             val adapter = adapterRef.get() ?: return
-            //  Utils.ensureChangeOnMainThread()
             for (i in 0 until itemCount) {
                 adapter.notifyItemMoved(fromPosition + i, toPosition + i)
             }
@@ -142,7 +139,6 @@ class DataBindingRecyclerAdapter<T> : RecyclerView.Adapter<RecyclerView.ViewHold
 
         override fun onItemRangeRemoved(sender: ObservableList<T>?, positionStart: Int, itemCount: Int) {
             val adapter = adapterRef.get() ?: return
-            //   Utils.ensureChangeOnMainThread()
             adapter.notifyItemRangeRemoved(positionStart, itemCount)
         }
     }

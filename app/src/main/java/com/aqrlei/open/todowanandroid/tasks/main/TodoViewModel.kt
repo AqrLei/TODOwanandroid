@@ -43,7 +43,8 @@ class TodoViewModel(application: Application) : BaseViewModel(application) {
     }
 
     fun addContent() {
-        contentList.add("test")
+        contentList.add(0,"test")
+       // contentList.add("test")
     }
 
 
