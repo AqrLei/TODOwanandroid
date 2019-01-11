@@ -59,14 +59,17 @@ class ItemBinding<T> private constructor() {
         return this
     }
 
-    fun bind(binding: ViewDataBinding?, item: T) {
-        binding?.run {
-            setVariable(variableId, item)
-            if (::extraBinding.isInitialized) {
-                for (i in 0 until extraBinding.size()) {
-                    setVariable(extraBinding.keyAt(i), extraBinding.valueAt(i))
+    fun bind(binding: ViewDataBinding?, item: T): Boolean {
+        return binding?.run {
+            val result = setVariable(variableId, item)
+            if (result) {
+                if (::extraBinding.isInitialized) {
+                    for (i in 0 until extraBinding.size()) {
+                        setVariable(extraBinding.keyAt(i), extraBinding.valueAt(i))
+                    }
                 }
             }
-        }
+            result
+        } ?: false
     }
 }
