@@ -1,6 +1,1 @@
 include ':app'
-setBinding(new Binding([gradle: this]))
-evaluate(new File(
-        settingsDir,
-        'hello_flutter/.android/include_flutter.groovy'
-))
