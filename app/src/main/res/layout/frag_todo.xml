@@ -78,6 +78,7 @@
                 <com.google.android.material.tabs.TabLayout
                         style="@style/TabLayoutStyle"
                         android:id="@+id/typeTab"
+                        android:selectionChanged="@{true}"
                         android:titles="@{viewModel.tabTitles}"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -90,6 +91,7 @@
 
             <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
                     android:id="@+id/contentSRL"
+                    android:refresh_in_progress="@{viewModel.refreshing}"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     app:layout_behavior="@string/appbar_scrolling_view_behavior">

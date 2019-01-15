@@ -2,6 +2,7 @@ package com.aqrlei.open.todowanandroid.tasks.main
 
 import android.app.Application
 import androidx.databinding.ObservableArrayList
+import androidx.lifecycle.MutableLiveData
 import com.aqrlei.open.todowanandroid.base.BaseViewModel
 import com.aqrlei.open.todowanandroid.net.repository.TodoRepository
 import com.aqrlei.open.todowanandroid.net.req.TodoReqBean
@@ -16,11 +17,17 @@ class TodoViewModel(application: Application) : BaseViewModel(application) {
     val tabTitles = ObservableArrayList<String>()
     val contentList = ObservableArrayList<String>()
 
+    val refreshing = MutableLiveData<Boolean>()
+
     private val todoNavigator: TodoNavigator?
         get() = navigator as? TodoNavigator
 
     private val todoRepo = TodoRepository()
 
+
+    val refresh = {
+
+    }
 
     fun addNew() {
         todoNavigator?.addNew()
@@ -30,9 +37,8 @@ class TodoViewModel(application: Application) : BaseViewModel(application) {
         tabTitles.clear()
         tabTitles.addAll(
             listOf(
-                "不限",
-                "已完成",
-                "未完成"))
+                "未完成",
+                "已完成"))
         contentList.clear()
         contentList.addAll(
             listOf(
