@@ -1,13 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
-        xmlns:binding="http://schemas.android.com/apk/res-auto">
+        >
 
     <data>
 
         <variable
                 name="itemBinding"
-                type="com.aqrlei.open.todowanandroid.binding.ItemBinding"/>
+                type="com.aqrlei.open.bindingadapter.bind.ItemBinding"/>
+
         <variable
                 name="viewModel"
                 type="com.aqrlei.open.todowanandroid.tasks.main.TodoViewModel"/>
@@ -17,10 +18,11 @@
     <LinearLayout
             android:layout_width="match_parent"
             android:orientation="horizontal"
+            android:background="@color/activity_background"
             android:layout_height="match_parent">
 
         <ScrollView
-                android:fillViewport="false"
+                android:fillViewport="true"
                 android:overScrollMode="never"
                 android:scrollbars="none"
                 android:background="@color/colorPrimary"
@@ -62,23 +64,24 @@
 
         <androidx.coordinatorlayout.widget.CoordinatorLayout
                 android:layout_width="0dp"
+                android:layout_marginTop="@dimen/view_vertical_margin"
                 android:layout_height="match_parent"
                 android:layout_weight="3"
-                android:background="@color/activity_background"
                 android:fitsSystemWindows="false">
 
             <com.google.android.material.appbar.AppBarLayout
                     android:layout_width="wrap_content"
-                    android:layout_marginTop="@dimen/view_vertical_margin"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_horizontal"
                     android:theme="@style/AppTheme.AppBarOverlay">
+
                 <com.google.android.material.tabs.TabLayout
                         style="@style/TabLayoutStyle"
                         android:id="@+id/typeTab"
                         android:titles="@{viewModel.tabTitles}"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        app:tabMode="scrollable"
                         android:background="@color/colorPrimary"
                         app:layout_scrollFlags="scroll|enterAlways"
                         app:popupTheme="@style/AppTheme.PopupOverlay"/>

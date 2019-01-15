@@ -2,10 +2,10 @@ package com.aqrlei.open.todowanandroid.tasks.main
 
 import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.aqrlei.open.bindingadapter.bind.ItemBinding
 import com.aqrlei.open.todowanandroid.BR
 import com.aqrlei.open.todowanandroid.R
 import com.aqrlei.open.todowanandroid.base.ViewModelFragment
-import com.aqrlei.open.todowanandroid.binding.ItemBinding
 import com.aqrlei.open.todowanandroid.databinding.FragTodoBinding
 
 /**

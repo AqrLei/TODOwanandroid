@@ -52,7 +52,8 @@ android {
 }
 
 dependencies {
-    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation fileTree(include: ['*.jar'], dir: 'libs')
+    implementation project(':bindingadapter')
     implementation deps.material
     implementation deps.kotlin.stdlib
     implementation deps.androidx.appcompat
@@ -61,17 +62,13 @@ dependencies {
     implementation deps.retrofit2.retrofit
     implementation deps.retrofit2.gsonConverter
     implementation deps.okhttp.logging
-
     implementation deps.glide.glide
     annotationProcessor deps.glide.compiler
-
     implementation deps.paging.runtime
     testImplementation deps.paging.common
-
     implementation deps.aqrlei.livedatacalladapter
     implementation deps.aqrlei.customviews
     implementation deps.aqrlei.utils
-
     testImplementation deps.test.junit
     androidTestImplementation deps.test.runner
     androidTestImplementation deps.test.espresso

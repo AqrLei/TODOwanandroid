@@ -1,10 +1,14 @@
-package com.aqrlei.open.todowanandroid.binding
+package com.aqrlei.open.bindingadapter.adapter
 
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.databinding.*
+import androidx.databinding.DataBindingUtil
+import androidx.databinding.ObservableList
+import androidx.databinding.OnRebindCallback
+import androidx.databinding.ViewDataBinding
 import androidx.recyclerview.widget.RecyclerView
+import com.aqrlei.open.bindingadapter.bind.ItemBinding
 import java.lang.ref.WeakReference
 
 /**
@@ -22,7 +26,6 @@ class DataBindingRecyclerAdapter<T> : RecyclerView.Adapter<RecyclerView.ViewHold
     private val callback = WeakReferenceOnListChangedCallback(this)
 
     private var containerView: RecyclerView? = null
-
 
     override fun onAttachedToRecyclerView(recyclerView: RecyclerView) {
         if (containerView == null) {
@@ -49,7 +52,7 @@ class DataBindingRecyclerAdapter<T> : RecyclerView.Adapter<RecyclerView.ViewHold
     override fun onCreateViewHolder(parent: ViewGroup, layoutId: Int): RecyclerView.ViewHolder {
         val binding =
             DataBindingUtil.inflate<ViewDataBinding>(LayoutInflater.from(parent.context), layoutId, parent, false)
-        val holder = CommonViewHolder(binding.root)
+        val holder = DataBindingViewHolder(binding.root)
         binding.addOnRebindCallback(object : OnRebindCallback<ViewDataBinding>() {
 
             override fun onPreBind(binding: ViewDataBinding): Boolean {
@@ -76,7 +79,6 @@ class DataBindingRecyclerAdapter<T> : RecyclerView.Adapter<RecyclerView.ViewHold
                 binding?.executePendingBindings()
             }
         }
-
     }
 
     fun setItems(items: List<T>) {
@@ -90,7 +92,6 @@ class DataBindingRecyclerAdapter<T> : RecyclerView.Adapter<RecyclerView.ViewHold
         this.items = items
         notifyDataSetChanged()
     }
-
 
     fun getItem(position: Int): T? {
         return items?.get(position)
@@ -108,7 +109,7 @@ class DataBindingRecyclerAdapter<T> : RecyclerView.Adapter<RecyclerView.ViewHold
         return position.toLong()
     }
 
-    class CommonViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView)
+    class DataBindingViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView)
 
     private class WeakReferenceOnListChangedCallback<T> internal constructor(adapter: DataBindingRecyclerAdapter<T>) :
         ObservableList.OnListChangedCallback<ObservableList<T>>() {
@@ -121,7 +122,6 @@ class DataBindingRecyclerAdapter<T> : RecyclerView.Adapter<RecyclerView.ViewHold
 
         override fun onItemRangeChanged(sender: ObservableList<T>?, positionStart: Int, itemCount: Int) {
             val adapter = adapterRef.get() ?: return
-
             adapter.notifyItemRangeChanged(positionStart, itemCount)
         }
 

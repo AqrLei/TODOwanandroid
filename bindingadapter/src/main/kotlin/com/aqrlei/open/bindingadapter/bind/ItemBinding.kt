@@ -1,18 +1,11 @@
-package com.aqrlei.open.todowanandroid.binding
+package com.aqrlei.open.bindingadapter.bind
 
 import android.util.SparseArray
-import androidx.databinding.BindingAdapter
 import androidx.databinding.ViewDataBinding
-import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 
 /**
  * @author aqrlei on 2019/1/10
  */
-interface OnItemBind<T> {
-    fun onItemBind(itemBinding: ItemBinding<T>, position: Int, item: T)
-}
-
 class ItemBinding<T> private constructor() {
     companion object {
         fun <T> create(): ItemBinding<T> {
@@ -78,19 +71,3 @@ class ItemBinding<T> private constructor() {
     }
 }
 
-@BindingAdapter("android:itemBinding", "android:items", "android:layoutManager","android:itemAnimator", requireAll = false)
-fun <T> RecyclerView.setAdapter(
-    itemBinding: ItemBinding<T>,
-    items: List<T>,
-    layoutManager: RecyclerView.LayoutManager?,
-    itemAnimator: RecyclerView.ItemAnimator?) {
-    val oldAdapter = this.adapter as? DataBindingRecyclerAdapter<T>
-    val adapter = oldAdapter ?: DataBindingRecyclerAdapter()
-    adapter.setItemBind(itemBinding)
-    adapter.setItems(items)
-    this.itemAnimator = itemAnimator?:this.itemAnimator
-    this.layoutManager = layoutManager ?: LinearLayoutManager(this.context)
-    if (adapter != oldAdapter) {
-        this.adapter = adapter
-    }
-}
