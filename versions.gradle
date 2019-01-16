@@ -51,6 +51,7 @@ versions.glide = "4.8.0"
 versions.aqrlei_livedatacalladapter = "0.0.6"
 versions.aqrlei_customviews = "0.3.1"
 versions.aqrlei_utils = "0.3.1"
+versions.aqrlei_bindingadapter = "0.0.1"
 
 
 def deps = [:]
@@ -74,6 +75,7 @@ def aqrlei = [:]
 aqrlei.livedatacalladapter = "com.aqrlei.opensource:retrofitlivedatacalladapter:$versions.aqrlei_livedatacalladapter"
 aqrlei.customviews = "com.aqrlei.opensource:customviews:$versions.aqrlei_customviews"
 aqrlei.utils = "com.aqrlei.opensource:utils:$versions.aqrlei_utils"
+aqrlei.bindingadapter ="com.aqrlei.opensource:bindingadapter:$versions.aqrlei_bindingadapter"
 deps.aqrlei = aqrlei
 
 

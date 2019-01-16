@@ -53,7 +53,6 @@ android {
 
 dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
-    implementation project(':bindingadapter')
     implementation deps.material
     implementation deps.kotlin.stdlib
     implementation deps.androidx.appcompat
@@ -66,6 +65,7 @@ dependencies {
     annotationProcessor deps.glide.compiler
     implementation deps.paging.runtime
     testImplementation deps.paging.common
+    implementation deps.aqrlei.bindingadapter
     implementation deps.aqrlei.livedatacalladapter
     implementation deps.aqrlei.customviews
     implementation deps.aqrlei.utils
