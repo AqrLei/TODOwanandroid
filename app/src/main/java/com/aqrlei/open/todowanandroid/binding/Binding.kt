@@ -43,8 +43,11 @@ fun TabLayout.onSelectionChanged(boolean: Boolean) {
 }
 
 @BindingAdapter("android:refresh_in_progress")
-fun SwipeRefreshLayout.setRefresh(refresh: Boolean) {
-    this.isRefreshing = refresh
+fun SwipeRefreshLayout.setRefresh(refresh: Boolean?) {
+    refresh?.let {
+        this.isRefreshing = it
+    }
+
 }
 
 @BindingAdapter("android:refresh_action")
