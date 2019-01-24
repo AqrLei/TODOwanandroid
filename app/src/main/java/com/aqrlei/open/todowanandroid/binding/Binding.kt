@@ -1,6 +1,5 @@
 package com.aqrlei.open.todowanandroid.binding
 
-import android.util.Log
 import android.widget.RadioGroup
 import androidx.databinding.BindingAdapter
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
@@ -25,7 +24,7 @@ fun RadioGroup.onCheckedChanged(onCheckedAction: (Int) -> Unit) {
 }
 
 @BindingAdapter("android:selectionChanged")
-fun TabLayout.onSelectionChanged(onSelectionChangeAction:(Int)->Unit) {
+fun TabLayout.onSelectionChanged(onSelectionChangeAction: (Int) -> Unit) {
     this.addOnTabSelectedListener(object : TabLayout.OnTabSelectedListener {
         override fun onTabReselected(tab: TabLayout.Tab?) {
         }
@@ -49,9 +48,8 @@ fun SwipeRefreshLayout.setRefresh(refresh: Boolean?) {
     }
 
 }
-
-@BindingAdapter("android:refresh_action")
-fun SwipeRefreshLayout.onRefresh(refreshAction: () -> Unit) {
+@BindingAdapter("android:refreshAction")
+fun SwipeRefreshLayout.setRefreshAction(refreshAction: () -> Unit){
     this.setOnRefreshListener(refreshAction)
 }
 

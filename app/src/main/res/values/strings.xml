@@ -28,4 +28,6 @@
     <string name="TodoTypeTwo">Learn</string>
     <string name="TodoTypeThree">Life</string>
 
+    <string name="TodoItemPlanTime">PlanTime: </string>
+    <string name="TodoItemCompleteTime">CompleteTime: </string>
 </resources>

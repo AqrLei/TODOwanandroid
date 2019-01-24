@@ -93,6 +93,7 @@
             <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
                     android:id="@+id/contentSRL"
                     android:refresh_in_progress="@{viewModel.refreshing}"
+                    android:refreshAction="@{viewModel.refreshAction}"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     app:layout_behavior="@string/appbar_scrolling_view_behavior">

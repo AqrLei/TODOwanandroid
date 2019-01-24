@@ -27,4 +27,6 @@
     <string name="TodoTypeOne">工作</string>
     <string name="TodoTypeTwo">学习</string>
     <string name="TodoTypeThree">生活</string>
+    <string name="TodoItemPlanTime">计划时间: </string>
+    <string name="TodoItemCompleteTime">完成时间: </string>
 </resources>

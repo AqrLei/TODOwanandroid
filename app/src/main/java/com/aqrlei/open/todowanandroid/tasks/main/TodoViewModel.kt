@@ -2,10 +2,11 @@ package com.aqrlei.open.todowanandroid.tasks.main
 
 import android.app.Application
 import androidx.databinding.ObservableArrayList
-import androidx.lifecycle.MutableLiveData
+import androidx.databinding.ObservableBoolean
 import com.aqrlei.open.todowanandroid.base.BaseViewModel
 import com.aqrlei.open.todowanandroid.net.repository.TodoRepository
 import com.aqrlei.open.todowanandroid.net.req.TodoReqBean
+import com.aqrlei.open.todowanandroid.net.resp.todo.TodoRespBean
 import kotlin.properties.Delegates
 
 /**
@@ -16,36 +17,33 @@ class TodoViewModel(application: Application) : BaseViewModel(application) {
 
 
     val tabTitles = ObservableArrayList<String>()
-    val contentList = ObservableArrayList<String>()
-
-    val refreshing = MutableLiveData<Boolean>()
-
+    val contentList = ObservableArrayList<TodoRespBean>()
+    val refreshing = ObservableBoolean()
     private val todoNavigator: TodoNavigator?
         get() = navigator as? TodoNavigator
 
     private val todoRepo = TodoRepository()
 
-
     private var type: Int by Delegates.observable(0) { _, oldValue, newValue ->
         if (newValue != oldValue) {
-            fetchList()
+            refreshAction.invoke()
         }
     }
     private var state: Int by Delegates.observable(0) { _, oldValue, newValue ->
         if (newValue != oldValue) {
-            fetchList()
+            refreshAction.invoke()
         }
     }
 
     val typeChangeAction = { typePosition: Int ->
         type = typePosition
     }
+    val refreshAction = {
+        refreshing.set(true)
+        fetchList()
+    }
     val typeStateChangeAction = { statePosition: Int ->
         state = statePosition
-    }
-
-    val refresh = {
-
     }
 
     fun addNew() {
@@ -57,22 +55,15 @@ class TodoViewModel(application: Application) : BaseViewModel(application) {
         tabTitles.addAll(
             listOf(
                 "未完成",
-                "已完成"))
-        contentList.clear()
-        contentList.addAll(
-            listOf(
-                "不限",
-                "已完成",
-                "未完成")
+                "已完成"
+            )
         )
+
+        refreshing.set(true)
         fetchList()
     }
 
-    fun addContent(position: Int) {
-        contentList.add(0, "test")
-        // contentList.add("test")
-    }
-
+    fun addContent(position: Int) {}
 
     private fun fetchList() {
         if (state != 0) {
@@ -84,17 +75,26 @@ class TodoViewModel(application: Application) : BaseViewModel(application) {
 
 
     private fun fetchDoneList(type: String, pageNum: String = "0") {
-        observerRespData(todoRepo.fetchDoneList(type, pageNum), true, {
-            val temp = it
+        observerRespData(todoRepo.fetchDoneList(type, pageNum), false, {
+            it.datas?.run {
+                refreshingFinish(this)
+            }
         })
     }
 
     private fun fetchNotDoList(type: String, pageNum: String = "0") {
-        observerRespData(todoRepo.fetchNotDoList(type, pageNum), true, {
-            val temp = it
+        observerRespData(todoRepo.fetchNotDoList(type, pageNum), false, {
+            it.datas?.run {
+                refreshingFinish(this)
+            }
         })
     }
 
+    private fun refreshingFinish(data: List<TodoRespBean>) {
+        contentList.clear()
+        contentList.addAll(data)
+        refreshing.set(false)
+    }
 
     fun fetchTypeList(type: String) {
         observerRespData(todoRepo.fetchTypeList(type), true, {

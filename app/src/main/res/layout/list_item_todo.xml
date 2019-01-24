@@ -6,7 +6,7 @@
 
         <variable
                 name="item"
-                type="String"/>
+                type="com.aqrlei.open.todowanandroid.net.resp.todo.TodoRespBean"/>
 
     </data>
 
@@ -24,12 +24,35 @@
 
             <TextView
                     android:layout_width="match_parent"
-                    android:text="@{item}"
+                    android:text="@{item.title}"
                     android:paddingTop="10dp"
-                    android:gravity="center"
-                    android:paddingBottom="10dp"
+                    android:paddingLeft="@dimen/view_horizontal_margin_very_small"
+                    android:paddingBottom="@dimen/view_horizontal_margin_small"
                     android:layout_height="wrap_content"/>
 
+            <View style="@style/HorizontalDividerStyle"/>
+
+            <TextView
+                    android:layout_width="match_parent"
+                    android:padding="@dimen/view_horizontal_margin_very_small"
+                    android:text="@{item.content}"
+                    android:layout_height="wrap_content"/>
+
+            <View style="@style/HorizontalDividerStyle"/>
+
+            <TextView
+                    android:layout_width="match_parent"
+                    android:paddingLeft="@dimen/view_horizontal_margin_very_small"
+                    android:text="@{@string/TodoItemPlanTime + item.dateStr}"
+                    android:layout_height="wrap_content"/>
+
+            <View style="@style/HorizontalDividerStyle"/>
+
+            <TextView
+                    android:layout_width="match_parent"
+                    android:paddingLeft="@dimen/view_horizontal_margin_very_small"
+                    android:text="@{@string/TodoItemCompleteTime + item.completeDateStr}"
+                    android:layout_height="wrap_content"/>
         </LinearLayout>
     </androidx.cardview.widget.CardView>
 </layout>

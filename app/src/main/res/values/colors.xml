@@ -22,4 +22,5 @@
     <color name="refresh_blue">#4285F4</color>
     <color name="refresh_green">#34A853</color>
     <color name="refresh_yellow">#FBBC05</color>
+    <color name="refresh_red">#EA4335</color>
 </resources>

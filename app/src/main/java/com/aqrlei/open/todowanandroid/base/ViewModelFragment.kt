@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.Observer
 
 /**
  * @author aqrlei on 2018/12/24
@@ -28,10 +29,23 @@ abstract class ViewModelFragment<VM : BaseViewModel, VB : ViewDataBinding> : Fra
     abstract fun bindLayout(): Int
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        observerData()
         initComponents(binding)
     }
 
+    private fun observerData() {
+        viewModel.run {
+            toast.observe(this@ViewModelFragment, Observer(::showToast))
+            isLoading.observe(this@ViewModelFragment, Observer(::changeLoadingState))
+        }
+    }
+
     abstract fun initComponents(binding: VB)
+
+    private fun changeLoadingState(isNeedLoadingShow: Boolean) {
+        if (isNeedLoadingShow) showLoading()
+        else dismissLoading()
+    }
 
     override fun showToast(msg: String) {
         baseView?.showToast(msg)
@@ -44,6 +58,4 @@ abstract class ViewModelFragment<VM : BaseViewModel, VB : ViewDataBinding> : Fra
     override fun showLoading() {
         baseView?.showLoading()
     }
-
-
 }
