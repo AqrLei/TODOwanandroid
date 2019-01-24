@@ -26,14 +26,22 @@ class TodoViewModel(application: Application) : BaseViewModel(application) {
     private val todoRepo = TodoRepository()
 
 
-    private var type: String by Delegates.observable("0") { _, oldValue, newValue ->
-        if (newValue != oldValue){
-
+    private var type: Int by Delegates.observable(0) { _, oldValue, newValue ->
+        if (newValue != oldValue) {
+            fetchList()
+        }
+    }
+    private var state: Int by Delegates.observable(0) { _, oldValue, newValue ->
+        if (newValue != oldValue) {
+            fetchList()
         }
     }
 
-    val typeChangeAction = { position: Int ->
-        type = position.toString()
+    val typeChangeAction = { typePosition: Int ->
+        type = typePosition
+    }
+    val typeStateChangeAction = { statePosition: Int ->
+        state = statePosition
     }
 
     val refresh = {
@@ -44,7 +52,7 @@ class TodoViewModel(application: Application) : BaseViewModel(application) {
         todoNavigator?.addNew()
     }
 
-    fun initTab() {
+    fun init() {
         tabTitles.clear()
         tabTitles.addAll(
             listOf(
@@ -57,6 +65,7 @@ class TodoViewModel(application: Application) : BaseViewModel(application) {
                 "已完成",
                 "未完成")
         )
+        fetchList()
     }
 
     fun addContent(position: Int) {
@@ -65,20 +74,32 @@ class TodoViewModel(application: Application) : BaseViewModel(application) {
     }
 
 
+    private fun fetchList() {
+        if (state != 0) {
+            fetchDoneList(type.toString())
+        } else {
+            fetchNotDoList(type.toString())
+        }
+    }
+
+
+    private fun fetchDoneList(type: String, pageNum: String = "0") {
+        observerRespData(todoRepo.fetchDoneList(type, pageNum), true, {
+            val temp = it
+        })
+    }
+
+    private fun fetchNotDoList(type: String, pageNum: String = "0") {
+        observerRespData(todoRepo.fetchNotDoList(type, pageNum), true, {
+            val temp = it
+        })
+    }
+
+
     fun fetchTypeList(type: String) {
         observerRespData(todoRepo.fetchTypeList(type), true, {
 
         })
-    }
-
-    fun fetchDoneList(type: String, pageNum: String) {
-        observerRespData(todoRepo.fetchDoneList(type, pageNum), true, {
-
-        })
-    }
-
-    fun fetchNotDoList(type: String, pageNum: String) {
-        observerRespData(todoRepo.fetchNotDoList(type, pageNum), true, {})
     }
 
     fun updateStatus(id: String, status: String) {

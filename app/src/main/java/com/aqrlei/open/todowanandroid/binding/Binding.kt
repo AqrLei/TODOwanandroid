@@ -25,13 +25,13 @@ fun RadioGroup.onCheckedChanged(onCheckedAction: (Int) -> Unit) {
 }
 
 @BindingAdapter("android:selectionChanged")
-fun TabLayout.onSelectionChanged(boolean: Boolean) {
+fun TabLayout.onSelectionChanged(onSelectionChangeAction:(Int)->Unit) {
     this.addOnTabSelectedListener(object : TabLayout.OnTabSelectedListener {
         override fun onTabReselected(tab: TabLayout.Tab?) {
         }
 
         override fun onTabSelected(tab: TabLayout.Tab?) {
-            Log.d("Test", "${tab?.position ?: 0}")
+            onSelectionChangeAction(tab?.position ?: 0)
         }
 
         override fun onTabUnselected(tab: TabLayout.Tab?) {
