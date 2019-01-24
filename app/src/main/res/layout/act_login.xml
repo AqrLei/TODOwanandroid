@@ -41,7 +41,7 @@
                         android:errorMsg="@{viewModel.userNameErrorLiveData}"
                         android:layout_height="wrap_content">
 
-                    <com.google.android.material.textfield.TextInputEditText
+                    <androidx.appcompat.widget.AppCompatEditText
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:hint="@string/login_user_name_hint"
@@ -58,7 +58,7 @@
                         android:layout_height="wrap_content"
                         app:passwordToggleEnabled="true">
 
-                    <com.google.android.material.textfield.TextInputEditText
+                    <androidx.appcompat.widget.AppCompatEditText
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:hint="@string/login_password_hint"

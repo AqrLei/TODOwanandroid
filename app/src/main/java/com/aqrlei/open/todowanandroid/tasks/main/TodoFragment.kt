@@ -31,6 +31,9 @@ class TodoFragment : ViewModelFragment<TodoViewModel, FragTodoBinding>() {
         binding.viewModel = viewModel
         binding.itemBinding = ItemBinding.create<String>().set(BR.item, R.layout.list_item_todo)
         viewModel.initTab()
+        binding.contentSRL.setOnRefreshListener {
+
+        }
     }
 
     inner class Navigator : TodoViewModel.TodoNavigator {

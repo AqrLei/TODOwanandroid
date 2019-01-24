@@ -6,6 +6,7 @@ import androidx.lifecycle.MutableLiveData
 import com.aqrlei.open.todowanandroid.base.BaseViewModel
 import com.aqrlei.open.todowanandroid.net.repository.TodoRepository
 import com.aqrlei.open.todowanandroid.net.req.TodoReqBean
+import kotlin.properties.Delegates
 
 /**
  * @author aqrlei on 2018/12/28
@@ -24,6 +25,16 @@ class TodoViewModel(application: Application) : BaseViewModel(application) {
 
     private val todoRepo = TodoRepository()
 
+
+    private var type: String by Delegates.observable("0") { _, oldValue, newValue ->
+        if (newValue != oldValue){
+
+        }
+    }
+
+    val typeChangeAction = { position: Int ->
+        type = position.toString()
+    }
 
     val refresh = {
 
