@@ -32,6 +32,7 @@ class TodoFragment : ViewModelFragment<TodoViewModel, FragTodoBinding>() {
         viewModel.navigator = Navigator()
         binding.viewModel = viewModel
         binding.itemBinding = ItemBinding.create<TodoRespBean>().set(BR.item, R.layout.list_item_todo)
+            .bindExtra(BR.backgroundLevel,viewModel.itemLevel)
         viewModel.init()
         binding.contentSRL.setColorSchemeResources(
             R.color.refresh_blue,

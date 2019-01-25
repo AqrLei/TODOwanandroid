@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android"
+            android:paddingLeft="@dimen/view_horizontal_margin_very_small"
+            android:paddingTop="@dimen/view_horizontal_margin_very_small"
+            android:paddingRight="@dimen/view_horizontal_margin_very_small"
+            android:paddingBottom="@dimen/view_horizontal_margin_very_small">
+
+    <item>
+
+        <level-list>
+            <item
+                    android:maxLevel="0"
+                    android:minLevel="0">
+
+                <shape android:shape="rectangle">
+                    <corners
+                            android:radius="@dimen/view_horizontal_margin_very_small"
+                    />
+                    <solid android:color="@color/todo_undone"/>
+                </shape>
+            </item>
+            <item
+                    android:maxLevel="1"
+                    android:minLevel="1">
+                <shape android:shape="rectangle">
+                    <corners
+                            android:radius="@dimen/view_horizontal_margin_very_small"
+                    />
+                    <solid android:color="@color/todo_done"/>
+                </shape>
+
+            </item>
+        </level-list>
+
+    </item>
+    <item
+            android:left="@dimen/view_horizontal_margin_very_small"
+            android:top="@dimen/view_horizontal_margin_very_small"
+            android:bottom="@dimen/view_horizontal_margin_very_small"
+            android:right="@dimen/view_horizontal_margin_very_small">
+        <shape android:shape="rectangle">
+            <corners
+                    android:radius="@dimen/view_horizontal_margin_very_small"
+            />
+            <solid android:color="@color/white"/>
+        </shape>
+    </item>
+
+
+</layer-list>

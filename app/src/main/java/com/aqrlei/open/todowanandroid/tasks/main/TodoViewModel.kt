@@ -3,6 +3,7 @@ package com.aqrlei.open.todowanandroid.tasks.main
 import android.app.Application
 import androidx.databinding.ObservableArrayList
 import androidx.databinding.ObservableBoolean
+import androidx.databinding.ObservableInt
 import com.aqrlei.open.todowanandroid.base.BaseViewModel
 import com.aqrlei.open.todowanandroid.net.repository.TodoRepository
 import com.aqrlei.open.todowanandroid.net.req.TodoReqBean
@@ -19,6 +20,7 @@ class TodoViewModel(application: Application) : BaseViewModel(application) {
     val tabTitles = ObservableArrayList<String>()
     val contentList = ObservableArrayList<TodoRespBean>()
     val refreshing = ObservableBoolean()
+    val itemLevel = ObservableInt()
     private val todoNavigator: TodoNavigator?
         get() = navigator as? TodoNavigator
 
@@ -58,7 +60,7 @@ class TodoViewModel(application: Application) : BaseViewModel(application) {
                 "已完成"
             )
         )
-
+        itemLevel.set(0)
         refreshing.set(true)
         fetchList()
     }
@@ -78,6 +80,7 @@ class TodoViewModel(application: Application) : BaseViewModel(application) {
         observerRespData(todoRepo.fetchDoneList(type, pageNum), false, {
             it.datas?.run {
                 refreshingFinish(this)
+                itemLevel.set(1)
             }
         })
     }
@@ -85,6 +88,7 @@ class TodoViewModel(application: Application) : BaseViewModel(application) {
     private fun fetchNotDoList(type: String, pageNum: String = "0") {
         observerRespData(todoRepo.fetchNotDoList(type, pageNum), false, {
             it.datas?.run {
+                itemLevel.set(0)
                 refreshingFinish(this)
             }
         })

@@ -7,6 +7,7 @@
         <variable
                 name="item"
                 type="com.aqrlei.open.todowanandroid.net.resp.todo.TodoRespBean"/>
+        <variable name="backgroundLevel" type="androidx.databinding.ObservableInt"/>
 
     </data>
 
@@ -18,16 +19,20 @@
             android:layout_height="wrap_content">
 
         <LinearLayout
+                android:background="@drawable/layer_todo_content_background"
                 android:orientation="vertical"
+                android:backgroundLevel="@{backgroundLevel}"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
 
             <TextView
                     android:layout_width="match_parent"
                     android:text="@{item.title}"
+                    android:textSize="@dimen/text_size_very_large"
                     android:paddingTop="10dp"
                     android:paddingLeft="@dimen/view_horizontal_margin_very_small"
                     android:paddingBottom="@dimen/view_horizontal_margin_small"
+                    android:textColor="@color/text_title"
                     android:layout_height="wrap_content"/>
 
             <View style="@style/HorizontalDividerStyle"/>
@@ -36,20 +41,25 @@
                     android:layout_width="match_parent"
                     android:padding="@dimen/view_horizontal_margin_very_small"
                     android:text="@{item.content}"
+                    android:gravity="center"
+                    android:textColor="@color/text_content"
+                    android:textSize="@dimen/text_size_large"
                     android:layout_height="wrap_content"/>
 
             <View style="@style/HorizontalDividerStyle"/>
 
             <TextView
                     android:layout_width="match_parent"
+                    android:textColor="@color/text_label"
                     android:paddingLeft="@dimen/view_horizontal_margin_very_small"
+                    android:textSize="@dimen/text_size_small"
                     android:text="@{@string/TodoItemPlanTime + item.dateStr}"
                     android:layout_height="wrap_content"/>
 
-            <View style="@style/HorizontalDividerStyle"/>
-
             <TextView
                     android:layout_width="match_parent"
+                    android:textColor="@color/text_label"
+                    android:textSize="@dimen/text_size_small"
                     android:paddingLeft="@dimen/view_horizontal_margin_very_small"
                     android:text="@{@string/TodoItemCompleteTime + item.completeDateStr}"
                     android:layout_height="wrap_content"/>

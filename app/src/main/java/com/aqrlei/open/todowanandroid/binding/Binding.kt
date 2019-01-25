@@ -1,5 +1,6 @@
 package com.aqrlei.open.todowanandroid.binding
 
+import android.view.ViewGroup
 import android.widget.RadioGroup
 import androidx.databinding.BindingAdapter
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
@@ -11,6 +12,11 @@ import com.google.android.material.textfield.TextInputLayout
  * @author aqrlei on 2018/12/28
  */
 
+
+@BindingAdapter("android:backgroundLevel")
+fun ViewGroup.setBackgroundLevel(level: Int) {
+    this.background.level = level
+}
 
 @BindingAdapter("android:onCheckedChanged")
 fun RadioGroup.onCheckedChanged(onCheckedAction: (Int) -> Unit) {
@@ -48,8 +54,9 @@ fun SwipeRefreshLayout.setRefresh(refresh: Boolean?) {
     }
 
 }
+
 @BindingAdapter("android:refreshAction")
-fun SwipeRefreshLayout.setRefreshAction(refreshAction: () -> Unit){
+fun SwipeRefreshLayout.setRefreshAction(refreshAction: () -> Unit) {
     this.setOnRefreshListener(refreshAction)
 }
 
