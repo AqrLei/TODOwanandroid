@@ -51,7 +51,7 @@ versions.glide = "4.8.0"
 versions.aqrlei_livedatacalladapter = "0.0.6"
 versions.aqrlei_customviews = "0.3.1"
 versions.aqrlei_utils = "0.3.1"
-versions.aqrlei_bindingadapter = "0.0.1"
+versions.aqrlei_bindingadapter = "0.0.2"
 
 
 def deps = [:]
