@@ -1,5 +1,4 @@
 plugins {
-
     id 'com.android.application'
 
     id 'kotlin-android'
@@ -9,14 +8,12 @@ plugins {
     id 'kotlin-kapt'
 }
 
-
-
 android {
-    compileSdkVersion 28
+    compileSdkVersion buildVersion.compile
     defaultConfig {
         applicationId "com.aqrlei.open.todowanandroid"
-        minSdkVersion 16
-        targetSdkVersion 28
+        minSdkVersion buildVersion.min
+        targetSdkVersion buildVersion.target
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
@@ -54,22 +51,23 @@ android {
 dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
     implementation deps.material
+    testImplementation deps.junit
+
     implementation deps.kotlin.stdlib
+
     implementation deps.androidx.appcompat
     implementation deps.androidx.constraint
-    implementation deps.lifecycle.extensions
-    implementation deps.retrofit2.retrofit
-    implementation deps.retrofit2.gsonConverter
+    implementation deps.androidx.lifecycle
+    androidTestImplementation deps.androidx.runner
+    androidTestImplementation deps.androidx.espresso
+
+    implementation deps.retrofit.retrofit
+    implementation deps.retrofit.gsonConverter
+
     implementation deps.okhttp.logging
-    implementation deps.glide.glide
-    annotationProcessor deps.glide.compiler
-    implementation deps.paging.runtime
-    testImplementation deps.paging.common
+
     implementation deps.aqrlei.bindingadapter
     implementation deps.aqrlei.livedatacalladapter
     implementation deps.aqrlei.customviews
     implementation deps.aqrlei.utils
-    testImplementation deps.test.junit
-    androidTestImplementation deps.test.runner
-    androidTestImplementation deps.test.espresso
 }
