@@ -53,10 +53,10 @@ versions.okhttp = "3.12.1"
 
 versions.glide = "4.8.0"
 
-versions.aqrlei_livedatacalladapter = "0.0.6"
-versions.aqrlei_customviews = "0.3.1"
-versions.aqrlei_utils = "0.3.1"
-versions.aqrlei_bindingadapter = "0.0.2"
+versions.aqrlei_livedatacalladapter = "0.0.7"
+versions.aqrlei_customviews = "0.3.2"
+versions.aqrlei_utils = "0.3.2"
+versions.aqrlei_bindingadapter = "0.0.3"
 
 
 def deps = [:]
