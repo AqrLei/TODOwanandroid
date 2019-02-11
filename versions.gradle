@@ -38,7 +38,7 @@ versions.paging = "2.0.0"
 
 
 versions.material = "1.0.0"
-versions.gradle_plugin = '3.3.0'
+versions.gradle_plugin = '3.3.1'
 versions.junit = "4.12"
 versions.zxing_core = "3.3.0"
 

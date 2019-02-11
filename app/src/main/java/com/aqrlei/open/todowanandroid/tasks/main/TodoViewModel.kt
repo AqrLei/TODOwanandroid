@@ -17,6 +17,8 @@ import kotlin.properties.Delegates
 class TodoViewModel(application: Application) : BaseViewModel(application) {
 
 
+    var itemChoicePos: Int = 0
+
     val tabTitles = ObservableArrayList<String>()
     val contentList = ObservableArrayList<TodoRespBean>()
     val refreshing = ObservableBoolean()
@@ -65,16 +67,23 @@ class TodoViewModel(application: Application) : BaseViewModel(application) {
         fetchList()
     }
 
-    fun addContent(position: Int) {}
+    fun itemClick(id: String?) {
+        todoNavigator?.modifyItem(id.orEmpty())
+    }
+
+    fun itemLongClick(id: String?): Boolean {
+        return todoNavigator?.manageItem(id.orEmpty()) ?: false
+    }
 
     private fun fetchList() {
         if (state != 0) {
+            itemChoicePos = 1
             fetchDoneList(type.toString())
         } else {
+            itemChoicePos = 0
             fetchNotDoList(type.toString())
         }
     }
-
 
     private fun fetchDoneList(type: String, pageNum: String = "0") {
         observerRespData(todoRepo.fetchDoneList(type, pageNum), false, {
@@ -100,14 +109,10 @@ class TodoViewModel(application: Application) : BaseViewModel(application) {
         refreshing.set(false)
     }
 
-    fun fetchTypeList(type: String) {
-        observerRespData(todoRepo.fetchTypeList(type), true, {
-
-        })
-    }
-
     fun updateStatus(id: String, status: String) {
-        observerRespData(todoRepo.updateStatus(id, status), true, {})
+        observerRespData(todoRepo.updateStatus(id, status), true, {
+            refreshAction.invoke()
+        })
     }
 
     fun updateContent(id: String, data: TodoReqBean) {
@@ -122,8 +127,17 @@ class TodoViewModel(application: Application) : BaseViewModel(application) {
         observerRespData(todoRepo.addNew(data), true, {})
     }
 
+    @Deprecated("")
+    fun fetchTypeList(type: String) {
+        observerRespData(todoRepo.fetchTypeList(type), true, {
+
+        })
+    }
+
     interface TodoNavigator : CommonNavigator {
         fun addNew()
+        fun modifyItem(id: String)
+        fun manageItem(id: String): Boolean
         override fun back() {
 
         }

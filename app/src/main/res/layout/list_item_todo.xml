@@ -8,6 +8,7 @@
                 name="item"
                 type="com.aqrlei.open.todowanandroid.net.resp.todo.TodoRespBean"/>
         <variable name="backgroundLevel" type="androidx.databinding.ObservableInt"/>
+        <variable name="viewModel" type="com.aqrlei.open.todowanandroid.tasks.main.TodoViewModel"/>
 
     </data>
 
@@ -16,6 +17,8 @@
             android:layout_margin="@dimen/view_horizontal_margin_very_small"
             app:cardCornerRadius="@dimen/card_corner_radius"
             app:cardElevation="@dimen/card_elevation"
+            android:onClick="@{() -> viewModel.itemClick(item.id)}"
+            android:onLongClick="@{() -> viewModel.itemLongClick(item.id)}"
             android:layout_height="wrap_content">
 
         <LinearLayout

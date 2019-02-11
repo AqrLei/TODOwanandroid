@@ -29,4 +29,8 @@
     <string name="TodoTypeThree">生活</string>
     <string name="TodoItemPlanTime">计划时间: </string>
     <string name="TodoItemCompleteTime">完成时间: </string>
+
+    <string name="TodoItemIncomplete">未完成</string>
+    <string name="TodoItemCompleted">已完成</string>
+    <string name="TodoItemDelete">删除</string>
 </resources>

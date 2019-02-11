@@ -28,6 +28,15 @@
     <string name="TodoTypeTwo">Learn</string>
     <string name="TodoTypeThree">Life</string>
 
-    <string name="TodoItemPlanTime">PlanTime: </string>
-    <string name="TodoItemCompleteTime">CompleteTime: </string>
+    <string name="TodoItemPlanTime">PlanTime:</string>
+    <string name="TodoItemCompleteTime">CompleteTime:</string>
+
+    <string name="TodoItemIncomplete">Incomplete</string>
+    <string name="TodoItemCompleted">Completed</string>
+    <string name="TodoItemDelete">Delete</string>
+    <string-array name="TodoItemManage">
+        <item>@string/TodoItemIncomplete</item>
+        <item>@string/TodoItemCompleted</item>
+        <item>@string/TodoItemDelete</item>
+    </string-array>
 </resources>
