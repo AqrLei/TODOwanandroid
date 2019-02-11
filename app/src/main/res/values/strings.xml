@@ -39,4 +39,11 @@
         <item>@string/TodoItemCompleted</item>
         <item>@string/TodoItemDelete</item>
     </string-array>
+
+
+
+    <string name="dialogTitle">Note</string>
+    <string name="dialogMessage">Confirm to delete?</string>
+    <string name="dialogOk">Confirm</string>
+    <string name="dialogCancel">Cancel</string>
 </resources>

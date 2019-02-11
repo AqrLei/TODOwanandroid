@@ -33,4 +33,9 @@
     <string name="TodoItemIncomplete">未完成</string>
     <string name="TodoItemCompleted">已完成</string>
     <string name="TodoItemDelete">删除</string>
+
+    <string name="dialogTitle">提示</string>
+    <string name="dialogMessage">确定删除？</string>
+    <string name="dialogOk">确定</string>
+    <string name="dialogCancel">取消</string>
 </resources>

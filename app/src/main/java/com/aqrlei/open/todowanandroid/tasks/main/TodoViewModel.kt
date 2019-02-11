@@ -51,7 +51,7 @@ class TodoViewModel(application: Application) : BaseViewModel(application) {
     }
 
     fun addNew() {
-        todoNavigator?.addNew()
+        todoNavigator?.addNew(type.toString())
     }
 
     fun init() {
@@ -67,8 +67,8 @@ class TodoViewModel(application: Application) : BaseViewModel(application) {
         fetchList()
     }
 
-    fun itemClick(id: String?) {
-        todoNavigator?.modifyItem(id.orEmpty())
+    fun itemClick(item: TodoRespBean?) {
+        todoNavigator?.modifyItem(item)
     }
 
     fun itemLongClick(id: String?): Boolean {
@@ -120,7 +120,9 @@ class TodoViewModel(application: Application) : BaseViewModel(application) {
     }
 
     fun delete(id: String) {
-        observerRespData(todoRepo.delete(id), true, {})
+        observerRespData(todoRepo.delete(id), true, {}, finishAction = {
+            fetchList()
+        })
     }
 
     fun addNew(data: TodoReqBean) {
@@ -135,8 +137,8 @@ class TodoViewModel(application: Application) : BaseViewModel(application) {
     }
 
     interface TodoNavigator : CommonNavigator {
-        fun addNew()
-        fun modifyItem(id: String)
+        fun addNew(type:String)
+        fun modifyItem(item:TodoRespBean?)
         fun manageItem(id: String): Boolean
         override fun back() {
 

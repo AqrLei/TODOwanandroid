@@ -1,6 +1,6 @@
 package com.aqrlei.open.todowanandroid.tasks.main
 
-import android.util.Log
+import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProviders
 import com.aqrlei.open.bindingadapter.bind.ItemBinding
 import com.aqrlei.open.todowanandroid.BR
@@ -42,28 +42,35 @@ class TodoFragment : ViewModelFragment<TodoViewModel, FragTodoBinding>() {
     }
 
     inner class Navigator : TodoViewModel.TodoNavigator {
-        override fun modifyItem(id: String) {
-            Log.d("TD", "MODIFY - $id")
+        override fun modifyItem(item: TodoRespBean?) {
+            (this@TodoFragment.context as? AppCompatActivity)?.run {
+                ModifyTodoItemActivity.startForModify(this, item)
+            }
         }
 
         override fun manageItem(id: String): Boolean {
             this@TodoFragment.context?.run {
                 val strArray = this.resources.getStringArray(R.array.TodoItemManage)
                 DialogUtil.singleChoiceDialogBuilder(this, strArray, viewModel.itemChoicePos) {
-                    Log.d("TD", strArray[it])
                     if (it != 2 && it != viewModel.itemChoicePos) {
-                        viewModel.updateStatus(id,it.toString())
-                    } else {
-
-                    }
+                        viewModel.updateStatus(id, it.toString())
+                    } else DialogUtil.simpleDialogBuilder(this)
+                        .setTitle(this.resources.getString(R.string.dialogTitle))
+                        .setMessage(this.resources.getString(R.string.dialogMessage))
+                        .setPositiveButton(this.resources.getString(R.string.dialogOk)) { _, _ ->
+                            viewModel.delete(id)
+                        }
+                        .setNegativeButton(this.resources.getString(R.string.dialogCancel), null)
+                        .show()
                 }.show()
             }
-            Log.d("TD", "MANAGE - $id")
             return true
         }
 
-        override fun addNew() {
-            Log.d("TD", "ADDNEW")
+        override fun addNew(type: String) {
+            (this@TodoFragment.context as? AppCompatActivity)?.run {
+                ModifyTodoItemActivity.startForCreate(this)
+            }
         }
     }
 }

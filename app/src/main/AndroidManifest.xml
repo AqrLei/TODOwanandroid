@@ -24,6 +24,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".tasks.account.LoginActivity"/>
+        <activity android:name=".tasks.main.ModifyTodoItemActivity"/>
         <activity
                 android:name=".tasks.account.RegisterActivity"
                 android:label="@string/register"/>
