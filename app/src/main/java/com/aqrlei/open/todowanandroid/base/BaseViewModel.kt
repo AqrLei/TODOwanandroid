@@ -21,6 +21,7 @@ abstract class BaseViewModel(application: Application) : AndroidViewModel(applic
         isShowLoading: Boolean,
         processDataAction: (T) -> Unit,
         finishAction: (() -> Unit)? = null,
+        successWithoutErrorAction: (() -> Unit)? = null,
         processErrorAction: ((String, String) -> Boolean)? = null,
         processFailureAction: ((Throwable?) -> Boolean)? = null) {
         if (isShowLoading) {
@@ -29,6 +30,7 @@ abstract class BaseViewModel(application: Application) : AndroidViewModel(applic
         liveObservable.observe { data ->
             if (data?.isSuccess == true) {
                 if (data.response?.errorCode == "0") {
+                    successWithoutErrorAction?.invoke()
                     data.response?.data?.run(processDataAction)
                 } else {
                     if (processErrorAction?.invoke(

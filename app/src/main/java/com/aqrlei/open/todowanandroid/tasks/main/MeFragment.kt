@@ -95,13 +95,17 @@ class MeFragment : ViewModelFragment<MeViewModel, FragMeBinding>() {
             }
         }
 
+        override fun logoutToLogin() {
+            this@MeFragment.context?.run { LoginActivity.start(this) }
+            (this@MeFragment.context as? Activity)?.finish()
+        }
+
         override fun onClick(v: View?) {
             bottomDialog?.dismiss()
             when (v?.id) {
                 R.id.signOutTv -> {
                     CookieStore.clearCookie()
-                    this@MeFragment.context?.run { LoginActivity.start(this) }
-                    (this@MeFragment.context as? Activity)?.finish()
+                    viewModel.logoutToLogin()
                 }
                 R.id.killAppTv -> {
                     ActivityCollector.killApp()

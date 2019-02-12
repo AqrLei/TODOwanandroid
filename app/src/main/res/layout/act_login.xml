@@ -95,7 +95,9 @@
                             app:layout_constraintRight_toRightOf="parent"
                             android:textAllCaps="false"
                             android:layout_height="wrap_content"
+                            android:visibility="gone"
                             android:text="@string/forgot_password"
+                            app:layout_constraintTop_toTopOf="parent"
                             android:textColor="@color/colorAccent"/>
 
                     <Button
@@ -106,6 +108,7 @@
                             android:layout_height="wrap_content"
                             app:layout_constraintLeft_toLeftOf="parent"
                             android:text="@string/register"
+                            app:layout_constraintTop_toTopOf="parent"
                             android:textColor="@color/colorAccent"/>
                 </androidx.constraintlayout.widget.ConstraintLayout>
 

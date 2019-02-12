@@ -3,6 +3,7 @@ package com.aqrlei.open.todowanandroid.tasks.main
 import android.app.Application
 import androidx.lifecycle.MutableLiveData
 import com.aqrlei.open.todowanandroid.base.BaseViewModel
+import com.aqrlei.open.todowanandroid.net.repository.AccountRepository
 
 /**
  * @author aqrlei on 2019/1/7
@@ -29,10 +30,15 @@ class MeViewModel(application: Application) : BaseViewModel(application) {
         meNavigator?.gotoAbout()
     }
 
+    fun logoutToLogin() {
+        observerRespData(AccountRepository().logout(), false, {}, successWithoutErrorAction = {
+            meNavigator?.logoutToLogin()
+        })
+    }
+
     fun logout() {
         meNavigator?.logout()
     }
-
 
     interface MeNavigator : CommonNavigator {
         fun gotoAppMarket()
@@ -40,8 +46,7 @@ class MeViewModel(application: Application) : BaseViewModel(application) {
         fun gotoGitHub()
         fun gotoAbout()
         fun logout()
-        override fun back() {
-
-        }
+        fun logoutToLogin()
+        override fun back() {}
     }
 }

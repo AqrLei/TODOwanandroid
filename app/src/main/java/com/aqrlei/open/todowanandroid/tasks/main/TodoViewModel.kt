@@ -6,7 +6,6 @@ import androidx.databinding.ObservableBoolean
 import androidx.databinding.ObservableInt
 import com.aqrlei.open.todowanandroid.base.BaseViewModel
 import com.aqrlei.open.todowanandroid.net.repository.TodoRepository
-import com.aqrlei.open.todowanandroid.net.req.TodoReqBean
 import com.aqrlei.open.todowanandroid.net.resp.todo.TodoRespBean
 import kotlin.properties.Delegates
 
@@ -115,30 +114,15 @@ class TodoViewModel(application: Application) : BaseViewModel(application) {
         })
     }
 
-    fun updateContent(id: String, data: TodoReqBean) {
-        observerRespData(todoRepo.updateContent(id, data), true, {})
-    }
-
     fun delete(id: String) {
-        observerRespData(todoRepo.delete(id), true, {}, finishAction = {
+        observerRespData(todoRepo.delete(id), true, {}, successWithoutErrorAction = {
             fetchList()
         })
     }
 
-    fun addNew(data: TodoReqBean) {
-        observerRespData(todoRepo.addNew(data), true, {})
-    }
-
-    @Deprecated("")
-    fun fetchTypeList(type: String) {
-        observerRespData(todoRepo.fetchTypeList(type), true, {
-
-        })
-    }
-
     interface TodoNavigator : CommonNavigator {
-        fun addNew(type:String)
-        fun modifyItem(item:TodoRespBean?)
+        fun addNew(type: String)
+        fun modifyItem(item: TodoRespBean?)
         fun manageItem(id: String): Boolean
         override fun back() {
 

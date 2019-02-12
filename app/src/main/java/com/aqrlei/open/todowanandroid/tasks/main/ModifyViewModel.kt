@@ -32,9 +32,7 @@ class ModifyViewModel(application: Application) : BaseViewModel(application) {
     fun update() {
         val id = item.value?.id.orEmpty()
         val data = item.value ?: TodoReqBean()
-        observerRespData(todoRepo.updateContent(id, data), true, {
-            Log.d("Modify", "update")
-        })
+        observerRespData(todoRepo.updateContent(id, data), true, {})
     }
 
     fun add() {
@@ -44,9 +42,7 @@ class ModifyViewModel(application: Application) : BaseViewModel(application) {
             dateStr = null
             status = null
         }
-        observerRespData(todoRepo.addNew(data), true, {
-            Log.d("Modify", "add")
-        })
+        observerRespData(todoRepo.addNew(data), true, {})
     }
 
     interface ModifyNavigator : CommonNavigator {

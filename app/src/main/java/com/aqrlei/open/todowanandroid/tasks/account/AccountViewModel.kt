@@ -75,12 +75,7 @@ class AccountViewModel(application: Application) :
         }
     }
 
-    fun logout() {
-        observerRespData(accountRepo.logout(), false, {
-            //TODO handle logout
-            ActivityCollector.killApp()
-        })
-    }
+
 
     interface AccountNavigator : BaseViewModel.CommonNavigator {
         fun toRegister()

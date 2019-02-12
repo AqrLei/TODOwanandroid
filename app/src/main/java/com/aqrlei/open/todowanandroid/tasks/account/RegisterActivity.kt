@@ -31,5 +31,4 @@ class RegisterActivity : ViewModelActivity<AccountViewModel, ActRegisterBinding>
         binding.viewModel = viewModel
         bindTitleToolbar(binding.titleToolBar)
     }
-
 }
