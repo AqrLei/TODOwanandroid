@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:android="http://schemas.android.com/apk/res/android">
+<layout xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
         <variable name="item" type="com.aqrlei.open.todowanandroid.net.req.TodoReqBean"/>
@@ -11,21 +11,105 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
-        <EditText
-                android:background="@null"
-                android:text="@={item.title}"
+        <androidx.appcompat.widget.Toolbar
+                android:id="@+id/titleToolBar"
+                android:background="@color/colorPrimary"
+                android:layout_marginBottom="@dimen/view_vertical_margin"
                 android:layout_width="match_parent"
+                android:minHeight="?android:attr/actionBarSize"
                 android:layout_height="wrap_content"/>
 
-        <EditText
-                android:background="@null"
-                android:text="@={item.content}"
+        <ScrollView
+                android:fillViewport="false"
+                android:overScrollMode="never"
+                android:scrollbars="none"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"/>
-        <TextView
-                android:text="@{item.dateStr}"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"/>
+                android:layout_height="match_parent">
+            <LinearLayout
+                    android:orientation="vertical"
+                    android:layout_width="match_parent" android:layout_height="wrap_content">
+
+                <androidx.cardview.widget.CardView android:layout_width="match_parent"
+                                                   android:layout_margin="@dimen/view_horizontal_margin"
+                                                   app:cardElevation="@dimen/card_elevation"
+                                                   app:cardCornerRadius="@dimen/card_corner_radius"
+                                                   android:layout_height="wrap_content">
+
+                    <TableLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
+                        <TableRow
+                                android:layout_marginTop="@dimen/view_horizontal_margin_very_small"
+                        >
+                            <TextView
+                                    android:layout_weight="1"
+                                    android:layout_width="0dp"
+                                    android:layout_height="wrap_content"
+                                    android:text="@string/itemTitle"
+                                    android:gravity="left"
+                                    android:padding="@dimen/view_horizontal_margin_small"
+                            />
+                            <EditText
+                                    android:background="@drawable/shape_todo_content_background"
+                                    android:layout_marginRight="@dimen/view_horizontal_margin"
+                                    android:text="@={item.title}"
+                                    android:layout_width="0dp"
+                                    android:layout_weight="4"
+                                    android:paddingLeft="@dimen/view_horizontal_margin_small"
+                                    android:hint="@string/itemRequired"
+                                    android:layout_height="match_parent"/>
+                        </TableRow>
+
+                        <TableRow>
+                            <TextView
+                                    android:layout_weight="1"
+                                    android:layout_width="0dp"
+                                    android:layout_height="wrap_content"
+                                    android:text="@string/itemDetail"
+                                    android:gravity="start"
+                                    android:padding="@dimen/view_horizontal_margin_small"/>
+
+                            <TextView
+                                    android:layout_marginRight="@dimen/view_horizontal_margin"
+                                    android:text="@{item.dateStr}"
+                                    android:padding="@dimen/view_horizontal_margin_small"
+                                    android:layout_weight="1"
+                                    android:gravity="end"
+                                    android:layout_height="wrap_content"/>
+                        </TableRow>
+
+                        <EditText
+                                android:background="@drawable/shape_todo_content_background"
+                                android:padding="@dimen/view_horizontal_margin_very_small"
+                                android:gravity="start"
+                                android:layout_marginLeft="@dimen/view_horizontal_margin"
+                                android:layout_marginRight="@dimen/view_horizontal_margin"
+                                android:layout_marginBottom="@dimen/view_horizontal_margin_very_small"
+                                android:text="@={item.content}"
+                                android:layout_width="match_parent"
+                                android:hint="@string/itemOptional"
+                                android:layout_height="@dimen/item_content_size"/>
+
+
+                    </TableLayout>
+                </androidx.cardview.widget.CardView>
+
+                <androidx.cardview.widget.CardView
+                        android:layout_margin="@dimen/view_horizontal_margin_large"
+                        android:layout_width="match_parent"
+                        app:cardCornerRadius="@dimen/card_corner_radius"
+                        app:cardElevation="@dimen/card_elevation"
+                        android:layout_height="wrap_content">
+
+                    <TextView
+                            style="@style/NavigationTextStyle"
+                            android:gravity="center_horizontal"
+                            android:text="@string/itemSave"/>
+
+                </androidx.cardview.widget.CardView>
+            </LinearLayout>
+        </ScrollView>
+
 
     </LinearLayout>
 </layout>

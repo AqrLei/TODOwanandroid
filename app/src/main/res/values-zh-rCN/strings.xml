@@ -27,8 +27,8 @@
     <string name="TodoTypeOne">工作</string>
     <string name="TodoTypeTwo">学习</string>
     <string name="TodoTypeThree">生活</string>
-    <string name="TodoItemPlanTime">计划时间: </string>
-    <string name="TodoItemCompleteTime">完成时间: </string>
+    <string name="TodoItemPlanTime">计划时间:</string>
+    <string name="TodoItemCompleteTime">完成时间:</string>
 
     <string name="TodoItemIncomplete">未完成</string>
     <string name="TodoItemCompleted">已完成</string>
@@ -38,4 +38,12 @@
     <string name="dialogMessage">确定删除？</string>
     <string name="dialogOk">确定</string>
     <string name="dialogCancel">取消</string>
+
+    <string name="TodoItem">待办事项</string>
+
+    <string name="itemTitle">标题</string>
+    <string name="itemDetail">详情</string>
+    <string name="itemRequired">必填</string>
+    <string name="itemOptional">选填</string>
+    <string name="itemSave">保存</string>
 </resources>

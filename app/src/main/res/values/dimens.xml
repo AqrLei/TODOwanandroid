@@ -1,50 +1,57 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <dimen name="activity_horizontal_margin_small">10dp</dimen>
-    <dimen name="activity_vertical_margin_small">10dp</dimen>
-    <dimen name="view_vertical_margin_small">10dp</dimen>
+    <dimen name="verySmallSize">5dp</dimen>
+    <dimen name="smallSize">10dp</dimen>
+    <dimen name="normalSize">20dp</dimen>
+    <dimen name="largeSize">40dp</dimen>
 
-    <dimen name="view_horizontal_margin_small">10dp</dimen>
-    <dimen name="view_vertical_margin_very_small">5dp</dimen>
-    <dimen name="view_horizontal_margin_very_small">5dp</dimen>
+    <dimen name="zeroSize">0dp</dimen>
 
-    <dimen name="activity_horizontal_margin">20dp</dimen>
-    <dimen name="activity_vertical_margin">20dp</dimen>
-    <dimen name="view_vertical_margin">20dp</dimen>
-    <dimen name="view_horizontal_margin">20dp</dimen>
 
-    <dimen name="activity_horizontal_margin_large">40dp</dimen>
-    <dimen name="activity_vertical_margin_large">40dp</dimen>
-    <dimen name="view_vertical_margin_large">40dp</dimen>
-    <dimen name="view_horizontal_margin_large">40dp</dimen>
+    <dimen name="activity_horizontal_margin_small">@dimen/smallSize</dimen>
+    <dimen name="activity_vertical_margin_small">@dimen/smallSize</dimen>
+    <dimen name="view_vertical_margin_small">@dimen/smallSize</dimen>
+
+    <dimen name="view_horizontal_margin_small">@dimen/smallSize</dimen>
+    <dimen name="view_vertical_margin_very_small">@dimen/verySmallSize</dimen>
+    <dimen name="view_horizontal_margin_very_small">@dimen/verySmallSize</dimen>
+
+    <dimen name="activity_horizontal_margin">@dimen/normalSize</dimen>
+    <dimen name="activity_vertical_margin">@dimen/normalSize</dimen>
+    <dimen name="view_vertical_margin">@dimen/normalSize</dimen>
+    <dimen name="view_horizontal_margin">@dimen/normalSize</dimen>
+
+    <dimen name="activity_horizontal_margin_large">@dimen/largeSize</dimen>
+    <dimen name="activity_vertical_margin_large">@dimen/largeSize</dimen>
+    <dimen name="view_vertical_margin_large">@dimen/largeSize</dimen>
+    <dimen name="view_horizontal_margin_large">@dimen/largeSize</dimen>
 
     <dimen name="view_horizontal_size">48dp</dimen>
     <dimen name="view_vertical_size">48dp</dimen>
-
     <dimen name="fab_vertical_margin">70dp</dimen>
-
-
     <dimen name="tool_bar_vertical">50dp</dimen>
 
-    <dimen name="zero_horizontal_margin">0dp</dimen>
-    <dimen name="zero_horizontal_margin_big_activity">0dp</dimen>
+    <dimen name="item_content_size">150dp</dimen>
+    <dimen name="zero_horizontal_margin">@dimen/zeroSize</dimen>
+    <dimen name="zero_horizontal_margin_big_activity">@dimen/zeroSize</dimen>
 
-    <dimen name="fab_margin">16dp</dimen>
+    <dimen name="fab_margin">@dimen/normalSize</dimen>
 
 
     <dimen name="text_size_small">12dp</dimen>
     <dimen name="text_size">14dp</dimen>
     <dimen name="text_size_large">16dp</dimen>
     <dimen name="text_size_very_large">18dp</dimen>
-    <dimen name="text_padding">5dp</dimen>
 
-    <dimen name="card_corner_radius">5dp</dimen>
+    <dimen name="text_padding">@dimen/verySmallSize</dimen>
+
+    <dimen name="card_corner_radius">@dimen/verySmallSize</dimen>
     <dimen name="card_elevation">2dp</dimen>
 
-    <dimen name="text_margin_very_small">4dp</dimen>
+    <dimen name="text_margin_very_small">@dimen/verySmallSize</dimen>
 
-    <dimen name="layer_left_offset">5dp</dimen>
+    <dimen name="layer_left_offset">@dimen/verySmallSize</dimen>
 
-    <dimen name="auto_text_size_step">1dp</dimen>
+    <dimen name="stroke_size">1dp</dimen>
 </resources>

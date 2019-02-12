@@ -33,9 +33,7 @@ class ModifyTodoItemActivity : ViewModelActivity<TodoViewModel, ActModifyBinding
                 context.startActivityForResult(intent, reqCode)
             }
         }
-
     }
-
 
     val data: TodoReqBean
         get() {
@@ -59,6 +57,7 @@ class ModifyTodoItemActivity : ViewModelActivity<TodoViewModel, ActModifyBinding
 
     override fun initComponents(binding: ActModifyBinding) {
         binding.item = data
+        bindTitleToolbar(binding.titleToolBar)
     }
 
 }

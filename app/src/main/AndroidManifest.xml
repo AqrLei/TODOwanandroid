@@ -23,8 +23,11 @@
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
-        <activity android:name=".tasks.account.LoginActivity"/>
-        <activity android:name=".tasks.main.ModifyTodoItemActivity"/>
+        <activity android:name=".tasks.account.LoginActivity"
+                  android:windowSoftInputMode="stateHidden|adjustResize"/>
+        <activity android:name=".tasks.main.ModifyTodoItemActivity"
+                  android:windowSoftInputMode="stateHidden|adjustResize"
+                  android:label="@string/TodoItem"/>
         <activity
                 android:name=".tasks.account.RegisterActivity"
                 android:label="@string/register"/>

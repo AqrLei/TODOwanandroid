@@ -40,10 +40,17 @@
         <item>@string/TodoItemDelete</item>
     </string-array>
 
+    <string name="TodoItem">TODO</string>
 
 
     <string name="dialogTitle">Note</string>
     <string name="dialogMessage">Confirm to delete?</string>
     <string name="dialogOk">Confirm</string>
     <string name="dialogCancel">Cancel</string>
+
+    <string name="itemTitle">Title</string>
+    <string name="itemDetail">Detail</string>
+    <string name="itemRequired">Required</string>
+    <string name="itemOptional">Optional</string>
+    <string name="itemSave">Save</string>
 </resources>
