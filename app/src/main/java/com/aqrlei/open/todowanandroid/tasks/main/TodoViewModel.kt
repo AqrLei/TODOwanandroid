@@ -28,7 +28,7 @@ class TodoViewModel(application: Application) : BaseViewModel(application) {
 
     private val todoRepo = TodoRepository()
 
-    private var type: Int by Delegates.observable(0) { _, oldValue, newValue ->
+    var type: Int by Delegates.observable(0) { _, oldValue, newValue ->
         if (newValue != oldValue) {
             refreshAction.invoke()
         }

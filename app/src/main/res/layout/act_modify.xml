@@ -3,6 +3,8 @@
 
     <data>
         <variable name="item" type="com.aqrlei.open.todowanandroid.net.req.TodoReqBean"/>
+        <variable name="viewModel" type="com.aqrlei.open.todowanandroid.tasks.main.ModifyViewModel"/>
+        <import type="android.view.View"/>
 
     </data>
 
@@ -52,9 +54,10 @@
                             <EditText
                                     android:background="@drawable/shape_todo_content_background"
                                     android:layout_marginRight="@dimen/view_horizontal_margin"
-                                    android:text="@={item.title}"
+                                    android:text="@={viewModel.item.title}"
                                     android:layout_width="0dp"
                                     android:layout_weight="4"
+                                    android:enabled="@{viewModel.editEnable}"
                                     android:paddingLeft="@dimen/view_horizontal_margin_small"
                                     android:hint="@string/itemRequired"
                                     android:layout_height="match_parent"/>
@@ -71,8 +74,10 @@
 
                             <TextView
                                     android:layout_marginRight="@dimen/view_horizontal_margin"
-                                    android:text="@{item.dateStr}"
+                                    android:text="@{viewModel.item.dateStr}"
                                     android:padding="@dimen/view_horizontal_margin_small"
+                                    android:enabled="@{viewModel.editEnable}"
+                                    android:onClick="@{() -> viewModel.markDate()}"
                                     android:layout_weight="1"
                                     android:gravity="end"
                                     android:layout_height="wrap_content"/>
@@ -82,10 +87,11 @@
                                 android:background="@drawable/shape_todo_content_background"
                                 android:padding="@dimen/view_horizontal_margin_very_small"
                                 android:gravity="start"
+                                android:enabled="@{viewModel.editEnable}"
                                 android:layout_marginLeft="@dimen/view_horizontal_margin"
                                 android:layout_marginRight="@dimen/view_horizontal_margin"
                                 android:layout_marginBottom="@dimen/view_horizontal_margin_very_small"
-                                android:text="@={item.content}"
+                                android:text="@={viewModel.item.content}"
                                 android:layout_width="match_parent"
                                 android:hint="@string/itemOptional"
                                 android:layout_height="@dimen/item_content_size"/>
@@ -97,12 +103,14 @@
                 <androidx.cardview.widget.CardView
                         android:layout_margin="@dimen/view_horizontal_margin_large"
                         android:layout_width="match_parent"
+                        android:visibility="@{viewModel.editEnable ? View.VISIBLE : View.INVISIBLE}"
                         app:cardCornerRadius="@dimen/card_corner_radius"
                         app:cardElevation="@dimen/card_elevation"
                         android:layout_height="wrap_content">
 
                     <TextView
                             style="@style/NavigationTextStyle"
+                            android:onClick="@{()->viewModel.save()}"
                             android:gravity="center_horizontal"
                             android:text="@string/itemSave"/>
 

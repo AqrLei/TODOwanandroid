@@ -9,6 +9,8 @@ import com.aqrlei.open.todowanandroid.base.ViewModelFragment
 import com.aqrlei.open.todowanandroid.databinding.FragTodoBinding
 import com.aqrlei.open.todowanandroid.net.resp.todo.TodoRespBean
 import com.aqrlei.open.utils.DialogUtil
+import java.text.SimpleDateFormat
+import java.util.*
 
 /**
  * @author aqrlei on 2019/1/7
@@ -44,7 +46,12 @@ class TodoFragment : ViewModelFragment<TodoViewModel, FragTodoBinding>() {
     inner class Navigator : TodoViewModel.TodoNavigator {
         override fun modifyItem(item: TodoRespBean?) {
             (this@TodoFragment.context as? AppCompatActivity)?.run {
-                ModifyTodoItemActivity.startForModify(this, item)
+                if (item?.status == "0") {
+                    ModifyTodoItemActivity.startForModify(this, item)
+                } else {
+                    ModifyTodoItemActivity.startForLook(this, item)
+                }
+
             }
         }
 
@@ -68,8 +75,16 @@ class TodoFragment : ViewModelFragment<TodoViewModel, FragTodoBinding>() {
         }
 
         override fun addNew(type: String) {
+            val dateTime = Date().time
+            val dateStr = SimpleDateFormat("yyyy-MM-dd").format(dateTime)
             (this@TodoFragment.context as? AppCompatActivity)?.run {
-                ModifyTodoItemActivity.startForCreate(this)
+                ModifyTodoItemActivity.startForCreate(
+                    this, TodoRespBean(
+                        type = viewModel.type.toString(),
+                        date = dateTime.toString(),
+                        dateStr = dateStr
+                    )
+                )
             }
         }
     }
