@@ -9,8 +9,8 @@
 
         <level-list>
             <item
-                    android:maxLevel="0"
-                    android:minLevel="0">
+                    android:maxLevel="1"
+                    android:minLevel="1">
 
                 <shape android:shape="rectangle">
                     <corners
@@ -20,8 +20,8 @@
                 </shape>
             </item>
             <item
-                    android:maxLevel="1"
-                    android:minLevel="1">
+                    android:maxLevel="0"
+                    android:minLevel="0">
                 <shape android:shape="rectangle">
                     <corners
                             android:radius="@dimen/view_horizontal_margin_very_small"

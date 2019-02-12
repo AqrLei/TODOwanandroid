@@ -4,6 +4,10 @@ import android.app.Application
 import androidx.databinding.ObservableArrayList
 import androidx.databinding.ObservableBoolean
 import androidx.databinding.ObservableInt
+import androidx.lifecycle.MutableLiveData
+import androidx.paging.PagedList
+import androidx.recyclerview.widget.DiffUtil
+import com.aqrlei.open.bindingadapter.adapter.datasource.SimpleDataSourceFactory
 import com.aqrlei.open.todowanandroid.base.BaseViewModel
 import com.aqrlei.open.todowanandroid.net.repository.TodoRepository
 import com.aqrlei.open.todowanandroid.net.resp.todo.TodoRespBean
@@ -15,6 +19,26 @@ import kotlin.properties.Delegates
 
 class TodoViewModel(application: Application) : BaseViewModel(application) {
 
+
+    val pageConfig = PagedList.Config.Builder()
+        .setPageSize(5)
+        .setEnablePlaceholders(false)
+        .build()
+    val loadDataAction = { _: Int, nextPage: Int ->
+        fetchList(nextPage.toString())
+    }
+    val dataSourceType = SimpleDataSourceFactory.DataSourceType.PAGE
+    val refreshEvent = MutableLiveData<Any>()
+    val currentPage = MutableLiveData<Int>().apply { value = 0 }
+    val diffCallback = object : DiffUtil.ItemCallback<TodoRespBean>() {
+        override fun areContentsTheSame(oldItem: TodoRespBean, newItem: TodoRespBean): Boolean {
+            return oldItem.id == newItem.id
+        }
+
+        override fun areItemsTheSame(oldItem: TodoRespBean, newItem: TodoRespBean): Boolean {
+            return oldItem == newItem
+        }
+    }
 
     var itemChoicePos: Int = 0
 
@@ -74,13 +98,13 @@ class TodoViewModel(application: Application) : BaseViewModel(application) {
         return todoNavigator?.manageItem(id.orEmpty()) ?: false
     }
 
-    private fun fetchList() {
+    private fun fetchList(pageNum: String = "0") {
         if (state != 0) {
             itemChoicePos = 1
-            fetchDoneList(type.toString())
+            fetchDoneList(type.toString(), pageNum)
         } else {
             itemChoicePos = 0
-            fetchNotDoList(type.toString())
+            fetchNotDoList(type.toString(), pageNum)
         }
     }
 
