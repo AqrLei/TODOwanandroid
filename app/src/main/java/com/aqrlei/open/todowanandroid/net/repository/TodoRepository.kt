@@ -26,9 +26,26 @@ class TodoRepository {
 
     fun delete(id: String) = todoService.delete(id)
 
-    fun updateContent(id: String, reqBean: TodoReqBean) = todoService.updateContent(id, reqBean)
+    fun updateContent(id: String, data: TodoReqBean): LiveObservable<LiveResponse<BaseRespBean<Any>>> {
+        val updateMap = HashMap<String, String>().apply {
+            put("title", data.title)
+            put("content", data.content)
+            put("date", data.dateStr)
+            put("status", data.status)
+            put("type", data.type)
+        }
+        return todoService.updateContent(id, updateMap)
+    }
 
-    fun addNew(reqBean: TodoReqBean) = todoService.addNew(reqBean)
+    fun addNew(data: TodoReqBean): LiveObservable<LiveResponse<BaseRespBean<Any>>> {
+        val addMap = HashMap<String, String>().apply {
+            put("title", data.title)
+            put("content", data.content)
+            put("date", data.dateStr)
+            put("type", data.type)
+        }
+        return todoService.addNew(addMap)
+    }
 
 
     interface TodoService {
@@ -57,13 +74,17 @@ class TodoRepository {
         @POST("lg/todo/delete/{id}/json")
         fun delete(@Path("id") id: String): LiveObservable<LiveResponse<BaseRespBean<Any>>>
 
+        @FormUrlEncoded
         @POST("lg/todo/update/{id}/json")
         fun updateContent(
             @Path("id") id: String,
-            @Body reqBean: TodoReqBean
+            @FieldMap map: MutableMap<String, String>
         ): LiveObservable<LiveResponse<BaseRespBean<Any>>>
 
+        @FormUrlEncoded
         @POST("lg/todo/add/json")
-        fun addNew(@Body reqBean: TodoReqBean): LiveObservable<LiveResponse<BaseRespBean<Any>>>
+        fun addNew(
+            @FieldMap map: MutableMap<String, String>
+        ): LiveObservable<LiveResponse<BaseRespBean<Any>>>
     }
 }

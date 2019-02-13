@@ -1,7 +1,6 @@
 package com.aqrlei.open.todowanandroid.tasks.main
 
 import android.app.Application
-import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import com.aqrlei.open.todowanandroid.base.BaseViewModel
 import com.aqrlei.open.todowanandroid.net.repository.TodoRepository
@@ -32,21 +31,21 @@ class ModifyViewModel(application: Application) : BaseViewModel(application) {
     fun update() {
         val id = item.value?.id.orEmpty()
         val data = item.value ?: TodoReqBean()
-        observerRespData(todoRepo.updateContent(id, data), true, {})
+        observerRespData(todoRepo.updateContent(id, data), true, {
+            modifyNavigator?.modifyDone()
+        })
     }
 
     fun add() {
-        val data = (item.value ?: TodoReqBean()).apply {
-            id = null
-            date = dateStr
-            dateStr = null
-            status = null
-        }
-        observerRespData(todoRepo.addNew(data), true, {})
+        val data = item.value ?: TodoReqBean()
+        observerRespData(todoRepo.addNew(data), true, {
+            modifyNavigator?.modifyDone()
+        })
     }
 
     interface ModifyNavigator : CommonNavigator {
         fun save()
         fun markDate()
+        fun modifyDone()
     }
 }

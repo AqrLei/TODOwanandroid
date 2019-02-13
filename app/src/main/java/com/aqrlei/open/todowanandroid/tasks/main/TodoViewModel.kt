@@ -86,8 +86,7 @@ class TodoViewModel(application: Application) : BaseViewModel(application) {
             )
         )
         itemLevel.set(0)
-        refreshing.set(true)
-        fetchList()
+        refreshAction.invoke()
     }
 
     fun itemClick(item: TodoRespBean?) {

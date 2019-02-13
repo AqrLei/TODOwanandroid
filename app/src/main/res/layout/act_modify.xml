@@ -93,7 +93,7 @@
                                 android:layout_marginBottom="@dimen/view_horizontal_margin_very_small"
                                 android:text="@={viewModel.item.content}"
                                 android:layout_width="match_parent"
-                                android:hint="@string/itemOptional"
+                                android:hint="@string/itemRequired"
                                 android:layout_height="@dimen/item_content_size"/>
 
 

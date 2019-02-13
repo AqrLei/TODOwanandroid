@@ -1,15 +1,19 @@
 package com.aqrlei.open.todowanandroid.tasks.main
 
+import android.app.Activity
 import android.app.DatePickerDialog
 import android.content.Context
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
+import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProviders
 import com.aqrlei.open.todowanandroid.R
 import com.aqrlei.open.todowanandroid.base.ViewModelActivity
 import com.aqrlei.open.todowanandroid.databinding.ActModifyBinding
 import com.aqrlei.open.todowanandroid.net.req.TodoReqBean
 import com.aqrlei.open.todowanandroid.net.resp.todo.TodoRespBean
+import com.aqrlei.open.todowanandroid.tasks.main.ItemModifyConstant.ITEM_CREATE
+import com.aqrlei.open.todowanandroid.tasks.main.ItemModifyConstant.ITEM_LOOK
+import com.aqrlei.open.todowanandroid.tasks.main.ItemModifyConstant.ITEM_UPDATE
 import com.aqrlei.open.utils.IntentUtil
 import java.text.SimpleDateFormat
 import java.util.*
@@ -21,29 +25,32 @@ class ModifyTodoItemActivity : ViewModelActivity<ModifyViewModel, ActModifyBindi
     companion object {
         private const val DATA_KEY = "dataKey"
         private const val ITEM_PROCESS_KEY = "itemProcessKey"
-        private const val ITEM_MODIFY = 11
-        private const val ITEM_CREATE = 10
-        private const val ITEM_LOOK = 100
-        fun startForModify(context: AppCompatActivity, data: TodoRespBean?) {
-            startForResult(context, data, ITEM_MODIFY)
+        fun startForModify(frag: Fragment, data: TodoRespBean?) {
+            startForResult(frag, data, ITEM_UPDATE)
         }
 
-        fun startForLook(context: AppCompatActivity, data: TodoRespBean?) {
-            startForResult(context, data, ITEM_LOOK)
+        fun startForLook(frag: Fragment, data: TodoRespBean?) {
+            startForResult(frag, data, ITEM_LOOK)
         }
 
-        fun startForCreate(context: AppCompatActivity, data: TodoRespBean?) {
-            startForResult(context, data, ITEM_CREATE)
+        fun startForCreate(frag: Fragment, data: TodoRespBean?) {
+            startForResult(frag, data, ITEM_CREATE)
         }
 
-
-        private fun startForResult(context: AppCompatActivity, data: TodoRespBean?, reqCode: Int) {
-            val intent = Intent(context, ModifyTodoItemActivity::class.java)
-                .putExtra(DATA_KEY, data)
-                .putExtra(ITEM_PROCESS_KEY, reqCode)
-            if (IntentUtil.queryActivities(context, intent)) {
-                context.startActivityForResult(intent, reqCode)
+        private fun startForResult(frag: Fragment, data: TodoRespBean?, reqCode: Int) {
+            frag.context?.let { context ->
+                val intent = Intent(context, ModifyTodoItemActivity::class.java)
+                    .putExtra(DATA_KEY, data)
+                    .putExtra(ITEM_PROCESS_KEY, reqCode)
+                if (IntentUtil.queryActivities(context, intent)) {
+                    if (reqCode == ITEM_LOOK) {
+                        frag.startActivity(intent)
+                    } else {
+                        frag.startActivityForResult(intent, reqCode)
+                    }
+                }
             }
+
         }
     }
 
@@ -51,13 +58,13 @@ class ModifyTodoItemActivity : ViewModelActivity<ModifyViewModel, ActModifyBindi
         get() {
             return intent.getParcelableExtra<TodoRespBean>(DATA_KEY)?.let {
                 TodoReqBean(
-                    it.id,
-                    it.title,
-                    it.content,
-                    it.date,
-                    it.dateStr,
-                    it.type,
-                    it.status
+                    it.id.orEmpty(),
+                    it.title.orEmpty(),
+                    it.content.orEmpty(),
+                    it.date.orEmpty(),
+                    it.dateStr.orEmpty(),
+                    it.type.orEmpty(),
+                    it.status.orEmpty()
                 )
             } ?: TodoReqBean()
         }
@@ -104,10 +111,14 @@ class ModifyTodoItemActivity : ViewModelActivity<ModifyViewModel, ActModifyBindi
         override fun save() {
             when (itemProcessKey) {
                 ITEM_CREATE -> viewModel.add()
-                ITEM_MODIFY -> viewModel.update()
+                ITEM_UPDATE -> viewModel.update()
                 else -> showToast("Unknown error")
             }
         }
-    }
 
+        override fun modifyDone() {
+            setResult(Activity.RESULT_OK)
+            this@ModifyTodoItemActivity.finish()
+        }
+    }
 }
