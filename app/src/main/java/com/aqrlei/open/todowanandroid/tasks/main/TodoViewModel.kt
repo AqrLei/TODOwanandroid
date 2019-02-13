@@ -7,7 +7,6 @@ import androidx.databinding.ObservableInt
 import androidx.lifecycle.MutableLiveData
 import androidx.paging.PagedList
 import androidx.recyclerview.widget.DiffUtil
-import com.aqrlei.open.bindingadapter.adapter.datasource.SimpleDataSourceFactory
 import com.aqrlei.open.todowanandroid.base.BaseViewModel
 import com.aqrlei.open.todowanandroid.net.repository.TodoRepository
 import com.aqrlei.open.todowanandroid.net.resp.todo.TodoRespBean
@@ -19,17 +18,15 @@ import kotlin.properties.Delegates
 
 class TodoViewModel(application: Application) : BaseViewModel(application) {
 
-
     val pageConfig = PagedList.Config.Builder()
-        .setPageSize(5)
+        .setPageSize(10)
         .setEnablePlaceholders(false)
         .build()
     val loadDataAction = { _: Int, nextPage: Int ->
         fetchList(nextPage.toString())
     }
-    val dataSourceType = SimpleDataSourceFactory.DataSourceType.PAGE
+
     val refreshEvent = MutableLiveData<Any>()
-    val currentPage = MutableLiveData<Int>().apply { value = 0 }
     val diffCallback = object : DiffUtil.ItemCallback<TodoRespBean>() {
         override fun areContentsTheSame(oldItem: TodoRespBean, newItem: TodoRespBean): Boolean {
             return oldItem.id == newItem.id
@@ -39,6 +36,7 @@ class TodoViewModel(application: Application) : BaseViewModel(application) {
             return oldItem == newItem
         }
     }
+    var noMoreData: Boolean = false
 
     var itemChoicePos: Int = 0
 
@@ -67,7 +65,9 @@ class TodoViewModel(application: Application) : BaseViewModel(application) {
     }
     val refreshAction = {
         refreshing.set(true)
+        noMoreData = false
         fetchList()
+        Unit
     }
     val typeStateChangeAction = { statePosition: Int ->
         state = statePosition
@@ -97,8 +97,8 @@ class TodoViewModel(application: Application) : BaseViewModel(application) {
         return todoNavigator?.manageItem(id.orEmpty()) ?: false
     }
 
-    private fun fetchList(pageNum: String = "0") {
-        if (state != 0) {
+    private fun fetchList(pageNum: String = "0"): List<TodoRespBean> {
+        return if (state != 0) {
             itemChoicePos = 1
             fetchDoneList(type.toString(), pageNum)
         } else {
@@ -107,27 +107,47 @@ class TodoViewModel(application: Application) : BaseViewModel(application) {
         }
     }
 
-    private fun fetchDoneList(type: String, pageNum: String = "0") {
-        observerRespData(todoRepo.fetchDoneList(type, pageNum), false, {
-            it.datas?.run {
-                refreshingFinish(this)
-                itemLevel.set(1)
-            }
-        })
+    private fun fetchDoneList(type: String, pageNum: String = "0"): List<TodoRespBean> {
+
+        val tempList: MutableList<TodoRespBean> = ArrayList()
+        return if (noMoreData) {
+            tempList
+        } else {
+            observerRespData(todoRepo.fetchDoneList(type, pageNum), false, {
+                noMoreData = it.curPage == (it.total ?: 0 - 1)
+                it.datas?.run {
+                    refreshingFinish(this)
+                    tempList.addAll(this)
+                    itemLevel.set(1)
+                }
+            })
+            Thread.sleep(1000)
+            tempList
+        }
     }
 
-    private fun fetchNotDoList(type: String, pageNum: String = "0") {
-        observerRespData(todoRepo.fetchNotDoList(type, pageNum), false, {
-            it.datas?.run {
-                itemLevel.set(0)
-                refreshingFinish(this)
-            }
-        })
+    private fun fetchNotDoList(type: String, pageNum: String = "0"): MutableList<TodoRespBean> {
+        val tempList: MutableList<TodoRespBean> = ArrayList()
+        return if (noMoreData) {
+            tempList
+        } else {
+            observerRespData(todoRepo.fetchNotDoList(type, pageNum), false, {
+                noMoreData = it.curPage == (it.total ?: 0 - 1)
+                it.datas?.run {
+                    itemLevel.set(0)
+                    refreshingFinish(this)
+                    tempList.addAll(this)
+                }
+            })
+            Thread.sleep(1000)
+            tempList
+        }
     }
 
     private fun refreshingFinish(data: List<TodoRespBean>) {
         contentList.clear()
         contentList.addAll(data)
+        refreshEvent.value = null
         refreshing.set(false)
     }
 

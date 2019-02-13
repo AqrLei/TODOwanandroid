@@ -6,6 +6,9 @@ import androidx.lifecycle.MutableLiveData
 import com.aqrlei.open.retrofit.livedatacalladapter.LiveObservable
 import com.aqrlei.open.retrofit.livedatacalladapter.LiveResponse
 import com.aqrlei.open.todowanandroid.net.resp.BaseRespBean
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
 
 /**
  * @author aqrlei on 2018/12/24
@@ -23,31 +26,35 @@ abstract class BaseViewModel(application: Application) : AndroidViewModel(applic
         finishAction: (() -> Unit)? = null,
         successWithoutErrorAction: (() -> Unit)? = null,
         processErrorAction: ((String, String) -> Boolean)? = null,
-        processFailureAction: ((Throwable?) -> Boolean)? = null) {
-        if (isShowLoading) {
-            isLoading.value = true
-        }
-        liveObservable.observe { data ->
-            if (data?.isSuccess == true) {
-                if (data.response?.errorCode == "0") {
-                    successWithoutErrorAction?.invoke()
-                    data.response?.data?.run(processDataAction)
+        processFailureAction: ((Throwable?) -> Boolean)? = null){
+        GlobalScope.launch (Dispatchers.Main) {
+            if (isShowLoading) {
+                isLoading.value = true
+            }
+            liveObservable.observe { data ->
+                if (data?.isSuccess == true) {
+                    if (data.response?.errorCode == "0") {
+                        successWithoutErrorAction?.invoke()
+                        data.response?.data?.run(processDataAction)
+                    } else {
+                        if (processErrorAction?.invoke(
+                                data.response?.errorMsg.orEmpty(),
+                                data.response?.errorCode.orEmpty()
+                            ) != true
+                        ) {
+                            toast.value = data.response?.errorMsg.orEmpty()
+                        }
+                    }
                 } else {
-                    if (processErrorAction?.invoke(
-                            data.response?.errorMsg.orEmpty(),
-                            data.response?.errorCode.orEmpty()) != true) {
-                        toast.value = data.response?.errorMsg.orEmpty()
+                    if (processFailureAction?.invoke(data?.error) != true) {
+                        toast.value = data?.error?.message.orEmpty()
                     }
                 }
-            } else {
-                if (processFailureAction?.invoke(data?.error) != true) {
-                    toast.value = data?.error?.message.orEmpty()
+                if (isShowLoading) {
+                    isLoading.value = false
                 }
+                finishAction?.invoke()
             }
-            if (isShowLoading) {
-                isLoading.value = false
-            }
-            finishAction?.invoke()
         }
     }
 

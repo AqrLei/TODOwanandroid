@@ -3,8 +3,11 @@ package com.aqrlei.open.todowanandroid.binding
 import android.view.ViewGroup
 import android.widget.RadioGroup
 import androidx.databinding.BindingAdapter
+import androidx.lifecycle.LifecycleOwner
+import androidx.recyclerview.widget.RecyclerView
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import androidx.viewpager.widget.ViewPager
+import com.aqrlei.open.bindingadapter.adapter.DataBindingPagingAdapter
 import com.google.android.material.tabs.TabLayout
 import com.google.android.material.textfield.TextInputLayout
 
@@ -76,9 +79,16 @@ fun TabLayout.setTitles(titles: List<String>) {
     titles.forEach { addTab(newTab().setText(it)) }
 }
 
-@BindingAdapter("android:viewPager")
-fun TabLayout.setViewPager(viewPager: ViewPager) {
-    addOnTabSelectedListener(TabLayout.ViewPagerOnTabSelectedListener(viewPager))
+
+@BindingAdapter("android:onPagingRefresh")
+fun RecyclerView.onPageRefresh(refreshEvent: Boolean?) {
+    if (refreshEvent == true) {
+        (this.adapter as? DataBindingPagingAdapter<*>)?.let { adapter ->
+            (this.context as? LifecycleOwner)?.let { lifecycleOwner ->
+                adapter.refresh(lifecycleOwner)
+            }
+        }
+    }
 }
 
 @BindingAdapter("android:nav_item_checked")
