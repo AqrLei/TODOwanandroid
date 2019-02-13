@@ -22,8 +22,17 @@ class TodoViewModel(application: Application) : BaseViewModel(application) {
         .setEnablePlaceholders(false)
         .build()
     val loadDataAction = { _: Int, nextPage: Int ->
+        val temp = ArrayList<TodoRespBean>().apply {
+            addAll(bufferDataList)
+            bufferDataList.clear()
+        }
+        /**
+         * 0 和 1 是一样的数据，亿脸懵逼
+         * */
         fetchList(nextPage.toString())
+        temp
     }
+    private var bufferDataList: MutableList<TodoRespBean> = ArrayList()
     val diffCallback = object : DiffUtil.ItemCallback<TodoRespBean>() {
         override fun areContentsTheSame(oldItem: TodoRespBean, newItem: TodoRespBean): Boolean {
             return oldItem.id == newItem.id
@@ -44,7 +53,6 @@ class TodoViewModel(application: Application) : BaseViewModel(application) {
         get() = navigator as? TodoNavigator
 
     private val todoRepo = TodoRepository()
-
     var type: Int by Delegates.observable(0) { _, oldValue, newValue ->
         if (newValue != oldValue) {
             refreshAction.invoke()
@@ -93,8 +101,8 @@ class TodoViewModel(application: Application) : BaseViewModel(application) {
         return todoNavigator?.manageItem(id.orEmpty()) ?: false
     }
 
-    private fun fetchList(pageNum: String = "0"): List<TodoRespBean> {
-        return if (state != 0) {
+    private fun fetchList(pageNum: String = "0") {
+        if (state != 0) {
             itemChoicePos = 1
             fetchDoneList(type.toString(), pageNum)
         } else {
@@ -103,45 +111,30 @@ class TodoViewModel(application: Application) : BaseViewModel(application) {
         }
     }
 
-    private fun fetchDoneList(type: String, pageNum: String = "0"): List<TodoRespBean> {
-
-        val tempList: MutableList<TodoRespBean> = ArrayList()
-        return if (noMoreData) {
-            tempList
-        } else {
-            observerRespData(todoRepo.fetchDoneList(type, pageNum), false, {
-                noMoreData = it.curPage == (it.total ?: 0 - 1)
-                it.datas?.run {
-                    refreshingFinish()
-                    tempList.addAll(this)
-                    itemLevel.set(1)
-                }
-            })
-            Thread.sleep(1000)
-            tempList
-        }
+    private fun fetchDoneList(type: String, pageNum: String = "0") {
+        observerRespData(todoRepo.fetchDoneList(type, pageNum), false, {
+            noMoreData = it.curPage == (it.total ?: 0 - 1)
+            it.datas?.run {
+                refreshingFinish(this)
+                itemLevel.set(1)
+            }
+        })
     }
 
-    private fun fetchNotDoList(type: String, pageNum: String = "0"): MutableList<TodoRespBean> {
-        val tempList: MutableList<TodoRespBean> = ArrayList()
-        return if (noMoreData) {
-            tempList
-        } else {
-            observerRespData(todoRepo.fetchNotDoList(type, pageNum), false, {
-                noMoreData = it.curPage == (it.total ?: 0 - 1)
-                it.datas?.run {
-                    itemLevel.set(0)
-                    refreshingFinish()
-                    tempList.addAll(this)
-                }
-            })
-            Thread.sleep(1000)
-            tempList
-        }
+    private fun fetchNotDoList(type: String, pageNum: String = "0") {
+        observerRespData(todoRepo.fetchNotDoList(type, pageNum), false, {
+            noMoreData = it.curPage == (it.total ?: 0 - 1)
+            it.datas?.run {
+                itemLevel.set(0)
+                refreshingFinish(this)
+            }
+        })
     }
 
-    private fun refreshingFinish() {
+    private fun refreshingFinish(data: List<TodoRespBean>) {
         refreshing.set(false)
+        bufferDataList.clear()
+        bufferDataList.addAll(data)
     }
 
     fun updateStatus(id: String, status: String) {
@@ -152,7 +145,7 @@ class TodoViewModel(application: Application) : BaseViewModel(application) {
 
     fun delete(id: String) {
         observerRespData(todoRepo.delete(id), true, {}, successWithoutErrorAction = {
-            fetchList()
+            refreshAction.invoke()
         })
     }
 
