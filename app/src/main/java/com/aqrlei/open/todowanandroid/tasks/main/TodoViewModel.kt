@@ -1,6 +1,7 @@
 package com.aqrlei.open.todowanandroid.tasks.main
 
 import android.app.Application
+import androidx.arch.core.executor.ArchTaskExecutor
 import androidx.databinding.ObservableArrayList
 import androidx.databinding.ObservableBoolean
 import androidx.databinding.ObservableInt
@@ -23,7 +24,7 @@ class TodoViewModel(application: Application) : BaseViewModel(application) {
         .build()
     val loadDataAction = { _: Int, nextPage: Int ->
         val temp = ArrayList<TodoRespBean>().apply {
-            addAll(bufferDataList)
+            addAll(if (nextPage == 1) initData else bufferDataList)
             bufferDataList.clear()
         }
         /**
@@ -33,21 +34,24 @@ class TodoViewModel(application: Application) : BaseViewModel(application) {
         temp
     }
     private var bufferDataList: MutableList<TodoRespBean> = ArrayList()
+    private val initData: MutableList<TodoRespBean> = ArrayList()
     val diffCallback = object : DiffUtil.ItemCallback<TodoRespBean>() {
         override fun areContentsTheSame(oldItem: TodoRespBean, newItem: TodoRespBean): Boolean {
             return oldItem.id == newItem.id
         }
 
         override fun areItemsTheSame(oldItem: TodoRespBean, newItem: TodoRespBean): Boolean {
-            return oldItem == newItem
+            return oldItem.id == newItem.id
         }
     }
     var noMoreData: Boolean = false
+    var init = true
 
     var itemChoicePos: Int = 0
 
     val tabTitles = ObservableArrayList<String>()
     val refreshing = ObservableBoolean()
+    val enablePaging = ObservableBoolean()
     val itemLevel = ObservableInt()
     private val todoNavigator: TodoNavigator?
         get() = navigator as? TodoNavigator
@@ -70,6 +74,7 @@ class TodoViewModel(application: Application) : BaseViewModel(application) {
     val refreshAction = {
         refreshing.set(true)
         noMoreData = false
+        initData.clear()
         fetchList()
         Unit
     }
@@ -111,7 +116,10 @@ class TodoViewModel(application: Application) : BaseViewModel(application) {
         }
     }
 
-    private fun fetchDoneList(type: String, pageNum: String = "0") {
+    private fun fetchDoneList(
+        type: String,
+        pageNum: String = "0"
+    ) {
         observerRespData(todoRepo.fetchDoneList(type, pageNum), false, {
             noMoreData = it.curPage == (it.total ?: 0 - 1)
             it.datas?.run {
@@ -135,6 +143,13 @@ class TodoViewModel(application: Application) : BaseViewModel(application) {
         refreshing.set(false)
         bufferDataList.clear()
         bufferDataList.addAll(data)
+        if (initData.isEmpty()) {
+            initData.addAll(bufferDataList)
+        }
+        if (init) {
+            enablePaging.set(true)
+            init = false
+        }
     }
 
     fun updateStatus(id: String, status: String) {

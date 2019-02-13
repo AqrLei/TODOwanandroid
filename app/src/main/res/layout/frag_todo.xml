@@ -107,7 +107,7 @@
                         android:diffCallback="@{viewModel.diffCallback}"
                         android:onPagingRefresh="@{viewModel.refreshing}"
                         android:pagingDataSourceType="@{DataSourceType.PAGE}"
-                        android:usePaging="@{true}"
+                        android:usePaging="@{viewModel.enablePaging}"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:paddingStart="@dimen/zero_horizontal_margin_big_activity"
