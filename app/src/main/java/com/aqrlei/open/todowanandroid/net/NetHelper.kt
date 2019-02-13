@@ -72,5 +72,4 @@ class NetHelper private constructor() {
     private object Holder {
         val instance = NetHelper()
     }
-
 }

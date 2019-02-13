@@ -6,7 +6,6 @@ import androidx.databinding.BindingAdapter
 import androidx.lifecycle.LifecycleOwner
 import androidx.recyclerview.widget.RecyclerView
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
-import androidx.viewpager.widget.ViewPager
 import com.aqrlei.open.bindingadapter.adapter.DataBindingPagingAdapter
 import com.google.android.material.tabs.TabLayout
 import com.google.android.material.textfield.TextInputLayout
@@ -101,5 +100,3 @@ fun RadioGroup.setOnNavItemChecked(action: (Int) -> Unit) {
         }
     }
 }
-
-

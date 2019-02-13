@@ -4,7 +4,6 @@ import android.app.Application
 import androidx.databinding.ObservableArrayList
 import androidx.databinding.ObservableBoolean
 import androidx.databinding.ObservableInt
-import androidx.lifecycle.MutableLiveData
 import androidx.paging.PagedList
 import androidx.recyclerview.widget.DiffUtil
 import com.aqrlei.open.todowanandroid.base.BaseViewModel
@@ -25,8 +24,6 @@ class TodoViewModel(application: Application) : BaseViewModel(application) {
     val loadDataAction = { _: Int, nextPage: Int ->
         fetchList(nextPage.toString())
     }
-
-    val refreshEvent = MutableLiveData<Any>()
     val diffCallback = object : DiffUtil.ItemCallback<TodoRespBean>() {
         override fun areContentsTheSame(oldItem: TodoRespBean, newItem: TodoRespBean): Boolean {
             return oldItem.id == newItem.id
@@ -41,7 +38,6 @@ class TodoViewModel(application: Application) : BaseViewModel(application) {
     var itemChoicePos: Int = 0
 
     val tabTitles = ObservableArrayList<String>()
-    val contentList = ObservableArrayList<TodoRespBean>()
     val refreshing = ObservableBoolean()
     val itemLevel = ObservableInt()
     private val todoNavigator: TodoNavigator?
@@ -116,7 +112,7 @@ class TodoViewModel(application: Application) : BaseViewModel(application) {
             observerRespData(todoRepo.fetchDoneList(type, pageNum), false, {
                 noMoreData = it.curPage == (it.total ?: 0 - 1)
                 it.datas?.run {
-                    refreshingFinish(this)
+                    refreshingFinish()
                     tempList.addAll(this)
                     itemLevel.set(1)
                 }
@@ -135,7 +131,7 @@ class TodoViewModel(application: Application) : BaseViewModel(application) {
                 noMoreData = it.curPage == (it.total ?: 0 - 1)
                 it.datas?.run {
                     itemLevel.set(0)
-                    refreshingFinish(this)
+                    refreshingFinish()
                     tempList.addAll(this)
                 }
             })
@@ -144,10 +140,7 @@ class TodoViewModel(application: Application) : BaseViewModel(application) {
         }
     }
 
-    private fun refreshingFinish(data: List<TodoRespBean>) {
-        contentList.clear()
-        contentList.addAll(data)
-        refreshEvent.value = null
+    private fun refreshingFinish() {
         refreshing.set(false)
     }
 
@@ -167,8 +160,6 @@ class TodoViewModel(application: Application) : BaseViewModel(application) {
         fun addNew(type: String)
         fun modifyItem(item: TodoRespBean?)
         fun manageItem(id: String): Boolean
-        override fun back() {
-
-        }
+        override fun back() {}
     }
 }

@@ -26,7 +26,8 @@ class FabBehavior(context: Context, attrs: AttributeSet) : FloatingActionButton.
         directTargetChild: View,
         target: View,
         axes: Int,
-        type: Int): Boolean {
+        type: Int
+    ): Boolean {
         if (child.visibility == View.VISIBLE && viewY == 0F) {
             viewY = coordinatorLayout.height - child.y
         }
@@ -42,7 +43,8 @@ class FabBehavior(context: Context, attrs: AttributeSet) : FloatingActionButton.
         dx: Int,
         dy: Int,
         consumed: IntArray,
-        type: Int) {
+        type: Int
+    ) {
         if (dy > 0 && !animate && child.visibility == View.VISIBLE) {
             hide(child)
         } else if (dy < 0 && !animate && child.visibility == View.INVISIBLE) {

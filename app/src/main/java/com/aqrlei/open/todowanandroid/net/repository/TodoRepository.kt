@@ -16,6 +16,7 @@ import retrofit2.http.*
 class TodoRepository {
     private val todoService = NetHelper.get().createService(TodoService::class.java)
 
+    @Deprecated("")
     fun fetchTypeList(type: String) = todoService.fetchTypeList(type)
 
     fun fetchDoneList(type: String, pageNum: String) = todoService.fetchDoneList(type, pageNum)
@@ -26,26 +27,20 @@ class TodoRepository {
 
     fun delete(id: String) = todoService.delete(id)
 
-    fun updateContent(id: String, data: TodoReqBean): LiveObservable<LiveResponse<BaseRespBean<Any>>> {
-        val updateMap = HashMap<String, String>().apply {
-            put("title", data.title)
-            put("content", data.content)
-            put("date", data.dateStr)
-            put("status", data.status)
-            put("type", data.type)
-        }
-        return todoService.updateContent(id, updateMap)
-    }
+    fun updateContent(id: String, data: TodoReqBean) = todoService.updateContent(id, HashMap<String, String>().apply {
+        put("title", data.title)
+        put("content", data.content)
+        put("date", data.dateStr)
+        put("status", data.status)
+        put("type", data.type)
+    })
 
-    fun addNew(data: TodoReqBean): LiveObservable<LiveResponse<BaseRespBean<Any>>> {
-        val addMap = HashMap<String, String>().apply {
-            put("title", data.title)
-            put("content", data.content)
-            put("date", data.dateStr)
-            put("type", data.type)
-        }
-        return todoService.addNew(addMap)
-    }
+    fun addNew(data: TodoReqBean) = todoService.addNew(HashMap<String, String>().apply {
+        put("title", data.title)
+        put("content", data.content)
+        put("date", data.dateStr)
+        put("type", data.type)
+    })
 
 
     interface TodoService {

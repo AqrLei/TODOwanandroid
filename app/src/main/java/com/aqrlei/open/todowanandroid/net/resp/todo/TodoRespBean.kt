@@ -50,6 +50,4 @@ data class TodoRespBean(
         @JvmField
         var CREATOR: Parcelable.Creator<TodoRespBean> = generateCreator(::TodoRespBean)
     }
-
-
 }
