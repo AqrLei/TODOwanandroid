@@ -97,6 +97,10 @@
     native <methods>;
 }
 
+#aqrlei
+-dontwarn com.aqrlei.open.**
+-keep class com.aqrlei.open.** {*;}
+
 #androidx
 -dontwarn androidx.**
 -keep class androidx.** { *; }

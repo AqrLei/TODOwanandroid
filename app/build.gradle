@@ -15,11 +15,19 @@ android {
         minSdkVersion buildVersion.min
         targetSdkVersion buildVersion.target
         versionCode 1
-        versionName "1.0"
+        versionName "1.0.0-alpha"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
     dataBinding {
         enabled true
+    }
+    signingConfigs {
+        signingkey {
+            storeFile file("../aqrlei.jks")
+            storePassword "aqrLei"
+            keyAlias "aqrLeiAndroid"
+            keyPassword "aqrLei"
+        }
     }
     buildTypes {
         release {
@@ -28,12 +36,23 @@ android {
             shrinkResources true
             buildConfigField "boolean", "IS_LOG_SHOW", "false"
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.signingkey
         }
         debug {
             minifyEnabled false
             zipAlignEnabled false
             shrinkResources false
             buildConfigField "boolean", "IS_LOG_SHOW", "true"
+            signingConfig signingConfigs.signingkey
+        }
+        pre_release {
+            minifyEnabled true
+            debuggable true
+            zipAlignEnabled true
+            shrinkResources true
+            buildConfigField "boolean", "IS_LOG_SHOW", "true"
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.signingkey
         }
     }
     compileOptions {
