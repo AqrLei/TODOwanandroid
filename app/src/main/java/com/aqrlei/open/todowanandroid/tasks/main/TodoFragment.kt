@@ -12,6 +12,7 @@ import com.aqrlei.open.todowanandroid.net.resp.todo.TodoRespBean
 import com.aqrlei.open.todowanandroid.tasks.main.ItemModifyConstant.ITEM_CREATE
 import com.aqrlei.open.todowanandroid.tasks.main.ItemModifyConstant.ITEM_UPDATE
 import com.aqrlei.open.utils.DialogUtil
+import com.google.android.material.snackbar.Snackbar
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -52,6 +53,22 @@ class TodoFragment : ViewModelFragment<TodoViewModel, FragTodoBinding>() {
     }
 
     inner class Navigator : TodoViewModel.TodoNavigator {
+        override fun showNoMoreData() {
+            this@TodoFragment.context?.run {
+                Snackbar.make(
+                    binding.contentRv,
+                    this.resources.getString(R.string.loadNoMoreData),
+                    Snackbar.LENGTH_SHORT)
+                    .addCallback(object : Snackbar.Callback() {
+                        override fun onDismissed(transientBottomBar: Snackbar?, event: Int) {
+                            viewModel.loading = false
+                        }
+                    })
+                    .show()
+            }
+
+        }
+
         override fun modifyItem(item: TodoRespBean?) {
             if (item?.status == "0") {
                 ModifyTodoItemActivity.startForModify(this@TodoFragment, item)

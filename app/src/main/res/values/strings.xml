@@ -53,4 +53,6 @@
     <string name="itemRequired">Required</string>
     <string name="itemOptional">Optional</string>
     <string name="itemSave">Save</string>
+
+    <string name="loadNoMoreData">no more data</string>
 </resources>

@@ -3,10 +3,9 @@ package com.aqrlei.open.todowanandroid.binding
 import android.view.ViewGroup
 import android.widget.RadioGroup
 import androidx.databinding.BindingAdapter
-import androidx.lifecycle.LifecycleOwner
+import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
-import com.aqrlei.open.bindingadapter.adapter.DataBindingPagingAdapter
 import com.google.android.material.tabs.TabLayout
 import com.google.android.material.textfield.TextInputLayout
 
@@ -62,6 +61,22 @@ fun SwipeRefreshLayout.setRefreshAction(refreshAction: () -> Unit) {
     this.setOnRefreshListener(refreshAction)
 }
 
+@BindingAdapter("android:loadAction")
+fun RecyclerView.setLoadAction(loadAction: () -> Unit) {
+    this.addOnScrollListener(object : RecyclerView.OnScrollListener() {
+        override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
+            super.onScrolled(recyclerView, dx, dy)
+            if (dy > 0) {
+                (recyclerView.layoutManager as? LinearLayoutManager)?.run {
+                    if (itemCount == (findLastVisibleItemPosition() + 1)) {
+                        loadAction.invoke()
+                    }
+                }
+            }
+        }
+    })
+}
+
 /**
  * TextInputLayout
  * */
@@ -76,18 +91,6 @@ fun TextInputLayout.setErrorMsg(errorMsg: String?) {
 @BindingAdapter("android:titles")
 fun TabLayout.setTitles(titles: List<String>) {
     titles.forEach { addTab(newTab().setText(it)) }
-}
-
-
-@BindingAdapter("android:onPagingRefresh")
-fun RecyclerView.onPageRefresh(refreshEvent: Boolean?) {
-    if (refreshEvent == true) {
-        (this.adapter as? DataBindingPagingAdapter<*>)?.let { adapter ->
-            (this.context as? LifecycleOwner)?.let { lifecycleOwner ->
-                adapter.refresh(lifecycleOwner)
-            }
-        }
-    }
 }
 
 @BindingAdapter("android:nav_item_checked")

@@ -1,12 +1,9 @@
 package com.aqrlei.open.todowanandroid.tasks.main
 
 import android.app.Application
-import androidx.arch.core.executor.ArchTaskExecutor
 import androidx.databinding.ObservableArrayList
 import androidx.databinding.ObservableBoolean
 import androidx.databinding.ObservableInt
-import androidx.paging.PagedList
-import androidx.recyclerview.widget.DiffUtil
 import com.aqrlei.open.todowanandroid.base.BaseViewModel
 import com.aqrlei.open.todowanandroid.net.repository.TodoRepository
 import com.aqrlei.open.todowanandroid.net.resp.todo.TodoRespBean
@@ -18,40 +15,14 @@ import kotlin.properties.Delegates
 
 class TodoViewModel(application: Application) : BaseViewModel(application) {
 
-    val pageConfig = PagedList.Config.Builder()
-        .setPageSize(10)
-        .setEnablePlaceholders(false)
-        .build()
-    val loadDataAction = { _: Int, nextPage: Int ->
-        val temp = ArrayList<TodoRespBean>().apply {
-            addAll(if (nextPage == 1) initData else bufferDataList)
-            bufferDataList.clear()
-        }
-        /**
-         * 0 和 1 是一样的数据，亿脸懵逼
-         * */
-        fetchList(nextPage.toString())
-        temp
-    }
-    private var bufferDataList: MutableList<TodoRespBean> = ArrayList()
-    private val initData: MutableList<TodoRespBean> = ArrayList()
-    val diffCallback = object : DiffUtil.ItemCallback<TodoRespBean>() {
-        override fun areContentsTheSame(oldItem: TodoRespBean, newItem: TodoRespBean): Boolean {
-            return oldItem.id == newItem.id
-        }
-
-        override fun areItemsTheSame(oldItem: TodoRespBean, newItem: TodoRespBean): Boolean {
-            return oldItem.id == newItem.id
-        }
-    }
     var noMoreData: Boolean = false
-    var init = true
-
     var itemChoicePos: Int = 0
 
+    private var curPage: Int = 1
+
     val tabTitles = ObservableArrayList<String>()
+    val contentList = ObservableArrayList<TodoRespBean>()
     val refreshing = ObservableBoolean()
-    val enablePaging = ObservableBoolean()
     val itemLevel = ObservableInt()
     private val todoNavigator: TodoNavigator?
         get() = navigator as? TodoNavigator
@@ -68,16 +39,30 @@ class TodoViewModel(application: Application) : BaseViewModel(application) {
         }
     }
 
-    val typeChangeAction = { typePosition: Int ->
-        type = typePosition
-    }
     val refreshAction = {
         refreshing.set(true)
         noMoreData = false
-        initData.clear()
-        fetchList()
+        curPage = 1
+        fetchList(curPage.toString())
         Unit
     }
+
+    var loading: Boolean = false
+    val loadAction = {
+        if (!loading) {
+            loading = true
+            if (!noMoreData) {
+                fetchList((++curPage).toString())
+            } else {
+                todoNavigator?.showNoMoreData()
+            }
+        }
+        Unit
+    }
+    val typeChangeAction = { typePosition: Int ->
+        type = typePosition
+    }
+
     val typeStateChangeAction = { statePosition: Int ->
         state = statePosition
     }
@@ -91,9 +76,7 @@ class TodoViewModel(application: Application) : BaseViewModel(application) {
         tabTitles.addAll(
             listOf(
                 "未完成",
-                "已完成"
-            )
-        )
+                "已完成"))
         itemLevel.set(0)
         refreshAction.invoke()
     }
@@ -120,7 +103,7 @@ class TodoViewModel(application: Application) : BaseViewModel(application) {
         type: String,
         pageNum: String = "0"
     ) {
-        observerRespData(todoRepo.fetchDoneList(type, pageNum), false, {
+        observerRespData(todoRepo.fetchDoneList(type, pageNum), !refreshing.get(), {
             noMoreData = it.curPage == (it.total ?: 0 - 1)
             it.datas?.run {
                 refreshingFinish(this)
@@ -130,8 +113,8 @@ class TodoViewModel(application: Application) : BaseViewModel(application) {
     }
 
     private fun fetchNotDoList(type: String, pageNum: String = "0") {
-        observerRespData(todoRepo.fetchNotDoList(type, pageNum), false, {
-            noMoreData = it.curPage == (it.total ?: 0 - 1)
+        observerRespData(todoRepo.fetchNotDoList(type, pageNum), !refreshing.get(), {
+            noMoreData = it.curPage == it.pageCount
             it.datas?.run {
                 itemLevel.set(0)
                 refreshingFinish(this)
@@ -140,16 +123,12 @@ class TodoViewModel(application: Application) : BaseViewModel(application) {
     }
 
     private fun refreshingFinish(data: List<TodoRespBean>) {
-        refreshing.set(false)
-        bufferDataList.clear()
-        bufferDataList.addAll(data)
-        if (initData.isEmpty()) {
-            initData.addAll(bufferDataList)
+        if (refreshing.get()) {
+            refreshing.set(false)
+            contentList.clear()
         }
-        if (init) {
-            enablePaging.set(true)
-            init = false
-        }
+        loading = false
+        contentList.addAll(data)
     }
 
     fun updateStatus(id: String, status: String) {
@@ -166,6 +145,7 @@ class TodoViewModel(application: Application) : BaseViewModel(application) {
 
     interface TodoNavigator : CommonNavigator {
         fun addNew(type: String)
+        fun showNoMoreData()
         fun modifyItem(item: TodoRespBean?)
         fun manageItem(id: String): Boolean
         override fun back() {}

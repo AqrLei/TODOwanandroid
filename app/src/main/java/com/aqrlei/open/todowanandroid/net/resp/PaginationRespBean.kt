@@ -8,7 +8,7 @@ data class PaginationRespBean<T>(
     var offset: String?,
     var over: String?,
     var datas: MutableList<T>?,
-    var pageCount: String?,
+    var pageCount: Int?,
     var size: String?,
     var total: Int?
 )

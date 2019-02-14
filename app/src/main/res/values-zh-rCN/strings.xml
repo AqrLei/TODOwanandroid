@@ -46,4 +46,6 @@
     <string name="itemRequired">必填</string>
     <string name="itemOptional">选填</string>
     <string name="itemSave">保存</string>
+
+    <string name="loadNoMoreData">没有更多数据了</string>
 </resources>
