@@ -51,12 +51,12 @@ class MainActivity : ViewModelActivity<MainViewModel, ActMainBinding>() {
             this@MainActivity.supportFragmentManager.beginTransaction().run {
                 if (tag == FRAGMENT_ME_TAG){
                     this.setCustomAnimations(
-                        R.anim.frag_slide_right_in,
-                        R.anim.frag_slide_left_out)
+                        R.animator.frag_slide_right_in,
+                        R.animator.frag_slide_left_out)
                 }else{
                     this.setCustomAnimations(
-                        R.anim.frag_slide_left_in,
-                        R.anim.frag_slide_right_out)
+                        R.animator.frag_slide_left_in,
+                        R.animator.frag_slide_right_out)
                 }
 
                 showFragment?.also {
