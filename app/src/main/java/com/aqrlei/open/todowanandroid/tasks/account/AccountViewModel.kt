@@ -5,7 +5,6 @@ import androidx.lifecycle.MutableLiveData
 import com.aqrlei.open.todowanandroid.CacheConstant
 import com.aqrlei.open.todowanandroid.base.BaseViewModel
 import com.aqrlei.open.todowanandroid.net.repository.AccountRepository
-import com.aqrlei.open.utils.ActivityCollector
 import com.aqrlei.open.utils.AppCache
 
 /**
@@ -25,24 +24,28 @@ class AccountViewModel(application: Application) :
 
 
     private val userName: String
-        get() = userNameLiveData.value.orEmpty()
+        get() = userNameLiveData.value.orEmpty().trim()
     private val password: String
-        get() = passwordLiveData.value.orEmpty()
+        get() = passwordLiveData.value.orEmpty().trim()
     private val rePassword: String
-        get() = rePasswordLiveData.value.orEmpty()
+        get() = rePasswordLiveData.value.orEmpty().trim()
 
     private val accountNavigator: AccountNavigator?
         get() = navigator as? AccountNavigator
 
     fun login() {
-        userNameErrorLiveData.value = ""
-        passwordErrorLiveData.value = ""
         if (verifyAccount(false)) {
             observerRespData(accountRepo.login(userName, password), true, {
                 AppCache.get().putString(CacheConstant.USER_NAME_KEY, it.userName.orEmpty()).commit()
                 accountNavigator?.loginSuccess(it.userName.orEmpty())
             })
         }
+    }
+
+    private fun resetErrorState() {
+        userNameErrorLiveData.value = ""
+        passwordErrorLiveData.value = ""
+        rePasswordErrorLiveData.value = ""
     }
 
     fun toRegister() {
@@ -52,23 +55,24 @@ class AccountViewModel(application: Application) :
     fun register() {
         if (verifyAccount(true)) {
             observerRespData(accountRepo.register(userName, password, rePassword), true, {
-
+                accountNavigator?.loginSuccess(it.userName.orEmpty())
             })
         }
     }
 
     private fun verifyAccount(register: Boolean): Boolean {
+        resetErrorState()
         return when {
-            userName.length < 6 -> {
-                userNameErrorLiveData.value = "用户名不正确"
+            userName.isEmpty() -> {
+                accountNavigator?.verifyUserNameError()
                 false
             }
             password.length < 6 -> {
-                passwordErrorLiveData.value = "密码不正确"
+                accountNavigator?.verifyPasswordError()
                 false
             }
             register and (password != rePassword) -> {
-                rePasswordErrorLiveData.value = "两次输入密码不匹配"
+                accountNavigator?.verifyRePasswordError()
                 false
             }
             else -> true
@@ -76,11 +80,11 @@ class AccountViewModel(application: Application) :
     }
 
 
-
     interface AccountNavigator : BaseViewModel.CommonNavigator {
         fun toRegister()
-
         fun loginSuccess(userName: String)
+        fun verifyUserNameError()
+        fun verifyPasswordError()
+        fun verifyRePasswordError()
     }
-
 }

@@ -96,7 +96,7 @@
                         android:textAllCaps="false"
                         android:backgroundTint="@color/colorAccent"
                         android:padding="16dp"
-                        android:text="@string/action_sign_in"
+                        android:text="@string/register"
                         android:textColor="@color/white"
                         android:textStyle="bold"/>
             </LinearLayout>

@@ -34,7 +34,23 @@ class LoginActivity : ViewModelActivity<AccountViewModel, ActLoginBinding>() {
         binding.viewModel = viewModel
     }
 
-    inner class Navigator : CommonNavigator(), AccountViewModel.AccountNavigator {
+    open inner class Navigator : CommonNavigator(), AccountViewModel.AccountNavigator {
+
+        override fun verifyUserNameError() {
+            viewModel.userNameErrorLiveData.value =
+                this@LoginActivity.resources.getString(R.string.accountUserNameError)
+        }
+
+        override fun verifyPasswordError() {
+            viewModel.passwordErrorLiveData.value =
+                this@LoginActivity.resources.getString(R.string.accountPasswordError)
+        }
+
+        override fun verifyRePasswordError() {
+            viewModel.rePasswordErrorLiveData.value =
+                this@LoginActivity.resources.getString(R.string.accountRePasswordError)
+        }
+
         override fun toRegister() {
             RegisterActivity.start(this@LoginActivity)
         }

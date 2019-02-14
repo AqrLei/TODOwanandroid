@@ -48,4 +48,8 @@
     <string name="itemSave">保存</string>
 
     <string name="loadNoMoreData">没有更多数据了</string>
+
+    <string name="accountUserNameError">用户名不能为空</string>
+    <string name="accountPasswordError">密码至少6个字符</string>
+    <string name="accountRePasswordError">两次输入密码不匹配</string>
 </resources>

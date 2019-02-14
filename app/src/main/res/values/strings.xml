@@ -55,4 +55,9 @@
     <string name="itemSave">Save</string>
 
     <string name="loadNoMoreData">no more data</string>
+
+    <string name="accountUserNameError">userName must not be empty</string>
+    <string name="accountPasswordError">password must be at least 6 characters</string>
+    <string name="accountRePasswordError">two passwords do not match</string>
+
 </resources>
