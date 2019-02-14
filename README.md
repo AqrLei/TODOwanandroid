@@ -4,7 +4,6 @@ TODOwanandroid
 介绍
 ------
    - 项目使用MVVM-DataBinding架构，采用Retrofit2网络请求框架，基于玩android的Todo Api,纯Kotlin编程。
-   - 目前尚处于开发起始阶段
 
 NOTES
 -----
