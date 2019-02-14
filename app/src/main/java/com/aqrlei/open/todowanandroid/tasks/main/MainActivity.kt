@@ -38,10 +38,10 @@ class MainActivity : ViewModelActivity<MainViewModel, ActMainBinding>() {
     override fun initComponents(binding: ActMainBinding) {
         viewModel.navigator = Navigator()
         binding.viewModel = viewModel
-        meFragment = supportFragmentManager.findFragmentByTag(FRAGMENT_ME_TAG) as? MeFragment ?:
-                MeFragment.newInstance(intent.getStringExtra(CacheConstant.USER_NAME_KEY))
-        todoFragment = supportFragmentManager.findFragmentByTag(FRAGMENT_TODO_TAG) as? TodoFragment ?:
-                TodoFragment.newInstance()
+        meFragment = supportFragmentManager.findFragmentByTag(FRAGMENT_ME_TAG) as? MeFragment ?: MeFragment.newInstance(
+            intent.getStringExtra(CacheConstant.USER_NAME_KEY))
+        todoFragment =
+            supportFragmentManager.findFragmentByTag(FRAGMENT_TODO_TAG) as? TodoFragment ?: TodoFragment.newInstance()
         viewModel.setSelected(0)
     }
 
@@ -49,6 +49,16 @@ class MainActivity : ViewModelActivity<MainViewModel, ActMainBinding>() {
 
         private fun changeFragment(showFragment: Fragment?, hideFragment: Fragment?, tag: String) {
             this@MainActivity.supportFragmentManager.beginTransaction().run {
+                if (tag == FRAGMENT_ME_TAG){
+                    this.setCustomAnimations(
+                        R.anim.frag_slide_right_in,
+                        R.anim.frag_slide_left_out)
+                }else{
+                    this.setCustomAnimations(
+                        R.anim.frag_slide_left_in,
+                        R.anim.frag_slide_right_out)
+                }
+
                 showFragment?.also {
                     if (!it.isAdded) {
                         this.add(R.id.containerFl, it, tag)
