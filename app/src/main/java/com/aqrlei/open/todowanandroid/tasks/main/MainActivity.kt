@@ -49,7 +49,7 @@ class MainActivity : ViewModelActivity<MainViewModel, ActMainBinding>() {
 
         private fun changeFragment(showFragment: Fragment?, hideFragment: Fragment?, tag: String) {
             this@MainActivity.supportFragmentManager.beginTransaction().run {
-                if (tag == FRAGMENT_ME_TAG){
+            /*    if (tag == FRAGMENT_ME_TAG){
                     this.setCustomAnimations(
                         R.animator.frag_slide_right_in,
                         R.animator.frag_slide_left_out)
@@ -57,7 +57,7 @@ class MainActivity : ViewModelActivity<MainViewModel, ActMainBinding>() {
                     this.setCustomAnimations(
                         R.animator.frag_slide_left_in,
                         R.animator.frag_slide_right_out)
-                }
+                }*/
 
                 showFragment?.also {
                     if (!it.isAdded) {
