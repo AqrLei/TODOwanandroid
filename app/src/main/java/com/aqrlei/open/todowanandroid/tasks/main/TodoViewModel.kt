@@ -109,6 +109,8 @@ class TodoViewModel(application: Application) : BaseViewModel(application) {
                 refreshingFinish(this)
                 itemLevel.set(1)
             }
+        }, finishAction = {
+            reqFinish()
         })
     }
 
@@ -119,16 +121,23 @@ class TodoViewModel(application: Application) : BaseViewModel(application) {
                 itemLevel.set(0)
                 refreshingFinish(this)
             }
+        }, finishAction = {
+            reqFinish()
         })
     }
 
     private fun refreshingFinish(data: List<TodoRespBean>) {
         if (refreshing.get()) {
-            refreshing.set(false)
             contentList.clear()
         }
-        loading = false
         contentList.addAll(data)
+    }
+
+    private fun reqFinish() {
+        if (refreshing.get()) {
+            refreshing.set(false)
+        }
+        loading = false
     }
 
     fun updateStatus(id: String, status: String) {

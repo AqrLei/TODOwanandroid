@@ -14,7 +14,7 @@
 
     <item
             android:gravity="center"
-            android:drawable="@mipmap/ic_launcher_round"
+            android:drawable="@mipmap/ic_launcher"
             android:top="225dp"
             android:bottom="225dp"
             android:right="100dp"

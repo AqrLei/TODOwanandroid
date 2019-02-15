@@ -29,7 +29,7 @@
                     android:layout_height="wrap_content">
                 <ImageView
                         android:layout_gravity="center_horizontal"
-                        android:src="@mipmap/ic_launcher_round"
+                        android:src="@mipmap/ic_launcher"
                         android:layout_width="wrap_content"
                         android:scaleType="centerInside"
                         android:layout_marginBottom="@dimen/view_vertical_margin_large"

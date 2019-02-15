@@ -23,7 +23,7 @@ ext.buildVersion = buildVersion
 
 def versions = [:]
 
-versions.kotlin = "1.3.20"
+versions.kotlin = "1.3.21"
 versions.kotlin_coroutines = "1.1.1"
 
 
