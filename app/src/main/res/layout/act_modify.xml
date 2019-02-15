@@ -29,6 +29,7 @@
                 android:layout_height="match_parent">
             <LinearLayout
                     android:orientation="vertical"
+                    android:layoutAnimation="@anim/modify_item_layout_anim"
                     android:layout_width="match_parent" android:layout_height="wrap_content">
 
                 <androidx.cardview.widget.CardView android:layout_width="match_parent"
