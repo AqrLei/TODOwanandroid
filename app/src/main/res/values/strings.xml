@@ -34,11 +34,18 @@
     <string name="TodoItemIncomplete">Incomplete</string>
     <string name="TodoItemCompleted">Completed</string>
     <string name="TodoItemDelete">Delete</string>
+
+    <string-array name="TodoTabTitle">
+        <item>@string/TodoItemIncomplete</item>
+        <item>@string/TodoItemCompleted</item>
+    </string-array>
     <string-array name="TodoItemManage">
         <item>@string/TodoItemIncomplete</item>
         <item>@string/TodoItemCompleted</item>
         <item>@string/TodoItemDelete</item>
     </string-array>
+
+
 
     <string name="TodoItem">TODO</string>
 

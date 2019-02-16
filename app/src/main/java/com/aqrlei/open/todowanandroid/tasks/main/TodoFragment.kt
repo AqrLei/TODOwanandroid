@@ -37,7 +37,8 @@ class TodoFragment : ViewModelFragment<TodoViewModel, FragTodoBinding>() {
         binding.itemBinding = ItemBinding.create<TodoRespBean>().set(BR.item, R.layout.list_item_todo)
             .bindExtra(BR.backgroundLevel, viewModel.itemLevel)
             .bindExtra(BR.viewModel, viewModel)
-        viewModel.init()
+        val tabTitleList = this.resources.getStringArray(R.array.TodoTabTitle)
+        viewModel.init(tabTitleList)
         binding.contentSRL.setColorSchemeResources(
             R.color.refresh_blue,
             R.color.refresh_green,

@@ -71,12 +71,10 @@ class TodoViewModel(application: Application) : BaseViewModel(application) {
         todoNavigator?.addNew(type.toString())
     }
 
-    fun init() {
+    fun init(titles:Array<String>) {
         tabTitles.clear()
         tabTitles.addAll(
-            listOf(
-                "未完成",
-                "已完成"))
+            titles)
         itemLevel.set(0)
         refreshAction.invoke()
     }
