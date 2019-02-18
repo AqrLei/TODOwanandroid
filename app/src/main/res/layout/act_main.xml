@@ -6,7 +6,7 @@
 
         <variable
                 name="viewModel"
-                type="com.aqrlei.open.todowanandroid.tasks.main.MainViewModel"/>
+                type="com.aqrlei.app.open.todowanandroid.tasks.main.MainViewModel"/>
 
     </data>
 

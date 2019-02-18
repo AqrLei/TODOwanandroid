@@ -6,9 +6,9 @@
 
         <variable
                 name="item"
-                type="com.aqrlei.open.todowanandroid.net.resp.todo.TodoRespBean"/>
+                type="com.aqrlei.app.open.todowanandroid.net.resp.todo.TodoRespBean"/>
         <variable name="backgroundLevel" type="androidx.databinding.ObservableInt"/>
-        <variable name="viewModel" type="com.aqrlei.open.todowanandroid.tasks.main.TodoViewModel"/>
+        <variable name="viewModel" type="com.aqrlei.app.open.todowanandroid.tasks.main.TodoViewModel"/>
 
     </data>
 

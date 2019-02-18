@@ -2,8 +2,8 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
-        <variable name="item" type="com.aqrlei.open.todowanandroid.net.req.TodoReqBean"/>
-        <variable name="viewModel" type="com.aqrlei.open.todowanandroid.tasks.main.ModifyViewModel"/>
+        <variable name="item" type="com.aqrlei.app.open.todowanandroid.net.req.TodoReqBean"/>
+        <variable name="viewModel" type="com.aqrlei.app.open.todowanandroid.tasks.main.ModifyViewModel"/>
         <import type="android.view.View"/>
 
     </data>

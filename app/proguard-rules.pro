@@ -1,29 +1,10 @@
-# Add project specific ProGuard rules here.
-# By default, the flags in this file are appended to flags specified
-# in C:\Users\Admin\AppData\Local\Android\Sdk/tools/proguard/proguard-android.txt
-# You can edit the include path and order by changing the proguardFiles
-# directive in build.gradle.
-#
-# For more details, see
-#   http://developer.android.com/guide/developing/tools/proguard.html
-
-# Add any project specific keep options here:
-
-# If your project uses WebView with JS, uncomment the following
-# and specify the fully qualified class name to the JavaScript interface
-# class:
-#-keepclassmembers class fqcn.of.javascript.interface.for.webview {
-#   public *;
-#}
-
-
 -optimizationpasses 5          # 指定代码的压缩级别
 -dontusemixedcaseclassnames   # 是否使用大小写混合
 -dontpreverify           # 混淆时是否做预校验
 -verbose                # 混淆时是否记录日志
 -dontskipnonpubliclibraryclasses #不去忽略非公共的库类
 -dontoptimize        #优化  不优化输入的类文件
--dontpreverify    #预校验
+##-dontpreverify    #不进行预校验,可加快混淆速度。 Android 不需要
 -ignorewarning   #忽略警告
 -optimizations !code/simplification/arithmetic,!field/*,!class/merging/*  # 混淆时所采用的算法
 
@@ -35,6 +16,10 @@
 -printmapping proguard/mapping.txt #混淆前后的映射
 ##记录生成的日志数据，gradle build时在本项目根目录输出##
 
+-keepattributes *Annotation*  #保护代码中的Annotation不被混淆
+-keepattributes Signature #避免混淆泛型，JSON实体映射时很重要
+-keepattributes SourceFile,LineNumberTable #抛出异常时保留代码行号
+
 #kotlin代码混淆
 -dontwarn kotlin.**
 -assumenosideeffects class kotlin.jvm.internal.Intrinsics {
@@ -42,18 +27,24 @@
 }
 
 
+-keep public class * extends android.app.Application   # 保持哪些类不被混淆
 -keep public class * extends android.app.Activity      # 保持哪些类不被混淆
 -keep public class * extends android.app.Fragment      # 保持哪些类不被混淆
+-keep public class * extends androidx.fragment.app.Fragment    # 保持哪些类不被混淆
 -keep public class * extends android.support.v4.app.Fragment    # 保持哪些类不被混淆
--keep public class * extends android.app.Application   # 保持哪些类不被混淆
 -keep public class * extends android.app.Service       # 保持哪些类不被混淆
 -keep public class * extends android.content.BroadcastReceiver  # 保持哪些类不被混淆
 -keep public class * extends android.content.ContentProvider    # 保持哪些类不被混淆
 -keep public class * extends android.app.backup.BackupAgentHelper # 保持哪些类不被混淆
 -keep public class * extends android.preference.Preference        # 保持哪些类不被混淆
--keep public class com.android.vending.licensing.ILicensingService    # 保持哪些类不被混淆
+
+#-keep public class com.google.vending.licensing.ILicensingService #接入谷歌原生服务时有用
+#-keep public class com.android.vending.licensing.ILicensingService
 
 -dontwarn android.support.**  #如果引用了v4或者v7包
+
+-keep class android.support.v4.** { *; }
+-keep interface android.support.v4.app.** { *; }
 
 -keepclasseswithmembernames class * {  # 保持 native 方法不被混淆
     native <methods>;
@@ -87,29 +78,29 @@
 
 -keepnames class * implements java.io.Serializable #保持 Serializable 不被混淆
 
--keep class android.support.v4.** { *; }
--keep interface android.support.v4.app.** { *; }
-
--keepattributes *Annotation* #保护注解
-
-
 -keepclassmembers class * { # Keep native methods
     native <methods>;
 }
 
 #aqrlei
 -dontwarn com.aqrlei.open.**
--keep class com.aqrlei.open.** {*;}
+-keepnames class com.aqrlei.open.** { *;}
+
+-keep class com.aqrlei.app.open.todowanandroid.net.** { *;}
+-keep class com.aqrlei.app.open.todowanandroid.binding.** { *;}
 
 #androidx
 -dontwarn androidx.**
--keep class androidx.** { *; }
+-keepnames class androidx.** { *; }
 
--keep class android.arch.** { *; }
+-keepnames class android.arch.** { *; }
 
 #retrofit2
--dontwarn retrofit2.**
--keep class retrofit2.** { *; }
+-keepattributes Signature, InnerClasses, EnclosingMethod
+-keepattributes RuntimeVisibleAnnotations, RuntimeVisibleParameterAnnotations
+-keepclassmembers,allowshrinking,allowobfuscation interface * {
+    @retrofit2.http.* <methods>;
+}
 
 -dontwarn com.google.gson.**
 -keep class com.google.gson.stream.** { *; }

@@ -11,7 +11,7 @@ plugins {
 android {
     compileSdkVersion buildVersion.compile
     defaultConfig {
-        applicationId "com.aqrlei.open.todowanandroid"
+        applicationId "com.aqrlei.app.open.todowanandroid"
         minSdkVersion buildVersion.min
         targetSdkVersion buildVersion.target
         versionCode 1
