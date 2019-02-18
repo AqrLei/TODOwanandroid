@@ -15,7 +15,7 @@ android {
         minSdkVersion buildVersion.min
         targetSdkVersion buildVersion.target
         versionCode 1
-        versionName "1.0.1-alpha"
+        versionName "1.0.2-alpha"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
     dataBinding {

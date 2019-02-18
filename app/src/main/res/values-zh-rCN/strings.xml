@@ -1,6 +1,6 @@
 <resources>
     <string name="app_name">待办清单</string>
-    <string name="version_name">版本:1.0.1-alpha</string>
+    <string name="version_name">版本:1.0.2-alpha</string>
     <string name="login_user_name_hint">用户名</string>
     <string name="login_password_hint">密码</string>
     <string name="login_repeat_password_hint">再次输入密码</string>
