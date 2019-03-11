@@ -98,7 +98,7 @@ class TodoFragment : com.aqrlei.app.open.todowanandroid.base.ViewModelFragment<T
 
         override fun addNew(type: String) {
             val dateTime = Date().time
-            val dateStr = SimpleDateFormat("yyyy-MM-dd").format(dateTime)
+            val dateStr = SimpleDateFormat("yyyy-MM-dd",Locale.ROOT).format(dateTime)
             ModifyTodoItemActivity.startForCreate(
                 this@TodoFragment, TodoRespBean(
                     type = viewModel.type.toString(),

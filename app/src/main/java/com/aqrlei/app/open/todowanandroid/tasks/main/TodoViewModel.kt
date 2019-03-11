@@ -14,7 +14,7 @@ import kotlin.properties.Delegates
 
 class TodoViewModel(application: Application) : com.aqrlei.app.open.todowanandroid.base.BaseViewModel(application) {
 
-    var noMoreData: Boolean = false
+    private var noMoreData: Boolean = false
     var itemChoicePos: Int = 0
 
     private var curPage: Int = 1
@@ -70,7 +70,7 @@ class TodoViewModel(application: Application) : com.aqrlei.app.open.todowanandro
         todoNavigator?.addNew(type.toString())
     }
 
-    fun init(titles:Array<String>) {
+    fun init(titles: Array<String>) {
         tabTitles.clear()
         tabTitles.addAll(
             titles)

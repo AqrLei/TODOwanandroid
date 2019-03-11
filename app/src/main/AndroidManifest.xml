@@ -13,7 +13,7 @@
             android:supportsRtl="true"
             android:theme="@style/AppTheme"
             android:usesCleartextTraffic="true"
-            tools:ignore="GoogleAppIndexingWarning">
+            tools:ignore="GoogleAppIndexingWarning" tools:targetApi="m">
         <activity
                 android:name="com.aqrlei.app.open.todowanandroid.LaunchActivity"
                 android:theme="@style/launcherTheme">

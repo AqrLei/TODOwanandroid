@@ -102,7 +102,7 @@ class ModifyTodoItemActivity : com.aqrlei.app.open.todowanandroid.base.ViewModel
             dataPickerDialog(this@ModifyTodoItemActivity) {
                 viewModel.item.value = viewModel.item.value?.apply {
                     date = it.toString()
-                    dateStr = SimpleDateFormat("yyyy-MM-dd").format(it)
+                    dateStr = SimpleDateFormat("yyyy-MM-dd",Locale.ROOT).format(it)
                 }
             }.show()
         }

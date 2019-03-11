@@ -30,7 +30,7 @@ abstract class ViewModelActivity<VM : com.aqrlei.app.open.todowanandroid.base.Ba
         super.onCreate(savedInstanceState)
         setContentView(bindLayout())
         binding = DataBindingUtil.setContentView(this, bindLayout())
-        binding.setLifecycleOwner(this)
+        binding.lifecycleOwner = this
         window.decorView.findViewById<ViewGroup>(android.R.id.content).addView(loadingView)
         ActivityCollector.add(this)
         observerData()
