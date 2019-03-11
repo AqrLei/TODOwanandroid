@@ -59,12 +59,20 @@ versions.aqrlei_utils = "0.3.2"
 versions.aqrlei_bindingadapter = "0.0.3"
 
 
+
+
 def deps = [:]
 deps.gradle_plugin = "com.android.tools.build:gradle:$versions.gradle_plugin"
 deps.material = "com.google.android.material:material:$versions.material"
-deps.junit = "junit:junit:$versions.junit"
 deps.zxing = "com.google.zxing:core:$versions.zxing_core"
 
+def test = [:]
+test.runner = "androidx.test:runner:$versions.runner"
+test.espresso =  "androidx.test.espresso:espresso-core:$versions.espresso"
+test.junit = "junit:junit:$versions.junit"
+test.junit_ext = "androidx.test.ext:junit:1.1.0"
+test.junit_ktx_ext = "androidx.test.ext:junit-ktx:1.1.0"
+deps.test = test
 
 def bintrayUpload = [:]
 bintrayUpload.maven = "com.github.dcendents:android-maven-gradle-plugin:$versions.maven_plugin"
@@ -72,14 +80,11 @@ bintrayUpload.bintray = "com.jfrog.bintray.gradle:gradle-bintray-plugin:$version
 bintrayUpload.dokka = "org.jetbrains.dokka:dokka-android-gradle-plugin:$versions.dokka_plugin"
 deps.bintrayUpload = bintrayUpload
 
-
 def androidx = [:]
 androidx.appcompat = "androidx.appcompat:appcompat:$versions.appcompat"
 androidx.constraint = "androidx.constraintlayout:constraintlayout:$versions.constraint"
 androidx.fragment = "androidx.fragment:fragment:$versions.fragment"
 androidx.ktx = "androidx.core:core-ktx:$versions.ktx"
-androidx.runner = "androidx.test:runner:$versions.runner"
-androidx.espresso = "androidx.test.espresso:espresso-core:$versions.espresso"
 androidx.lifecycle = "android.arch.lifecycle:extensions:$versions.lifecycle"
 androidx.paging = "androidx.paging:paging-runtime:$versions.paging"
 deps.androidx = androidx

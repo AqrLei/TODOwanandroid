@@ -70,15 +70,17 @@ android {
 dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
     implementation deps.material
-    testImplementation deps.junit
 
     implementation deps.kotlin.stdlib
 
     implementation deps.androidx.appcompat
     implementation deps.androidx.constraint
     implementation deps.androidx.lifecycle
-    androidTestImplementation deps.androidx.runner
-    androidTestImplementation deps.androidx.espresso
+
+    testImplementation deps.test.junit
+    androidTestImplementation deps.test.junit_ktx_ext
+    androidTestImplementation deps.test.runner
+    androidTestImplementation deps.test.espresso
 
     implementation deps.retrofit.retrofit
     implementation deps.retrofit.gsonConverter
