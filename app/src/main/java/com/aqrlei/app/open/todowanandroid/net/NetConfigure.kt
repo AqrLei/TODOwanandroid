@@ -5,5 +5,5 @@ package com.aqrlei.app.open.todowanandroid.net
  */
 
 object NetConfigure {
-    const val BASE_URL = "http://www.wanandroid.com/"
+    const val BASE_URL = "https://www.wanandroid.com/"
 }
