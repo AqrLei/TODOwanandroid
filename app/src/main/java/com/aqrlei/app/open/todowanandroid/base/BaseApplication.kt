@@ -33,42 +33,49 @@ class BaseApplication : Application.ActivityLifecycleCallbacks, Application() {
     override fun onActivityCreated(activity: Activity?, savedInstanceState: Bundle?) {
         Log.d(
             LOG_TAG,
-            " $LEFT_ARROW${activity?.javaClass?.simpleName.orEmpty()} is onCreated $RIGHT_ARROW")
+            " $LEFT_ARROW${activity?.javaClass?.simpleName.orEmpty()} is onCreated $RIGHT_ARROW"
+        )
     }
 
     override fun onActivityStarted(activity: Activity?) {
         Log.d(
             LOG_TAG,
-            " $LEFT_ARROW${activity?.javaClass?.simpleName.orEmpty()} is onStarted $RIGHT_ARROW")
+            " $LEFT_ARROW${activity?.javaClass?.simpleName.orEmpty()} is onStarted $RIGHT_ARROW"
+        )
     }
 
     override fun onActivityResumed(activity: Activity?) {
         Log.d(
             LOG_TAG,
-            " $LEFT_ARROW${activity?.javaClass?.simpleName.orEmpty()} is onResumed $RIGHT_ARROW")
+            " $LEFT_ARROW${activity?.javaClass?.simpleName.orEmpty()} is onResumed $RIGHT_ARROW"
+        )
     }
 
     override fun onActivityPaused(activity: Activity?) {
         Log.d(
             LOG_TAG,
-            " $LEFT_ARROW${activity?.javaClass?.simpleName.orEmpty()} is onPaused $RIGHT_ARROW")
+            " $LEFT_ARROW${activity?.javaClass?.simpleName.orEmpty()} is onPaused $RIGHT_ARROW"
+        )
     }
 
     override fun onActivityStopped(activity: Activity?) {
         Log.d(
             LOG_TAG,
-            " $LEFT_ARROW${activity?.javaClass?.simpleName.orEmpty()} is onStopped $RIGHT_ARROW")
+            " $LEFT_ARROW${activity?.javaClass?.simpleName.orEmpty()} is onStopped $RIGHT_ARROW"
+        )
     }
 
     override fun onActivitySaveInstanceState(activity: Activity?, outState: Bundle?) {
         Log.d(
             LOG_TAG,
-            " $LEFT_ARROW${activity?.javaClass?.simpleName.orEmpty()} is onSaveInstanceState $RIGHT_ARROW")
+            " $LEFT_ARROW${activity?.javaClass?.simpleName.orEmpty()} is onSaveInstanceState $RIGHT_ARROW"
+        )
     }
 
     override fun onActivityDestroyed(activity: Activity?) {
         Log.d(
             LOG_TAG,
-            " $LEFT_ARROW${activity?.javaClass?.simpleName.orEmpty()} is onDestroyed $RIGHT_ARROW")
+            " $LEFT_ARROW${activity?.javaClass?.simpleName.orEmpty()} is onDestroyed $RIGHT_ARROW"
+        )
     }
 }

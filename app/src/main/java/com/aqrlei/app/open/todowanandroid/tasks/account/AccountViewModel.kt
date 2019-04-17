@@ -34,7 +34,9 @@ class AccountViewModel(application: Application) :
     fun login() {
         if (verifyAccount(false)) {
             observerRespData(accountRepo.login(userName, password), true, {
-                AppCache.get().putString(com.aqrlei.app.open.todowanandroid.CacheConstant.USER_NAME_KEY, it.userName.orEmpty()).commit()
+                AppCache.get()
+                    .putString(com.aqrlei.app.open.todowanandroid.CacheConstant.USER_NAME_KEY, it.userName.orEmpty())
+                    .commit()
                 accountNavigator?.loginSuccess(it.userName.orEmpty())
             })
         }

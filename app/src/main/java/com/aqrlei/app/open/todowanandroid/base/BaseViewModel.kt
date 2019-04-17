@@ -3,9 +3,9 @@ package com.aqrlei.app.open.todowanandroid.base
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.MutableLiveData
+import com.aqrlei.app.open.todowanandroid.net.resp.BaseRespBean
 import com.aqrlei.open.retrofit.livedatacalladapter.LiveObservable
 import com.aqrlei.open.retrofit.livedatacalladapter.LiveResponse
-import com.aqrlei.app.open.todowanandroid.net.resp.BaseRespBean
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
@@ -17,7 +17,7 @@ import kotlinx.coroutines.launch
 abstract class BaseViewModel(application: Application) : AndroidViewModel(application) {
     val toast = MutableLiveData<String>()
     val isLoading = MutableLiveData<Boolean>()
-    var navigator: com.aqrlei.app.open.todowanandroid.base.BaseViewModel.CommonNavigator? = null
+    var navigator: CommonNavigator? = null
 
     protected fun <T> observerRespData(
         liveObservable: LiveObservable<LiveResponse<BaseRespBean<T>>>,
@@ -26,8 +26,9 @@ abstract class BaseViewModel(application: Application) : AndroidViewModel(applic
         finishAction: (() -> Unit)? = null,
         successWithoutErrorAction: (() -> Unit)? = null,
         processErrorAction: ((String, String) -> Boolean)? = null,
-        processFailureAction: ((Throwable?) -> Boolean)? = null){
-        GlobalScope.launch (Dispatchers.Main) {
+        processFailureAction: ((Throwable?) -> Boolean)? = null
+    ) {
+        GlobalScope.launch(Dispatchers.Main) {
             if (isShowLoading) {
                 isLoading.value = true
             }

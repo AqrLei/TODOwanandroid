@@ -73,7 +73,8 @@ class TodoViewModel(application: Application) : com.aqrlei.app.open.todowanandro
     fun init(titles: Array<String>) {
         tabTitles.clear()
         tabTitles.addAll(
-            titles)
+            titles
+        )
         itemLevel.set(0)
         refreshAction.invoke()
     }

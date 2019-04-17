@@ -12,14 +12,15 @@ import androidx.lifecycle.Observer
 /**
  * @author aqrlei on 2018/12/24
  */
-abstract class ViewModelFragment<VM : com.aqrlei.app.open.todowanandroid.base.BaseViewModel, VB : ViewDataBinding> : Fragment(),
-                                                                                                                     com.aqrlei.app.open.todowanandroid.base.BaseView {
+abstract class ViewModelFragment<VM : BaseViewModel, VB : ViewDataBinding> :
+    Fragment(),
+    BaseView {
 
     protected abstract val viewModel: VM
     protected lateinit var binding: VB
 
-    private val baseView: com.aqrlei.app.open.todowanandroid.base.BaseView?
-        get() = this.context as? com.aqrlei.app.open.todowanandroid.base.BaseView
+    private val baseView: BaseView?
+        get() = this.context as? BaseView
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         binding = DataBindingUtil.inflate(inflater, bindLayout(), container, false)

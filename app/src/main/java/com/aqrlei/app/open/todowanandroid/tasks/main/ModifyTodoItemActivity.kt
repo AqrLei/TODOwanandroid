@@ -20,7 +20,8 @@ import java.util.*
 /**
  * @author aqrlei on 2019/2/11
  */
-class ModifyTodoItemActivity : com.aqrlei.app.open.todowanandroid.base.ViewModelActivity<ModifyViewModel, ActModifyBinding>() {
+class ModifyTodoItemActivity :
+    com.aqrlei.app.open.todowanandroid.base.ViewModelActivity<ModifyViewModel, ActModifyBinding>() {
     companion object {
         private const val DATA_KEY = "dataKey"
         private const val ITEM_PROCESS_KEY = "itemProcessKey"
@@ -102,7 +103,7 @@ class ModifyTodoItemActivity : com.aqrlei.app.open.todowanandroid.base.ViewModel
             dataPickerDialog(this@ModifyTodoItemActivity) {
                 viewModel.item.value = viewModel.item.value?.apply {
                     date = it.toString()
-                    dateStr = SimpleDateFormat("yyyy-MM-dd",Locale.ROOT).format(it)
+                    dateStr = SimpleDateFormat("yyyy-MM-dd", Locale.ROOT).format(it)
                 }
             }.show()
         }

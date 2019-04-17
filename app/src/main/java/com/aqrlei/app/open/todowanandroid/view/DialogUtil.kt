@@ -15,8 +15,9 @@ object DialogUtil {
         BottomSheetDialog(context).apply {
             setContentView(bindClickAction.invoke())
         }
-    fun generateFullScreenDialog(context:Context,bindClickAction: (Dialog) -> View) =
-            Dialog(context, R.style.FullScreenDialogStyle).apply {
-                setContentView(bindClickAction(this))
-            }
+
+    fun generateFullScreenDialog(context: Context, bindClickAction: (Dialog) -> View) =
+        Dialog(context, R.style.FullScreenDialogStyle).apply {
+            setContentView(bindClickAction(this))
+        }
 }

@@ -3,13 +3,13 @@ package com.aqrlei.app.open.todowanandroid.tasks.main
 import android.app.Activity
 import android.content.Intent
 import androidx.lifecycle.ViewModelProviders
-import com.aqrlei.open.bindingadapter.bind.ItemBinding
 import com.aqrlei.app.open.todowanandroid.BR
 import com.aqrlei.app.open.todowanandroid.R
 import com.aqrlei.app.open.todowanandroid.databinding.FragTodoBinding
 import com.aqrlei.app.open.todowanandroid.net.resp.todo.TodoRespBean
 import com.aqrlei.app.open.todowanandroid.tasks.main.ItemModifyConstant.ITEM_CREATE
 import com.aqrlei.app.open.todowanandroid.tasks.main.ItemModifyConstant.ITEM_UPDATE
+import com.aqrlei.open.bindingadapter.bind.ItemBinding
 import com.aqrlei.open.utils.DialogUtil
 import com.google.android.material.snackbar.Snackbar
 import java.text.SimpleDateFormat
@@ -58,7 +58,8 @@ class TodoFragment : com.aqrlei.app.open.todowanandroid.base.ViewModelFragment<T
                 Snackbar.make(
                     binding.contentRv,
                     this.resources.getString(R.string.loadNoMoreData),
-                    Snackbar.LENGTH_SHORT)
+                    Snackbar.LENGTH_SHORT
+                )
                     .addCallback(object : Snackbar.Callback() {
                         override fun onDismissed(transientBottomBar: Snackbar?, event: Int) {
                             viewModel.loading = false
@@ -98,7 +99,7 @@ class TodoFragment : com.aqrlei.app.open.todowanandroid.base.ViewModelFragment<T
 
         override fun addNew(type: String) {
             val dateTime = Date().time
-            val dateStr = SimpleDateFormat("yyyy-MM-dd",Locale.ROOT).format(dateTime)
+            val dateStr = SimpleDateFormat("yyyy-MM-dd", Locale.ROOT).format(dateTime)
             ModifyTodoItemActivity.startForCreate(
                 this@TodoFragment, TodoRespBean(
                     type = viewModel.type.toString(),

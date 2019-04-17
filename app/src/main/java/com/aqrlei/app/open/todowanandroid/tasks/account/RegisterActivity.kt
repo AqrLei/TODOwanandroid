@@ -12,7 +12,8 @@ import com.aqrlei.open.utils.IntentUtil
  * @author aqrlei on 2018/12/29
  */
 
-class RegisterActivity : com.aqrlei.app.open.todowanandroid.base.ViewModelActivity<AccountViewModel, ActRegisterBinding>() {
+class RegisterActivity :
+    com.aqrlei.app.open.todowanandroid.base.ViewModelActivity<AccountViewModel, ActRegisterBinding>() {
     companion object {
         fun start(context: Context) {
             val intent = Intent(context, RegisterActivity::class.java)

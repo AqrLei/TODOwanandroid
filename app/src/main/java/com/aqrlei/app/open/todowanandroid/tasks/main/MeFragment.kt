@@ -25,7 +25,12 @@ class MeFragment : com.aqrlei.app.open.todowanandroid.base.ViewModelFragment<MeV
     companion object {
         fun newInstance(userName: String): MeFragment {
             return MeFragment().apply {
-                arguments = Bundle().also { it.putString(com.aqrlei.app.open.todowanandroid.CacheConstant.USER_NAME_KEY, userName) }
+                arguments = Bundle().also {
+                    it.putString(
+                        com.aqrlei.app.open.todowanandroid.CacheConstant.USER_NAME_KEY,
+                        userName
+                    )
+                }
             }
         }
     }
@@ -38,7 +43,8 @@ class MeFragment : com.aqrlei.app.open.todowanandroid.base.ViewModelFragment<MeV
     override fun initComponents(binding: FragMeBinding) {
         viewModel.navigator = Navigator()
         binding.viewModel = viewModel
-        viewModel.userName.value = arguments?.getString(com.aqrlei.app.open.todowanandroid.CacheConstant.USER_NAME_KEY).orEmpty()
+        viewModel.userName.value =
+            arguments?.getString(com.aqrlei.app.open.todowanandroid.CacheConstant.USER_NAME_KEY).orEmpty()
     }
 
     inner class Navigator : MeViewModel.MeNavigator, View.OnClickListener {

@@ -37,7 +37,8 @@ class MainActivity : com.aqrlei.app.open.todowanandroid.base.ViewModelActivity<M
         viewModel.navigator = Navigator()
         binding.viewModel = viewModel
         meFragment = supportFragmentManager.findFragmentByTag(FRAGMENT_ME_TAG) as? MeFragment ?: MeFragment.newInstance(
-            intent.getStringExtra(com.aqrlei.app.open.todowanandroid.CacheConstant.USER_NAME_KEY))
+            intent.getStringExtra(com.aqrlei.app.open.todowanandroid.CacheConstant.USER_NAME_KEY)
+        )
         todoFragment =
             supportFragmentManager.findFragmentByTag(FRAGMENT_TODO_TAG) as? TodoFragment ?: TodoFragment.newInstance()
         viewModel.setSelected(0)

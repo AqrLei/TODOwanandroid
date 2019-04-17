@@ -16,8 +16,9 @@ import com.aqrlei.open.utils.ToastHelper
 /**
  * @author aqrlei on 2018/12/24
  */
-abstract class ViewModelActivity<VM : com.aqrlei.app.open.todowanandroid.base.BaseViewModel, VB : ViewDataBinding> : AppCompatActivity(),
-                                                                                                                     com.aqrlei.app.open.todowanandroid.base.BaseView {
+abstract class ViewModelActivity<VM : BaseViewModel, VB : ViewDataBinding> :
+    AppCompatActivity(),
+    BaseView {
     protected abstract val viewModel: VM
 
     private lateinit var binding: VB
@@ -49,7 +50,7 @@ abstract class ViewModelActivity<VM : com.aqrlei.app.open.todowanandroid.base.Ba
         }
     }
 
-    protected fun bindTitleToolbar(toolbar: Toolbar,showBack:Boolean = true) {
+    protected fun bindTitleToolbar(toolbar: Toolbar, showBack: Boolean = true) {
         setSupportActionBar(toolbar)
         supportActionBar?.run {
             setDisplayHomeAsUpEnabled(showBack)
@@ -90,7 +91,7 @@ abstract class ViewModelActivity<VM : com.aqrlei.app.open.todowanandroid.base.Ba
         ActivityCollector.remove(this)
     }
 
-    open inner class CommonNavigator : com.aqrlei.app.open.todowanandroid.base.BaseViewModel.CommonNavigator {
+    open inner class CommonNavigator : BaseViewModel.CommonNavigator {
         override fun back() {
             this@ViewModelActivity.finish()
         }
